@@ -13,8 +13,8 @@ function AcademicMark() {
   const pageLoad = useCallback(async () => {
     setLoading(true);
     await onReload();
-    setLoading(false);  
-  }, []);  
+    setLoading(false);
+  }, []);
 
   useEffect(() => {
     pageLoad();

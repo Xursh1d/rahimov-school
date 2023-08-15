@@ -55,7 +55,7 @@ function Layout({ children }) {
                 className="flex ml-2 md:mr-24 xs:w-20 xs:h-auto sm:w-auto"
               >
                 <img
-                  src="/public/rs-logo.png"
+                  src="/rs-logo.png"
                   className="h-14 xs:object-scale-down sm:object-center"
                   alt="FlowBite Logo"
                 />

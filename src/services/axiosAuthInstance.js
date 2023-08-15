@@ -5,6 +5,7 @@ import { RedirectLogin } from "./redirectToLogin";
 
 export const axiosAuthInstance = axios.create({
   baseURL: BASE_API_URL,
+  withCredentials: true,
 });
 
 const setAuthHeader = (config, token) => {

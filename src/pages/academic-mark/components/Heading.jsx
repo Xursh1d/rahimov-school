@@ -34,9 +34,9 @@ function Heading() {
 
   const monthsOptions = useMemo(() => {
     return (
-      filterset?.month_options?.map((element, index) => ({
-        label: element,
-        value: index,
+      filterset?.month_options?.map((element) => ({
+        label: element.title,
+        value: element.id,
       })) || []
     );
   }, [filterset]);
