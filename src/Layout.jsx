@@ -215,7 +215,7 @@ function Layout({ children }) {
         </aside>
       </div>
 
-      <div className="p-4 sm:ml-64  relative overflow-x-auto sm:rounded-lg">
+      <div className="p-4 sm:ml-64 min-h-[400px]  relative overflow-x-auto sm:rounded-lg">
         <div className="mt-14">{children}</div>
       </div>
     </div>

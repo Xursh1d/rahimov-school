@@ -3,15 +3,13 @@ import { toastError } from "../helpers/toasts";
 import { AcademicMarkService } from "../services/AcademicMarkService";
 
 export const useAcademicMarkStore = create((set) => ({
-  isLoading: false,
+  loading: false,
   students: null,
   filterset: null,
-  queryParams: {
-    page: 1,
-  },
+  queryParams: {},
   setLoading: (status) => {
     set({
-      isLoading: status,
+      loading: status,
     });
   },
   updateParams: (paramItem) => {
@@ -26,6 +24,7 @@ export const useAcademicMarkStore = create((set) => ({
       set({
         students: data.academic_marks,
         filterset: data.filterset,
+        queryParams: {},
       });
     } else toastError(nonFieldError);
   },

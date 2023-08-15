@@ -40,62 +40,57 @@ function Selector({ param, property }) {
 
   const isMobile = useMediaQuery({ maxWidth: 640 });
 
-  const handleSelectChange = useCallback(async (e) => {
-    setLoading(true);
-    if (property === "Fan") {
-      updateParams({
-        subject_id: e?.value == undefined ? "" : e?.value,
-        page: 1,
-      });
-      await loadItems(
-        new URLSearchParams({
-          ...queryParams,
+  const handleSelectChange = useCallback(
+    async (e) => {
+      setLoading(true);
+      if (property === "Fan") {
+        updateParams({
           subject_id: e?.value == undefined ? "" : e?.value,
-          page: 1,
-        }).toString()
-      );
-    }
-    if (property === "Ustoz") {
-      updateParams({
-        teacher_id: e?.value == undefined ? "" : e?.value,
-        page: 1,
-      });
-      await loadItems(
-        new URLSearchParams({
-          ...queryParams,
+        });
+        await loadItems(
+          new URLSearchParams({
+            ...queryParams,
+            subject_id: e?.value == undefined ? "" : e?.value,
+          }).toString()
+        );
+      }
+      if (property === "Ustoz") {
+        updateParams({
           teacher_id: e?.value == undefined ? "" : e?.value,
-          page: 1,
-        }).toString()
-      );
-    }
-    if (property === "Oy") {
-      updateParams({
-        month_id: e?.value == undefined ? "" : e?.value,
-        page: 1,
-      });
-      await loadItems(
-        new URLSearchParams({
-          ...queryParams,
+        });
+        await loadItems(
+          new URLSearchParams({
+            ...queryParams,
+            teacher_id: e?.value == undefined ? "" : e?.value,
+          }).toString()
+        );
+      }
+      if (property === "Oy") {
+        updateParams({
           month_id: e?.value == undefined ? "" : e?.value,
-          page: 1,
-        }).toString()
-      );
-    }
-    if (property === "Sinf") {
-      updateParams({
-        class_id: e?.value == undefined ? "" : e?.value,
-        page: 1,
-      });
-      await loadItems(
-        new URLSearchParams({
-          ...queryParams,
+        });
+        await loadItems(
+          new URLSearchParams({
+            ...queryParams,
+            month_id: e?.value == undefined ? "" : e?.value,
+          }).toString()
+        );
+      }
+      if (property === "Sinf") {
+        updateParams({
           class_id: e?.value == undefined ? "" : e?.value,
-          page: 1,
-        }).toString()
-      );
-    }
-    setLoading(false);
-  });
+        });
+        await loadItems(
+          new URLSearchParams({
+            ...queryParams,
+            class_id: e?.value == undefined ? "" : e?.value,
+          }).toString()
+        );
+      }
+      setLoading(false);
+    },
+    [queryParams]
+  );
 
   return (
     <Select

@@ -7,8 +7,8 @@ import Heading from "./components/Heading";
 import Table from "./components/Table";
 
 function AcademicMark() {
-  const { onReload, students, isLoading } = useAcademicMarkStore();
-  const { setLoading } = useLoaderStore();
+  const { onReload, students, loading } = useAcademicMarkStore();
+  const { isLoading, setLoading } = useLoaderStore();
 
   const pageLoad = useCallback(async () => {
     setLoading(true);
@@ -22,15 +22,21 @@ function AcademicMark() {
 
   return (
     <Layout>
-      <Heading />
       {isLoading ? (
         <Loader />
-      ) : students?.length > 0 ? (
-        <Table />
       ) : (
-        <p className="w-full text-center my-10 text-gray-400 font-medium text-lg">
-          Ma`lumot topilmadi
-        </p>
+        <>
+          <Heading />
+          {loading ? (
+            <Loader />
+          ) : students?.length > 0 ? (
+            <Table />
+          ) : (
+            <p className="w-full text-center my-10 text-gray-400 font-medium text-lg">
+              Ma`lumot topilmadi
+            </p>
+          )}
+        </>
       )}
     </Layout>
   );
