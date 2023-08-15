@@ -35,7 +35,7 @@ function Login() {
     <div className="w-full h-screen flex items-center justify-center border bg-gray-50">
       <div className="sm:h-[400px] sm:w-[60%] xs:w-[90%] sm:flex-row flex sm:items-center sm:justify-between xs:flex-col  border bg-white rounded-lg">
         <div className="sm:w-[45%] p-10 xs:w-[80%]  xs:flex xs:justify-center sm:block">
-          <img src="/public/rs-logo.png" />
+          <img src="/rs-logo.png" />
         </div>
         <form
           onSubmit={formik.handleSubmit}
