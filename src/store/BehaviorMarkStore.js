@@ -3,15 +3,14 @@ import { toastError } from "../helpers/toasts";
 import { BehaviorMarkService } from "../services/BehaviorMarkService";
 
 export const useBehaviorMarkStore = create((set) => ({
-  isLoading: false,
+  loading: false,
   students: null,
+  studentId: null,
   filterset: null,
-  queryParams: {
-    page: 1,
-  },
+  queryParams: {},
   setLoading: (status) => {
     set({
-      isLoading: status,
+      loading: status,
     });
   },
   updateParams: (paramItem) => {
@@ -26,6 +25,7 @@ export const useBehaviorMarkStore = create((set) => ({
       set({
         students: data.behavior_marks,
         filterset: data.filterset,
+        queryParams: {},
       });
     } else toastError(nonFieldError);
   },

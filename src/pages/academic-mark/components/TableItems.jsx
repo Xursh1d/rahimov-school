@@ -1,10 +1,10 @@
 function TableItems({ item, index }) {
   return (
     <tr className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700">
-      <td className="p-3">{index + 1}</td>
+      <td className="border p-3">{index + 1}</td>
       <th
         scope="row"
-        className="px-3 max-w-[160px] font-medium text-gray-900  dark:text-white"
+        className="px-3 text-center max-w-[160px] font-medium text-gray-900  dark:text-white"
       >
         {item.student}
       </th>
