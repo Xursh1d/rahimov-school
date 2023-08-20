@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Selector from "./components/Select";
 import { useLayoutStore } from "./store/LayoutStore";
 
@@ -17,6 +17,9 @@ function Layout({ children }) {
       toggleAttendanceDrop: !toggleAttendanceDrop,
     });
   };
+  const location = useLocation();
+  const currentURL = location.pathname;
+
   return (
     <div className="min-h-screen">
       <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -129,24 +132,36 @@ function Layout({ children }) {
                 <ul
                   id="dropdown-example"
                   className={`${
-                    toggleAttendanceDrop ? "block" : "hidden"
+                    toggleAttendanceDrop ||
+                    currentURL == "/" ||
+                    currentURL == "/attendance"
+                      ? "block"
+                      : "hidden"
                   } py-2 space-y-2`}
                 >
                   <li>
-                    <a
-                      href="#"
-                      className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    <Link
+                      to={"/"}
+                      className={`${
+                        currentURL == "/"
+                          ? "bg-gray-100 dark:text-white dark:bg-gray-700"
+                          : ""
+                      } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
                     >
                       Statistikalar
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
-                      className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    <Link
+                      to={"/attendance"}
+                      className={`${
+                        currentURL == "/attendance"
+                          ? "bg-gray-100 dark:text-white dark:bg-gray-700"
+                          : ""
+                      } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
                     >
                       Davomat
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -189,13 +204,21 @@ function Layout({ children }) {
                 <ul
                   id="dropdown-example"
                   className={`${
-                    toggleMarkDrop ? "block" : "hidden"
+                    toggleMarkDrop ||
+                    currentURL == "/marking/academic" ||
+                    currentURL == "/marking/behavioral"
+                      ? "block"
+                      : "hidden"
                   } py-2 space-y-2`}
                 >
                   <li>
                     <Link
                       to="/marking/academic"
-                      className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                      className={`${
+                        currentURL == "/marking/academic"
+                          ? "bg-gray-100 dark:text-white dark:bg-gray-700"
+                          : ""
+                      } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
                     >
                       Akademik baholash
                     </Link>
@@ -203,7 +226,11 @@ function Layout({ children }) {
                   <li>
                     <Link
                       to="/marking/behavioral"
-                      className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                      className={`${
+                        currentURL == "/marking/behavioral"
+                          ? "bg-gray-100 dark:text-white dark:bg-gray-700"
+                          : ""
+                      } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
                     >
                       Axloqiy baholash
                     </Link>

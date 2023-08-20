@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { toastError } from "../helpers/toasts";
+import { toastError, toastSuccess } from "../helpers/toasts";
 import { AcademicMarkService } from "../services/AcademicMarkService";
 
 export const useAcademicMarkStore = create((set) => ({
@@ -35,6 +35,12 @@ export const useAcademicMarkStore = create((set) => ({
       set({
         students: data.academic_marks,
       });
+    } else toastError(nonFieldError);
+  },
+  onSubmit: async (data) => {
+    const { status, nonFieldError } = await AcademicMarkService.onSubmit(data);
+    if (status) {
+      toastSuccess(nonFieldError);
     } else toastError(nonFieldError);
   },
 }));

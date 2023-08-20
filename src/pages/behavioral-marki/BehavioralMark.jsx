@@ -6,12 +6,11 @@ import Heading from "./components/Heading";
 import Table from "./components/Table";
 import { useBehaviorMarkStore } from "../../store/BehaviorMarkStore";
 import CommentModal from "./components/CommentModal";
+import EmptyContent from "../../components/EmptyContent";
 
 function BehaviorMark() {
   const { onReload, students, loading, studentId } = useBehaviorMarkStore();
   const { setLoading, isLoading } = useLoaderStore();
-
-  console.log(studentId);
 
   const pageLoad = useCallback(async () => {
     setLoading(true);
@@ -22,13 +21,6 @@ function BehaviorMark() {
   useEffect(() => {
     pageLoad();
   }, []);
-
-  const addCallback = async () => {
-    // await deleteProduct(deleteId, updateToast);
-    setLoading(true);
-    await onReload();
-    setLoading(false);
-  };
 
   const cancelCallback = () => {
     useBehaviorMarkStore.setState({
@@ -48,17 +40,11 @@ function BehaviorMark() {
           ) : students?.length > 0 ? (
             <Table />
           ) : (
-            <p className="w-full text-center my-10 text-gray-400 font-medium text-lg">
-              Ma`lumot topilmadi
-            </p>
+            <EmptyContent />
           )}
         </>
       )}
-      <CommentModal
-        addCallback={() => addCallback()}
-        cancelCallback={cancelCallback}
-        studentId={studentId}
-      />
+      <CommentModal cancelCallback={cancelCallback} studentId={studentId} />
     </Layout>
   );
 }

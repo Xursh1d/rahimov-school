@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import { toastError, toastSuccess } from "../helpers/toasts";
-import { BehaviorMarkService } from "../services/BehaviorMarkService";
+import { AttendaceService } from "../services/AttendanceService";
 
-export const useBehaviorMarkStore = create((set) => ({
+export const useAttendaceStore = create((set) => ({
   loading: false,
   students: null,
-  behaviorId: null,
-  cancelCallbackComment: null,
+  attendance_dates: null,
+  toggleDateModal: false,
   filterset: null,
   queryParams: {},
   setLoading: (status) => {
@@ -21,10 +21,11 @@ export const useBehaviorMarkStore = create((set) => ({
   },
   onReload: async () => {
     const { data, status, nonFieldError } =
-      await BehaviorMarkService.getBehaviorMark();
+      await AttendaceService.getAttendance();
     if (status) {
       set({
-        students: data.behavior_marks,
+        students: data.students,
+        attendance_dates: data.attendance_dates,
         filterset: data.filterset,
         queryParams: {},
       });
@@ -32,17 +33,17 @@ export const useBehaviorMarkStore = create((set) => ({
   },
   loadItems: async (queryString = "") => {
     const { data, status, nonFieldError } =
-      await BehaviorMarkService.getBehaviorMark(queryString);
+      await AttendaceService.getAttendance(queryString);
     if (status) {
       set({
-        students: data.behavior_marks,
+        students: data.students,
+        attendance_dates: data.attendance_dates,
+        filterset: data.filterset,
       });
     } else toastError(nonFieldError);
   },
-  onSubmit: async (commentData) => {
-    const { status, nonFieldError } = await BehaviorMarkService.applyComment(
-      commentData
-    );
+  onSubmit: async (data) => {
+    const { status, nonFieldError } = await AttendaceService.onSubmit(data);
     if (status) {
       toastSuccess(nonFieldError);
     } else toastError(nonFieldError);
