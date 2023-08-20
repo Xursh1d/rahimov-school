@@ -9,8 +9,7 @@ const customStyles = {
     ...provided,
     height: "37px",
     minHeight: "37px",
-    maxWidth: "200px",
-    minWidth: "120px",
+    width: "150px",
     fontSize: "13px",
     fontWeight: "400",
   }),
@@ -21,15 +20,21 @@ const mobileStyles = {
     padding: "2px",
     width: "20px",
   }),
+  clearIndicator: (provided) => ({
+    ...provided,
+    padding: "0 5px",
+    width: "25px",
+  }),
   control: (provided) => ({
     ...provided,
     height: "30px",
     minHeight: "30px",
     maxHeight: "30px",
-    minWidth: "100px",
+    width: "80px",
     fontSize: "12px",
     padding: "0 !important",
     margin: "0 !important",
+    zIndex: "0",
   }),
 };
 
@@ -49,12 +54,20 @@ function Selector({ param, property }) {
 
   return (
     <Select
-      classNamePrefix="select"
       placeholder={property}
       styles={isMobile ? mobileStyles : customStyles}
       options={options}
       isClearable
       onChange={handleSelectChange}
+      theme={(theme) => ({
+        ...theme,
+        colors: {
+          ...theme.colors,
+          primary25: "#ecfccb",
+          primary50: "#d9f99d",
+          primary: "#16a34a",
+        },
+      })}
     />
   );
 }

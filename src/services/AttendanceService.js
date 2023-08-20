@@ -1,8 +1,8 @@
 import axios from "axios";
 import { axiosAuthInstance } from "./axiosAuthInstance";
 
-export class AcademicMarkService {
-  static async getAcademicmark(queryString = "") {
+export class AttendaceService {
+  static async getAttendance(queryString = "") {
     let result = {
       status: false,
       data: null,
@@ -10,8 +10,9 @@ export class AcademicMarkService {
     };
     try {
       const response = await axiosAuthInstance.get(
-        "/marking/academic/?" + queryString
+        "/attendance/?" + queryString
       );
+
       if (response.status === 200) {
         result = {
           ...result,
@@ -42,9 +43,11 @@ export class AcademicMarkService {
     };
     try {
       const response = await axiosAuthInstance.post(
-        `/marking/academic/update/`,
+        `/attendance/create/`,
         data
       );
+      console.log(response);
+
       if (response.status === 200) {
         result = {
           ...result,

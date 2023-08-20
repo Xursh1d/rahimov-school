@@ -38,6 +38,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route element={<PrivateRoute />}>
           <Route path="/" element={<Attendance />} />
+          <Route path="/attendance" element={<Attendance />} />
           <Route path="/marking/academic" element={<AcademicMark />} />
           <Route path="/marking/behavioral" element={<BehavioralMark />} />
         </Route>

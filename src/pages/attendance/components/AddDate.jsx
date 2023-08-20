@@ -1,31 +1,31 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
-import { useBehaviorMarkStore } from "../../../store/BehaviorMarkStore";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useAttendaceStore } from "../../../store/AttendanceStore";
 
 const initialValues = {
-  category_id: "",
-  content: "",
+  date: "",
 };
 
-function CommentModal({ studentId, cancelCallback }) {
+function AddDate() {
   const [loading, setLoader] = useState(false);
-  const { loadItems, filterset, queryParams, onSubmit, setLoading } =
-    useBehaviorMarkStore();
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth();
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const [validationMessage, setValidationMessage] = useState("");
+  const { loadItems, queryParams, onSubmit, setLoading, toggleDateModal } =
+    useAttendaceStore();
 
   const formik = useFormik({
     initialValues: initialValues,
     enableReinitialize: false,
     validationSchema: Yup.object({
-      content: Yup.string(),
-      category_id: Yup.string()
-        .min(1, "Kategoriya tanlang!")
-        .required("Kategoriya tanlang!"),
+      date: Yup.string(),
     }),
     onSubmit: async (values) => {
       setLoader(true);
-      await onSubmit({ ...values, behavior_mark_id: studentId });
+      await onSubmit({ ...values, ...queryParams, academic_year_id: 1 });
       closeModal();
       setLoading(true);
       await loadItems(
@@ -37,8 +37,35 @@ function CommentModal({ studentId, cancelCallback }) {
     },
   });
 
+  const isWeekend = (date) => {
+    const dayOfWeek = date.getDay();
+    return dayOfWeek === 0 || dayOfWeek === 6; // Sunday (0) and Saturday (6) are weekends
+  };
+
+  const handleDateChange = (e) => {
+    const selectedDateObj = new Date(e.target.value);
+    if (
+      e.target.value &&
+      selectedDateObj instanceof Date &&
+      !isNaN(selectedDateObj.getTime())
+    ) {
+      if (isWeekend(selectedDateObj)) {
+        setValidationMessage(
+          "Weekend days (Saturday and Sunday) are not allowed."
+        );
+      } else {
+        setValidationMessage("Date is valid.");
+      }
+    } else {
+      setValidationMessage("Invalid date.");
+    }
+    formik.setFieldValue("date", e.target.value);
+  };
+
   const closeModal = () => {
-    cancelCallback();
+    useAttendaceStore.setState({
+      toggleDateModal: false,
+    });
     setLoader(false);
     formik.resetForm();
   };
@@ -49,7 +76,7 @@ function CommentModal({ studentId, cancelCallback }) {
       id="defaultModal"
       aria-hidden="true"
       className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${
-        !studentId ? "hidden" : "bg-[#66656547] dark:#3a3839ad"
+        !toggleDateModal ? "hidden" : "bg-[#66656547] dark:#3a3839ad"
       }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
     >
       <div
@@ -85,67 +112,33 @@ function CommentModal({ studentId, cancelCallback }) {
               className="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 18"
               fill="currentColor"
+              viewBox="0 0 20 20"
             >
-              <path
-                d="M18 4H16V9C16 10.0609 15.5786 11.0783 14.8284 11.8284C14.0783 12.5786 13.0609 13 12 13H9L6.846 14.615C7.17993 14.8628 7.58418 14.9977 8 15H11.667L15.4 17.8C15.5731 17.9298 15.7836 18 16 18C16.2652 18 16.5196 17.8946 16.7071 17.7071C16.8946 17.5196 17 17.2652 17 17V15H18C18.5304 15 19.0391 14.7893 19.4142 14.4142C19.7893 14.0391 20 13.5304 20 13V6C20 5.46957 19.7893 4.96086 19.4142 4.58579C19.0391 4.21071 18.5304 4 18 4Z"
-                fill="currentColor"
-              />
-              <path
-                d="M12 0H2C1.46957 0 0.960859 0.210714 0.585786 0.585786C0.210714 0.960859 0 1.46957 0 2V9C0 9.53043 0.210714 10.0391 0.585786 10.4142C0.960859 10.7893 1.46957 11 2 11H3V13C3 13.1857 3.05171 13.3678 3.14935 13.5257C3.24698 13.6837 3.38668 13.8114 3.55279 13.8944C3.71889 13.9775 3.90484 14.0126 4.08981 13.996C4.27477 13.9793 4.45143 13.9114 4.6 13.8L8.333 11H12C12.5304 11 13.0391 10.7893 13.4142 10.4142C13.7893 10.0391 14 9.53043 14 9V2C14 1.46957 13.7893 0.960859 13.4142 0.585786C13.0391 0.210714 12.5304 0 12 0Z"
-                fill="currentColor"
-              />
+              <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
             </svg>
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-              O`quvchi haqida
+              Davomat qo`shish
             </h3>
 
             <form onSubmit={formik.handleSubmit}>
-              <div className="mb-6 flex items-start flex-col relative w-full">
-                <label
-                  htmlFor="countries"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Axloqiy Kategoriya
-                </label>
-                <select
-                  onChange={formik.handleChange}
-                  name="category_id"
-                  onBlur={formik.handleBlur}
-                  value={formik.values.category_id}
-                  id="countries"
-                  className={`${
-                    formik.errors.category_id && "border-red-500"
-                  } bg-white outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500`}
-                >
-                  <option selected></option>
-                  {filterset?.comment_categories.map((categoriya) => {
-                    return (
-                      <option key={categoriya.id} value={categoriya.id}>
-                        {categoriya.title}
-                      </option>
-                    );
-                  })}
-                </select>
-                {formik.errors.category_id && (
-                  <span className="absolute top-[70px] transition-all duration-300  text-red-500  text-sm">
-                    {formik.errors.category_id}
-                  </span>
-                )}
-              </div>
               <div className="mb-6 flex items-start flex-col">
                 <label
                   htmlFor="password"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Izoh
+                  Sana
                 </label>
-                <textarea
-                  name="content"
-                  value={formik.values.content}
-                  onChange={formik.handleChange}
-                  className=" border outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                <input
+                  name="date"
+                  type={"date"}
+                  value={formik.values.date}
+                  onChange={handleDateChange}
+                  max={`${currentYear}-${currentMonth + 1}-${daysInMonth}`}
+                  min={`${currentYear}-${currentMonth + 1}-01`}
+                  className={`${
+                    validationMessage && "border-red-500"
+                  } border outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500`}
                 />
               </div>
 
@@ -199,8 +192,4 @@ function CommentModal({ studentId, cancelCallback }) {
     </div>
   );
 }
-CommentModal.propTypes = {
-  studentId: PropTypes.string,
-  cancelCallback: PropTypes.func.isRequired,
-};
-export default CommentModal;
+export default AddDate;

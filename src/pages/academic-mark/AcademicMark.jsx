@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from "react";
+import EmptyContent from "../../components/EmptyContent";
 import Loader from "../../components/loaders/Loader";
 import Layout from "../../Layout";
 import { useAcademicMarkStore } from "../../store/AcademicMarkStore";
@@ -32,9 +33,7 @@ function AcademicMark() {
           ) : students?.length > 0 ? (
             <Table />
           ) : (
-            <p className="w-full text-center my-10 text-gray-400 font-medium text-lg">
-              Ma`lumot topilmadi
-            </p>
+            <EmptyContent />
           )}
         </>
       )}
