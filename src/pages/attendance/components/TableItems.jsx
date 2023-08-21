@@ -13,29 +13,34 @@ function TableItems({ formik, item, index }) {
       >
         {item.student}
       </th>
-      {attendance_dates?.map((item) => {
+      {attendance_dates?.map((date, indexDate) => {
         return (
-          <td key={item.date} className="border">
+          <td key={date.date} className="border">
             <select
-              name={`students.${index}.category_id`}
+              name={`students.${index}.attendance_data.${indexDate}.status`}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.students?.[index]?.category_id || ""}
+              value={
+                formik.values.students?.[index]?.attendance_data?.[indexDate]
+                  ?.status
+              }
               className={`sm:p-2.5 xs:p-1 h-full bg-inherit xs:text-[10px] sm:text-sm  ${
-                formik.touched.students?.[index]?.category_id &&
-                formik.errors.students?.[index]?.category_id &&
+                formik.touched.students?.[index]?.attendance_data?.[indexDate]
+                  ?.status &&
+                formik.errors.students?.[index]?.attendance_data?.[indexDate]
+                  ?.status &&
                 "border border-red-600"
               }   min-w-[50px] xs:text-[10px] sm:text-sm  outline-none text-center  border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
             >
               <option selected></option>
-              {filterset?.attendance_options.map((item) => {
+              {filterset?.attendance_options.map((date) => {
                 return (
                   <option
-                    key={item.key}
-                    value={item.key}
+                    key={date.key}
+                    value={date.key}
                     className="border-red-500 text-start"
                   >
-                    {item.name}
+                    {date.name}
                   </option>
                 );
               })}

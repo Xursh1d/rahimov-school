@@ -48,4 +48,12 @@ export const useAttendaceStore = create((set) => ({
       toastSuccess(nonFieldError);
     } else toastError(nonFieldError);
   },
+  attendanceUpdate: async (data) => {
+    const { status, nonFieldError } = await AttendaceService.updateAttendance(
+      data
+    );
+    if (status) {
+      toastSuccess(nonFieldError);
+    } else toastError(nonFieldError);
+  },
 }));

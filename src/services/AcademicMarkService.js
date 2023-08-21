@@ -22,7 +22,6 @@ export class AcademicMarkService {
     } catch (e) {
       if (axios.isAxiosError(e)) {
         const errorResponse = e.response;
-        console.log(errorResponse);
         if (errorResponse) {
           const errorMessage = errorResponse.data;
           const [firstKey, firstValue] = Object.entries(errorMessage)[0];
@@ -59,7 +58,6 @@ export class AcademicMarkService {
         if (errorResponse) {
           const errorMessage = errorResponse.data;
           const [firstKey, firstValue] = Object.entries(errorMessage)[0];
-          console.log(firstKey);
           if (firstKey && firstValue) {
             result = { ...result, nonFieldError: String(firstValue) };
           } else result.nonFieldError = "Saqlab bo'lmadi!";
