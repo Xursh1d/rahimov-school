@@ -44,8 +44,6 @@ function Selector({ value, disabled, param, property }) {
 
   const isMobile = useMediaQuery({ maxWidth: 640 });
 
-  console.log(queryParams);
-
   const handleSelectChange = useCallback(
     async (e) => {
       setLoading(true);
