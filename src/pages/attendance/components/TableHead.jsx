@@ -9,6 +9,12 @@ function TableHead() {
     });
   };
 
+  const handleDelete = (date) => {
+    useAttendaceStore.setState({
+      deletedDate: date,
+    });
+  };
+
   return (
     <thead className=" border border-[#d9f99d] xs:text-[10px] sm:text-xs text-gray-700 bg-[#ecfccb] dark:bg-gray-700 dark:text-gray-400">
       <tr className="py-3">
@@ -23,8 +29,22 @@ function TableHead() {
             <th
               key={item.date}
               scope="col"
-              className="border text-center  max-w-[50px] p-1"
+              className="border relative text-center  max-w-[50px] p-1 cursor-pointer group"
             >
+              <span
+                onClick={() => handleDelete(item.full_date)}
+                className="absolute top-0 left-0 right-0 bottom-0 hidden bg-none hover:bg-[#ed918e] group-hover:flex items-center justify-center"
+              >
+                <svg
+                  className="w-4 h-4 text-white dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z" />
+                </svg>
+              </span>
               {item.date}
             </th>
           );
@@ -59,7 +79,7 @@ function TableHead() {
             <th
               key={item.date}
               scope="col"
-              className="border text-center  max-w-[50px] p-1"
+              className="border text-center  max-w-[50px] p-1 "
             >
               {item.weekday}
             </th>

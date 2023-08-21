@@ -9,12 +9,12 @@ function Table() {
   const {
     students,
     attendance_dates,
-    setLoading,
+    setLoader,
     loadItems,
     queryParams,
     attendanceUpdate,
   } = useAttendaceStore();
-  const [isLoading, setLoader] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const initialValues = {
     students:
@@ -60,15 +60,16 @@ function Table() {
       ),
     }),
     onSubmit: async (values) => {
-      setLoader(true);
-      await attendanceUpdate(values.students);
       setLoading(true);
+      await attendanceUpdate(values.students);
+      setLoading(false);
+      setLoader(true);
       await loadItems(
         new URLSearchParams({
           ...queryParams,
         }).toString()
       );
-      setLoading(false);
+      setLoader(false);
     },
   });
 
