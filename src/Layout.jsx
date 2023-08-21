@@ -66,8 +66,8 @@ function Layout({ children }) {
             </div>
             <div className="flex items-center">
               <div className="flex items-center justify-between xs:gap-x-3 sm:gap-5 sm:flex-row">
-                <Selector property={"Yillar"} />
-                <Selector property={"Oylar"} />
+                <Selector property={"O'quv yili"} />
+                <Selector property={"Filiallar"} />
               </div>
             </div>
           </div>
@@ -79,16 +79,14 @@ function Layout({ children }) {
             isOpenSideBar: false,
           })
         }
-        className={`w-full absolute sm:bg-inherit ${
-          isOpenSideBar ? "xs:bg-[#5d5d5da3] sm:bg-white z-10" : "z-0"
-        } top-16 sm:right-0 left-0 bottom-0 transition-all h-full`}
+        className={`w-full absolute sm:bg-inherit ${isOpenSideBar ? "xs:bg-[#5d5d5da3] sm:bg-white z-10" : "z-0"
+          } top-16 sm:right-0 left-0 bottom-0 transition-all h-full`}
       >
         <aside
           onClick={(e) => e.stopPropagation()}
           id="logo-sidebar"
-          className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${
-            isOpenSideBar ? "translate-x" : "-translate-x-full"
-          }  bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700 pointer-events-auto`}
+          className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${isOpenSideBar ? "translate-x" : "-translate-x-full"
+            }  bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700 pointer-events-auto`}
           aria-label="Sidebar"
         >
           <div className="h-full  px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
@@ -131,22 +129,20 @@ function Layout({ children }) {
                 </button>
                 <ul
                   id="dropdown-example"
-                  className={`${
-                    toggleAttendanceDrop ||
-                    currentURL == "/" ||
-                    currentURL == "/attendance"
+                  className={`${toggleAttendanceDrop ||
+                      currentURL == "/" ||
+                      currentURL == "/attendance"
                       ? "block"
                       : "hidden"
-                  } py-2 space-y-2`}
+                    } py-2 space-y-2`}
                 >
                   <li>
                     <Link
                       to={"/"}
-                      className={`${
-                        currentURL == "/"
+                      className={`${currentURL == "/"
                           ? "bg-gray-100 dark:text-white dark:bg-gray-700"
                           : ""
-                      } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                        } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
                     >
                       Statistikalar
                     </Link>
@@ -154,11 +150,10 @@ function Layout({ children }) {
                   <li>
                     <Link
                       to={"/attendance"}
-                      className={`${
-                        currentURL == "/attendance"
+                      className={`${currentURL == "/attendance"
                           ? "bg-gray-100 dark:text-white dark:bg-gray-700"
                           : ""
-                      } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                        } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
                     >
                       Davomat
                     </Link>
@@ -203,22 +198,20 @@ function Layout({ children }) {
                 </button>
                 <ul
                   id="dropdown-example"
-                  className={`${
-                    toggleMarkDrop ||
-                    currentURL == "/marking/academic" ||
-                    currentURL == "/marking/behavioral"
+                  className={`${toggleMarkDrop ||
+                      currentURL == "/marking/academic" ||
+                      currentURL == "/marking/behavioral"
                       ? "block"
                       : "hidden"
-                  } py-2 space-y-2`}
+                    } py-2 space-y-2`}
                 >
                   <li>
                     <Link
                       to="/marking/academic"
-                      className={`${
-                        currentURL == "/marking/academic"
+                      className={`${currentURL == "/marking/academic"
                           ? "bg-gray-100 dark:text-white dark:bg-gray-700"
                           : ""
-                      } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                        } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
                     >
                       Akademik baholash
                     </Link>
@@ -226,11 +219,10 @@ function Layout({ children }) {
                   <li>
                     <Link
                       to="/marking/behavioral"
-                      className={`${
-                        currentURL == "/marking/behavioral"
+                      className={`${currentURL == "/marking/behavioral"
                           ? "bg-gray-100 dark:text-white dark:bg-gray-700"
                           : ""
-                      } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                        } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
                     >
                       Axloqiy baholash
                     </Link>
