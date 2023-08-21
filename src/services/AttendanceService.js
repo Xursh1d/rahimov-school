@@ -68,6 +68,7 @@ export class AttendaceService {
     }
     return result;
   }
+
   static async updateAttendance(data) {
     let result = {
       status: false,
@@ -98,6 +99,41 @@ export class AttendaceService {
             result = { ...result, nonFieldError: String(firstValue) };
           } else result.nonFieldError = "Saqlab bo'lmadi!";
         } else result.nonFieldError = "Saqlab bo'lmadi!";
+      }
+    }
+    return result;
+  }
+
+  static async deleteDate(data) {
+    let result = {
+      status: false,
+      data: null,
+      nonFieldError: null,
+    };
+    try {
+      const response = await axiosAuthInstance.post(
+        `/attendance/delete/`,
+        data
+      );
+
+      if (response.status === 200) {
+        result = {
+          ...result,
+          status: true,
+          data: response.data,
+          nonFieldError: response.data.detail,
+        };
+      }
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        const errorResponse = e.response;
+        if (errorResponse) {
+          const errorMessage = errorResponse.data;
+          const [firstKey, firstValue] = Object.entries(errorMessage)[0];
+          if (firstKey && firstValue) {
+            result = { ...result, nonFieldError: String(firstValue) };
+          } else result.nonFieldError = "O'chirib bo'lmadi!";
+        } else result.nonFieldError = "O'chirib bo'lmadi!";
       }
     }
     return result;

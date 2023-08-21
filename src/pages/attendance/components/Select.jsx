@@ -39,14 +39,14 @@ const mobileStyles = {
 };
 
 function Selector({ value, disabled, param, property }) {
-  const { queryParams, updateParams, setLoading, loadItems } =
+  const { queryParams, updateParams, setLoader, loadItems } =
     useAttendaceStore();
 
   const isMobile = useMediaQuery({ maxWidth: 640 });
 
   const handleSelectChange = useCallback(
     async (e) => {
-      setLoading(true);
+      setLoader(true);
       if (property === "Ustoz") {
         if (e?.value == undefined) {
           updateParams({
@@ -153,7 +153,7 @@ function Selector({ value, disabled, param, property }) {
           );
         }
       }
-      setLoading(false);
+      setLoader(false);
     },
     [queryParams]
   );

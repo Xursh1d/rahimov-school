@@ -8,65 +8,35 @@ const initialValues = {
 };
 
 function AddDate() {
-  const [loading, setLoader] = useState(false);
-  const today = new Date();
-  const currentYear = today.getFullYear();
-  const currentMonth = today.getMonth();
-  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-  const [validationMessage, setValidationMessage] = useState("");
-  const { loadItems, queryParams, onSubmit, setLoading, toggleDateModal } =
+  const [loading, setLoading] = useState(false);
+  const { loadItems, queryParams, onSubmit, setLoader, toggleDateModal } =
     useAttendaceStore();
 
   const formik = useFormik({
     initialValues: initialValues,
     enableReinitialize: false,
     validationSchema: Yup.object({
-      date: Yup.string(),
+      date: Yup.string().required("required"),
     }),
     onSubmit: async (values) => {
-      setLoader(true);
+      setLoading(true);
       await onSubmit({ ...values, ...queryParams, academic_year_id: 1 });
       closeModal();
-      setLoading(true);
+      setLoader(true);
       await loadItems(
         new URLSearchParams({
           ...queryParams,
         }).toString()
       );
-      setLoading(false);
+      setLoader(false);
     },
   });
-
-  const isWeekend = (date) => {
-    const dayOfWeek = date.getDay();
-    return dayOfWeek === 0 || dayOfWeek === 6; // Sunday (0) and Saturday (6) are weekends
-  };
-
-  const handleDateChange = (e) => {
-    const selectedDateObj = new Date(e.target.value);
-    if (
-      e.target.value &&
-      selectedDateObj instanceof Date &&
-      !isNaN(selectedDateObj.getTime())
-    ) {
-      if (isWeekend(selectedDateObj)) {
-        setValidationMessage(
-          "Weekend days (Saturday and Sunday) are not allowed."
-        );
-      } else {
-        setValidationMessage("Date is valid.");
-      }
-    } else {
-      setValidationMessage("Invalid date.");
-    }
-    formik.setFieldValue("date", e.target.value);
-  };
 
   const closeModal = () => {
     useAttendaceStore.setState({
       toggleDateModal: false,
     });
-    setLoader(false);
+    setLoading(false);
     formik.resetForm();
   };
 
@@ -133,11 +103,9 @@ function AddDate() {
                   name="date"
                   type={"date"}
                   value={formik.values.date}
-                  onChange={handleDateChange}
-                  max={`${currentYear}-${currentMonth + 1}-${daysInMonth}`}
-                  min={`${currentYear}-${currentMonth + 1}-01`}
+                  onChange={formik.handleChange}
                   className={`${
-                    validationMessage && "border-red-500"
+                    formik.errors.date && "border-red-500"
                   } border outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500`}
                 />
               </div>

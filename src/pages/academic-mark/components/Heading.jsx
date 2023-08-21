@@ -3,7 +3,7 @@ import { useAcademicMarkStore } from "../../../store/AcademicMarkStore";
 import Selector from "./Select";
 
 function Heading() {
-  const { filterset } = useAcademicMarkStore();
+  const { filterset, queryParams } = useAcademicMarkStore();
 
   const teachersOptions = useMemo(() => {
     return (
@@ -43,10 +43,44 @@ function Heading() {
 
   return (
     <div className="w-full flex justify-start gap-5">
-      <Selector param={teachersOptions} property="Ustoz" />
-      <Selector param={subjectOptions} property="Fan" />
-      <Selector param={classOptions} property="Sinf" />
-      <Selector param={monthsOptions} property="Oy" />
+      <Selector
+        value={
+          teachersOptions.find(
+            (item) => item.value === queryParams.teacher_id
+          ) || null
+        }
+        disabled={false}
+        param={teachersOptions}
+        property="Ustoz"
+      />
+      <Selector
+        value={
+          subjectOptions.find(
+            (item) => item.value === queryParams.subject_id
+          ) || null
+        }
+        disabled={!queryParams.teacher_id}
+        param={subjectOptions}
+        property="Fan"
+      />
+      <Selector
+        value={
+          classOptions.find((item) => item.value === queryParams.class_id) ||
+          null
+        }
+        disabled={!queryParams.subject_id}
+        param={classOptions}
+        property="Sinf"
+      />
+      <Selector
+        value={
+          monthsOptions.find((item) => item.value === queryParams.month_id) ||
+          null
+        }
+        disabled={!queryParams.class_id}
+        param={monthsOptions}
+        property="Oy"
+      />
     </div>
   );
 }

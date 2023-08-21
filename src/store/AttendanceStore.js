@@ -7,9 +7,10 @@ export const useAttendaceStore = create((set) => ({
   students: null,
   attendance_dates: null,
   toggleDateModal: false,
+  deletedDate: null,
   filterset: null,
   queryParams: {},
-  setLoading: (status) => {
+  setLoader: (status) => {
     set({
       loading: status,
     });
@@ -53,6 +54,15 @@ export const useAttendaceStore = create((set) => ({
       data
     );
     if (status) {
+      toastSuccess(nonFieldError);
+    } else toastError(nonFieldError);
+  },
+  deleteDateAction: async (date) => {
+    const { status, nonFieldError } = await AttendaceService.deleteDate(date);
+    if (status) {
+      set({
+        deletedDate: null,
+      });
       toastSuccess(nonFieldError);
     } else toastError(nonFieldError);
   },
