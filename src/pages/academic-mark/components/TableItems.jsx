@@ -1,23 +1,6 @@
 import PropTypes from "prop-types";
 
 function TableItems({ formik, item, index }) {
-  // const handleChange = useCallback(
-  //   (e, key) => {
-  //     const updatedStudents = students?.map((student) =>
-  //       student.id === item.id
-  //         ? {
-  //             ...student,
-  //             [key]: e.target.value,
-  //           }
-  //         : student
-  //     );
-  //     useAcademicMarkStore.setState({
-  //       students: updatedStudents,
-  //     });
-  //   },
-  //   [students]
-  // );
-
   return (
     <tr className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700">
       <td className="border px-3 py-3 xs:text-[10px] sm:text-sm  ">
@@ -34,9 +17,9 @@ function TableItems({ formik, item, index }) {
           name={`students.${index}.first_term_points`}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.students?.[index]?.first_term_points || ""}
+          value={formik.values.students?.[index]?.first_term_points || 0}
           type="number"
-          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${
+          className={`px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${
             formik.touched.students?.[index]?.first_term_points &&
             formik.errors.students?.[index]?.first_term_points &&
             "border border-red-600"
@@ -50,7 +33,7 @@ function TableItems({ formik, item, index }) {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.students?.[index]?.second_term_points || ""}
-          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${
+          className={`px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${
             formik.touched.students?.[index]?.second_term_points &&
             formik.errors.students?.[index]?.second_term_points &&
             "border border-red-600"
@@ -79,11 +62,12 @@ function TableItems({ formik, item, index }) {
       <td className="border">
         <input
           type="number"
+          min={0}
           name={`students.${index}.final_term_points`}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.students?.[index]?.final_term_points || ""}
-          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${
+          className={`px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${
             formik.touched.students?.[index]?.final_term_points &&
             formik.errors.students?.[index]?.final_term_points &&
             "border border-red-600"
