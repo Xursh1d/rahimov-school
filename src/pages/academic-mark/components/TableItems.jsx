@@ -1,22 +1,6 @@
 import PropTypes from "prop-types";
 
 function TableItems({ formik, item, index }) {
-  // const handleChange = useCallback(
-  //   (e, key) => {
-  //     const updatedStudents = students?.map((student) =>
-  //       student.id === item.id
-  //         ? {
-  //             ...student,
-  //             [key]: e.target.value,
-  //           }
-  //         : student
-  //     );
-  //     useAcademicMarkStore.setState({
-  //       students: updatedStudents,
-  //     });
-  //   },
-  //   [students]
-  // );
 
   return (
     <tr className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700">
@@ -34,13 +18,13 @@ function TableItems({ formik, item, index }) {
           name={`students.${index}.first_term_points`}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.students?.[index]?.first_term_points || ""}
+          value={formik.values.students?.[index]?.first_term_points || 0}
           type="number"
-          className={`px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${
-            formik.touched.students?.[index]?.first_term_points &&
+          min={0}
+          className={`px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${formik.touched.students?.[index]?.first_term_points &&
             formik.errors.students?.[index]?.first_term_points &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
         />
       </td>
       <td className="border">
@@ -50,11 +34,11 @@ function TableItems({ formik, item, index }) {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.students?.[index]?.second_term_points || ""}
-          className={`px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${
-            formik.touched.students?.[index]?.second_term_points &&
+          min={0}
+          className={`px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${formik.touched.students?.[index]?.second_term_points &&
             formik.errors.students?.[index]?.second_term_points &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
         />
       </td>
 
@@ -79,15 +63,15 @@ function TableItems({ formik, item, index }) {
       <td className="border">
         <input
           type="number"
+          min={0}
           name={`students.${index}.final_term_points`}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.students?.[index]?.final_term_points || ""}
-          className={`px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${
-            formik.touched.students?.[index]?.final_term_points &&
+          className={`px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${formik.touched.students?.[index]?.final_term_points &&
             formik.errors.students?.[index]?.final_term_points &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
         />
       </td>
       <td className="border">
