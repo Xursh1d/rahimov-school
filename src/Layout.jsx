@@ -1,11 +1,15 @@
 import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
 import HeaderSelects from "./components/HeaderSelects";
+import { useAttendaceStore } from "./store/AttendanceStore";
 import { useLayoutStore } from "./store/LayoutStore";
+import UserPermissionWidget from "./UserPermissionWidget";
 
 function Layout({ children }) {
   const { toggleAttendanceDrop, toggleMarkDrop, isOpenSideBar } =
     useLayoutStore();
+
+  const { changed } = useAttendaceStore();
 
   const toggleMarkDropHandler = () => {
     useLayoutStore.setState({
@@ -19,6 +23,12 @@ function Layout({ children }) {
   };
   const location = useLocation();
   const currentURL = location.pathname;
+
+  const alertChange = (url) => {
+    useAttendaceStore.setState({
+      openPopup: url,
+    });
+  };
 
   return (
     <div className="min-h-screen">
@@ -135,28 +145,60 @@ function Layout({ children }) {
                   } py-2 space-y-2`}
                 >
                   <li>
-                    <Link
-                      to={"/"}
-                      className={`${
-                        currentURL == "/"
-                          ? "bg-gray-100 dark:text-white dark:bg-gray-700"
-                          : ""
-                      } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                    <UserPermissionWidget
+                      hasPermission={changed}
+                      emptyContent={
+                        <div
+                          onClick={() => alertChange("/")}
+                          className={`${
+                            currentURL == "/"
+                              ? "bg-gray-100 dark:text-white dark:bg-gray-700 "
+                              : ""
+                          } flex cursor-pointer items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                        >
+                          Statistikalar
+                        </div>
+                      }
                     >
-                      Statistikalar
-                    </Link>
+                      <Link
+                        to={"/"}
+                        className={`${
+                          currentURL == "/"
+                            ? "bg-gray-100 dark:text-white dark:bg-gray-700"
+                            : ""
+                        } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                      >
+                        Statistikalar
+                      </Link>
+                    </UserPermissionWidget>
                   </li>
                   <li>
-                    <Link
-                      to={"/attendance"}
-                      className={`${
-                        currentURL == "/attendance"
-                          ? "bg-gray-100 dark:text-white dark:bg-gray-700"
-                          : ""
-                      } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                    <UserPermissionWidget
+                      hasPermission={changed}
+                      emptyContent={
+                        <div
+                          onClick={() => alertChange("/attendance")}
+                          className={`${
+                            currentURL == "/attendance"
+                              ? "bg-gray-100 dark:text-white dark:bg-gray-700 "
+                              : ""
+                          } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                        >
+                          Davomat
+                        </div>
+                      }
                     >
-                      Davomat
-                    </Link>
+                      <Link
+                        to={"/attendance"}
+                        className={`${
+                          currentURL == "/attendance"
+                            ? "bg-gray-100 dark:text-white dark:bg-gray-700"
+                            : ""
+                        } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                      >
+                        Davomat
+                      </Link>
+                    </UserPermissionWidget>
                   </li>
                 </ul>
               </li>
@@ -207,28 +249,60 @@ function Layout({ children }) {
                   } py-2 space-y-2`}
                 >
                   <li>
-                    <Link
-                      to="/marking/academic"
-                      className={`${
-                        currentURL == "/marking/academic"
-                          ? "bg-gray-100 dark:text-white dark:bg-gray-700"
-                          : ""
-                      } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                    <UserPermissionWidget
+                      hasPermission={changed}
+                      emptyContent={
+                        <div
+                          onClick={() => alertChange("/marking/academic")}
+                          className={`${
+                            currentURL == "/marking/academic"
+                              ? "bg-gray-100 dark:text-white dark:bg-gray-700 "
+                              : ""
+                          } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                        >
+                          Akademik baholash
+                        </div>
+                      }
                     >
-                      Akademik baholash
-                    </Link>
+                      <Link
+                        to={"/marking/academic"}
+                        className={`${
+                          currentURL == "/marking/academic"
+                            ? "bg-gray-100 dark:text-white dark:bg-gray-700"
+                            : ""
+                        } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                      >
+                        Akademik baholash
+                      </Link>
+                    </UserPermissionWidget>
                   </li>
                   <li>
-                    <Link
-                      to="/marking/behavioral"
-                      className={`${
-                        currentURL == "/marking/behavioral"
-                          ? "bg-gray-100 dark:text-white dark:bg-gray-700"
-                          : ""
-                      } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                    <UserPermissionWidget
+                      hasPermission={changed}
+                      emptyContent={
+                        <div
+                          onClick={() => alertChange("/marking/behavioral")}
+                          className={`${
+                            currentURL == "/marking/behavioral"
+                              ? "bg-gray-100 dark:text-white dark:bg-gray-700 "
+                              : ""
+                          } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                        >
+                          Axloqiy baholash
+                        </div>
+                      }
                     >
-                      Axloqiy baholash
-                    </Link>
+                      <Link
+                        to={"/marking/behavioral"}
+                        className={`${
+                          currentURL == "/marking/behavioral"
+                            ? "bg-gray-100 dark:text-white dark:bg-gray-700"
+                            : ""
+                        } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                      >
+                        Axloqiy baholash
+                      </Link>
+                    </UserPermissionWidget>
                   </li>
                 </ul>
               </li>

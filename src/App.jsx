@@ -10,6 +10,7 @@ import { isJwtExpired } from "jwt-check-expiration";
 import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserStore } from "./store/UserDetailsStore";
+import Statistics from "./pages/statistics/Statistics";
 
 function App() {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route element={<PrivateRoute />}>
-          <Route path="/" element={<Attendance />} />
+          <Route path="/" element={<Statistics />} />
           <Route path="/attendance" element={<Attendance />} />
           <Route path="/marking/academic" element={<AcademicMark />} />
           <Route path="/marking/behavioral" element={<BehavioralMark />} />

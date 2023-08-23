@@ -5,6 +5,7 @@ import { AttendaceService } from "../services/AttendanceService";
 export const useAttendaceStore = create((set) => ({
   loading: false,
   changed: false,
+  openPopup: null,
   students: null,
   attendance_dates: null,
   toggleDateModal: false,
