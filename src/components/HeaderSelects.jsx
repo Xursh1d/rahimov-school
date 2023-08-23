@@ -30,16 +30,20 @@ function HeaderSelects() {
         <Selector
           property={"O'quv yili"}
           param={yearsOptions}
-          value={yearsOptions.find(
-            (item) => item.value == queryParams?.academic_year_id
-          )}
+          value={
+            yearsOptions.find(
+              (item) => item.value == queryParams?.academic_year_id
+            ) || null
+          }
         />
         <Selector
           property={"Filiallar"}
           param={branchOptions}
-          value={branchOptions.find(
-            (item) => item.value == queryParams?.branch_id
-          )}
+          value={
+            branchOptions.find(
+              (item) => item.value == queryParams?.branch_id
+            ) || null
+          }
         />
       </div>
     </div>

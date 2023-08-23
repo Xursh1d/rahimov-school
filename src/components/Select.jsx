@@ -91,7 +91,7 @@ function Selector({ param, property, value }) {
   );
 }
 Selector.propTypes = {
-  value: PropTypes.object.isRequired,
+  value: PropTypes.any,
   param: PropTypes.array.isRequired,
   property: PropTypes.string.isRequired,
 };

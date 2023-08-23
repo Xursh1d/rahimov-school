@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import DeleteConfirmation from "../../components/DeleteConfirmation";
 import EmptyContent from "../../components/EmptyContent";
 import Loader from "../../components/loaders/Loader";
@@ -7,6 +8,7 @@ import { useAttendaceStore } from "../../store/AttendanceStore";
 import { useLoaderStore } from "../../store/LoaderStore";
 import AddDate from "./components/AddDate";
 import Heading from "./components/Heading";
+import PopUp from "./components/PopUp";
 import Table from "./components/Table";
 
 function Attendance() {
@@ -19,6 +21,8 @@ function Attendance() {
     queryParams,
     deleteDateAction,
     setLoader,
+    openPopup,
+    changed,
   } = useAttendaceStore();
   const { isLoading, setLoading } = useLoaderStore();
 
@@ -49,6 +53,37 @@ function Attendance() {
     });
   };
 
+  const navigate = useNavigate();
+
+  const redirectHandler = () => {
+    navigate(openPopup, { replace: true });
+    cancelRedirect();
+  };
+
+  const cancelRedirect = () => {
+    useAttendaceStore.setState({
+      openPopup: null,
+      changed: false,
+    });
+  };
+  useEffect(() => {
+    const handler = (e) => {
+      if (changed) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    };
+    if (changed) {
+      window.addEventListener("beforeunload", handler);
+      return () => {
+        if (changed) {
+          window.removeEventListener("beforeunload", handler);
+        }
+      };
+    }
+    return () => {};
+  }, [changed]);
+
   return (
     <Layout>
       {isLoading ? (
@@ -70,6 +105,11 @@ function Attendance() {
         deleteCallback={deleteCallback}
         cancelCallback={cancelCallback}
         deleteId={deletedDate}
+      />
+      <PopUp
+        redirectHandler={redirectHandler}
+        cancelCallback={cancelRedirect}
+        open={openPopup}
       />
     </Layout>
   );
