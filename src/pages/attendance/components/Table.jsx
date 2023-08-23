@@ -13,6 +13,8 @@ function Table() {
     loadItems,
     queryParams,
     attendanceUpdate,
+    setChanged,
+    changed,
   } = useAttendaceStore();
   const [isLoading, setLoading] = useState(false);
 
@@ -42,6 +44,7 @@ function Table() {
         );
       });
     });
+    setChanged(false);
   }, [students]);
 
   const formik = useFormik({
@@ -52,8 +55,8 @@ function Table() {
         Yup.object().shape({
           attendance_data: Yup.array().of(
             Yup.object().shape({
-              attendance_id: Yup.number().nullable(),
-              status: Yup.string().nullable(),
+              attendance_id: Yup.number().nullable().required(),
+              status: Yup.string().nullable().required(),
             })
           ),
         })
@@ -72,7 +75,7 @@ function Table() {
       setLoader(false);
     },
   });
-
+  console.log(formik.errors);
   return (
     <form onSubmit={formik.handleSubmit} className="my-4 xs:rounded-lg w-fit">
       <table className="w-full xs:text-xs sm:text-sm text-left text-gray-500 dark:text-gray-400">
@@ -92,8 +95,10 @@ function Table() {
       </table>
       <div className="mt-5px relative w-[100%] h-[50px] flex items-center justify-end">
         <button
+          disabled={!changed}
           type="submit"
-          className="sticky right-0 text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm sm:px-5 sm:py-2.5 text-center xs:px-3 xs:py-2 xs:text-xs"
+          className={`${!changed && "opacity-60 pointer-events-none"}
+          }sticky right-0 text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm sm:px-5 sm:py-2.5 text-center xs:px-3 xs:py-2 xs:text-xs`}
         >
           {isLoading ? (
             <>

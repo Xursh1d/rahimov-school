@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useAttendaceStore } from "../../../store/AttendanceStore";
+import DatePicker from "react-datepicker";
+import { dateRangeFormat } from "../../../helpers/dateFormat";
 
 const initialValues = {
   date: "",
@@ -9,8 +11,14 @@ const initialValues = {
 
 function AddDate() {
   const [loading, setLoading] = useState(false);
-  const { loadItems, queryParams, onSubmit, setLoader, toggleDateModal } =
-    useAttendaceStore();
+  const {
+    loadItems,
+    filterset,
+    queryParams,
+    onSubmit,
+    setLoader,
+    toggleDateModal,
+  } = useAttendaceStore();
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -18,6 +26,7 @@ function AddDate() {
     validationSchema: Yup.object({
       date: Yup.string().required("required"),
     }),
+
     onSubmit: async (values) => {
       setLoading(true);
       await onSubmit({ ...values, ...queryParams, academic_year_id: 1 });
@@ -38,6 +47,10 @@ function AddDate() {
     });
     setLoading(false);
     formik.resetForm();
+  };
+
+  const onChange = (date) => {
+    formik.setFieldValue("date", dateRangeFormat(date));
   };
 
   return (
@@ -92,14 +105,23 @@ function AddDate() {
             </h3>
 
             <form onSubmit={formik.handleSubmit}>
-              <div className="mb-6 flex items-start flex-col">
-                <label
-                  htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Sana
-                </label>
-                <input
+              <div className="mb-6 flex items-center justify-center w-full flex-col">
+                <DatePicker
+                  name="date"
+                  type={"date"}
+                  value={formik.values.date}
+                  onChange={onChange}
+                  minDate={
+                    new Date(filterset?.date_range?.start_date || new Date())
+                  }
+                  maxDate={
+                    new Date(filterset?.date_range?.end_date || new Date())
+                  }
+                  selectsRange
+                  inline
+                  showDisabledMonthNavigation
+                />
+                {/* <input
                   name="date"
                   type={"date"}
                   value={formik.values.date}
@@ -107,14 +129,22 @@ function AddDate() {
                   className={`${
                     formik.errors.date && "border-red-500"
                   } border outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500`}
-                />
+                /> */}
               </div>
 
               <div className="flex items-center w-full justify-center gap-4">
+                <button
+                  onClick={() => closeModal()}
+                  data-modal-hide="popup-modal"
+                  type="button"
+                  className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                >
+                  Yo`q, ortga
+                </button>
                 {!loading ? (
                   <button
                     type="submit"
-                    className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                    className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full xs:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                   >
                     Saqlash
                   </button>
@@ -144,14 +174,6 @@ function AddDate() {
                     Loading...
                   </button>
                 )}
-                <button
-                  onClick={() => closeModal()}
-                  data-modal-hide="popup-modal"
-                  type="button"
-                  className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
-                >
-                  Yo`q, ortga
-                </button>
               </div>
             </form>
           </div>

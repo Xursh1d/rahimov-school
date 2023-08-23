@@ -4,6 +4,7 @@ import { AttendaceService } from "../services/AttendanceService";
 
 export const useAttendaceStore = create((set) => ({
   loading: false,
+  changed: false,
   students: null,
   attendance_dates: null,
   toggleDateModal: false,
@@ -13,6 +14,11 @@ export const useAttendaceStore = create((set) => ({
   setLoader: (status) => {
     set({
       loading: status,
+    });
+  },
+  setChanged: (status) => {
+    set({
+      changed: status,
     });
   },
   updateParams: (paramItem) => {

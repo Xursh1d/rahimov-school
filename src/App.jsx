@@ -9,9 +9,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { isJwtExpired } from "jwt-check-expiration";
 import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUserStore } from "./store/UserDetailsStore";
 
 function App() {
   const navigate = useNavigate();
+  const { onReload, queryParams, updateParams } = useUserStore();
 
   const configureUser = useCallback(() => {
     const userData = localStorage.getItem("user")
@@ -28,7 +30,22 @@ function App() {
     }
   }, []);
 
+  const pageLoad = async () => {
+    const user_details = JSON.parse(localStorage.getItem("user_details"));
+    if (!user_details) {
+      await onReload();
+    } else {
+      updateParams({
+        academic_year_id: user_details?.current_academic_year,
+        branch_id: user_details?.current_branch,
+      });
+    }
+  };
+
+  console.log(queryParams);
+
   useEffect(() => {
+    pageLoad();
     configureUser();
   }, []);
 

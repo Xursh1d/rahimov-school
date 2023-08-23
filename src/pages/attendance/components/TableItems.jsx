@@ -2,8 +2,14 @@ import PropTypes from "prop-types";
 import { useAttendaceStore } from "../../../store/AttendanceStore";
 
 function TableItems({ formik, item, index }) {
-  const { attendance_dates, filterset } = useAttendaceStore();
-
+  const { attendance_dates, filterset, setChanged } = useAttendaceStore();
+  const handleChange = (e, indexDate) => {
+    setChanged(true);
+    formik.setFieldValue(
+      `students.${index}.attendance_data.${indexDate}.status`,
+      e.target.value
+    );
+  };
   return (
     <tr className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700">
       <td className="border px-3">{index + 1}</td>
@@ -18,7 +24,7 @@ function TableItems({ formik, item, index }) {
           <td key={date.date} className="border">
             <select
               name={`students.${index}.attendance_data.${indexDate}.status`}
-              onChange={formik.handleChange}
+              onChange={(e) => handleChange(e, indexDate)}
               onBlur={formik.handleBlur}
               value={
                 formik.values.students?.[index]?.attendance_data?.[indexDate]
