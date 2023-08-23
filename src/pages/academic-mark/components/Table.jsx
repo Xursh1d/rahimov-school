@@ -43,13 +43,16 @@ function Table() {
       students: Yup.array().of(
         Yup.object().shape({
           final_term_points: Yup.number()
-            .min(0, "Required").default(0)
+            .min(0, "Required")
+            .max(100, "Required")
             .required("Required"),
           first_term_points: Yup.number()
-            .min(0, "Required").default(0)
+            .min(0, "Required")
+            .max(100, "Required")
             .required("Required"),
           second_term_points: Yup.number()
-            .min(1, "Required")
+            .min(0, "Required")
+            .max(100, "Required")
             .required("Required"),
           id: Yup.number().min(1, "Required").required("Required"),
         })

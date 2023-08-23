@@ -70,12 +70,20 @@ function DeleteConfirmation({ deleteId, deleteCallback, cancelCallback }) {
               Mahsulotni o`chirishga rozimisiz?
             </h3>
             <div className="flex items-center w-full justify-center">
+              <button
+                onClick={() => closeModal()}
+                data-modal-hide="popup-modal"
+                type="button"
+                className="mr-2 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+              >
+                Yo`q, ortga
+              </button>
               {!isLoading ? (
                 <button
                   onClick={() => deleteItem()}
                   data-modal-hide="popup-modal"
                   type="button"
-                  className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                  className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center "
                 >
                   Ha, roziman
                 </button>
@@ -83,7 +91,7 @@ function DeleteConfirmation({ deleteId, deleteCallback, cancelCallback }) {
                 <button
                   disabled
                   type="button"
-                  className="px-5 py-2.5 mr-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 inline-flex items-center"
+                  className="px-5 py-2.5  text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 inline-flex items-center"
                 >
                   <svg
                     aria-hidden="true"
@@ -105,14 +113,6 @@ function DeleteConfirmation({ deleteId, deleteCallback, cancelCallback }) {
                   Loading...
                 </button>
               )}
-              <button
-                onClick={() => closeModal()}
-                data-modal-hide="popup-modal"
-                type="button"
-                className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
-              >
-                Yo`q, ortga
-              </button>
             </div>
           </div>
         </div>

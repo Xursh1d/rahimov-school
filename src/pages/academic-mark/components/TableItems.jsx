@@ -1,6 +1,15 @@
 import PropTypes from "prop-types";
 
 function TableItems({ formik, item, index }) {
+  const handleChange = (e, property) => {
+    if (e.target.value === "") {
+      formik.setFieldValue(`students.${index}.${[property]}`, 0);
+    } else if (e.target.value > 100) {
+      formik.setFieldValue(`students.${index}.${[property]}`, 100);
+    } else
+      formik.setFieldValue(`students.${index}.${[property]}`, e.target.value);
+  };
+
   return (
     <tr className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700">
       <td className="border px-3 py-3 xs:text-[10px] sm:text-sm  ">
@@ -15,11 +24,11 @@ function TableItems({ formik, item, index }) {
       <td className={`border`}>
         <input
           name={`students.${index}.first_term_points`}
-          onChange={formik.handleChange}
+          onChange={(e) => handleChange(e, "first_term_points")}
           onBlur={formik.handleBlur}
-          value={formik.values.students?.[index]?.first_term_points || 0}
+          value={formik.values.students?.[index]?.first_term_points}
           type="number"
-          className={`px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${
+          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${
             formik.touched.students?.[index]?.first_term_points &&
             formik.errors.students?.[index]?.first_term_points &&
             "border border-red-600"
@@ -30,10 +39,10 @@ function TableItems({ formik, item, index }) {
         <input
           type="number"
           name={`students.${index}.second_term_points`}
-          onChange={formik.handleChange}
+          onChange={(e) => handleChange(e, "second_term_points")}
           onBlur={formik.handleBlur}
-          value={formik.values.students?.[index]?.second_term_points || ""}
-          className={`px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${
+          value={formik.values.students?.[index]?.second_term_points}
+          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${
             formik.touched.students?.[index]?.second_term_points &&
             formik.errors.students?.[index]?.second_term_points &&
             "border border-red-600"
@@ -64,10 +73,10 @@ function TableItems({ formik, item, index }) {
           type="number"
           min={0}
           name={`students.${index}.final_term_points`}
-          onChange={formik.handleChange}
+          onChange={(e) => handleChange(e, "final_term_points")}
           onBlur={formik.handleBlur}
-          value={formik.values.students?.[index]?.final_term_points || ""}
-          className={`px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${
+          value={formik.values.students?.[index]?.final_term_points}
+          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${
             formik.touched.students?.[index]?.final_term_points &&
             formik.errors.students?.[index]?.final_term_points &&
             "border border-red-600"
