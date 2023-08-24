@@ -39,7 +39,7 @@ const mobileStyles = {
 };
 
 function Selector({ value, disabled, param, property }) {
-  const { queryParams, updateParams, setLoader, loadItems } =
+  const { queryParams, updateParams, setLoader, loadItems, resetAttendanceFilters } =
     useAttendaceStore();
 
   const isMobile = useMediaQuery({ maxWidth: 640 });
@@ -49,6 +49,7 @@ function Selector({ value, disabled, param, property }) {
       setLoader(true);
       if (property === "Ustoz") {
         if (e?.value == undefined) {
+          resetAttendanceFilters()
           updateParams({
             teacher_id: "",
             subject_id: "",

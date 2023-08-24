@@ -1,8 +1,12 @@
 import PropTypes from "prop-types";
+import { useAttendaceStore } from "../../../store/AttendanceStore";
+
 
 function PopUp({ open, redirectHandler, cancelCallback }) {
+  const { setChanged } = useAttendaceStore();
   const closeModal = () => {
     cancelCallback();
+    setChanged(true)
   };
 
   return (
@@ -10,9 +14,8 @@ function PopUp({ open, redirectHandler, cancelCallback }) {
       onClick={() => closeModal()}
       id="defaultModal"
       aria-hidden="true"
-      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${
-        !open ? "hidden" : "bg-[#66656547] dark:#3a3839ad"
-      }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
+      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${!open ? "hidden" : "bg-[#66656547] dark:#3a3839ad"
+        }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -59,7 +62,7 @@ function PopUp({ open, redirectHandler, cancelCallback }) {
               />
             </svg>
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-              O`zgartirilgan ma`lumotlarni saqlanmadi!
+              O`zgartirilgan ma`lumotlar saqlanmadi!
             </h3>
             <div className="flex items-center w-full justify-center">
               <button
