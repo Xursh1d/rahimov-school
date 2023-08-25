@@ -75,7 +75,6 @@ function Table() {
       setLoader(false);
     },
   });
-  console.log(formik.errors);
   return (
     <form onSubmit={formik.handleSubmit} className="my-4 xs:rounded-lg w-fit">
       <table className="w-full xs:text-xs sm:text-sm text-left text-gray-500 dark:text-gray-400">

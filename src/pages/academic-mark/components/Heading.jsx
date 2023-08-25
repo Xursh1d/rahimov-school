@@ -5,8 +5,6 @@ import Selector from "./Select";
 function Heading() {
   const { filterset, queryParams } = useAcademicMarkStore();
 
-  console.log(filterset);
-
   const teachersOptions = useMemo(() => {
     return (
       filterset?.teacher_options?.map((element) => ({

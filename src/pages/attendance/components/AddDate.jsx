@@ -4,14 +4,13 @@ import * as Yup from "yup";
 import { useAttendaceStore } from "../../../store/AttendanceStore";
 import DatePicker from "react-datepicker";
 import { dateRangeFormat } from "../../../helpers/dateFormat";
-
-const initialValues = {
-  date: "",
-};
+import { parseISO } from "date-fns";
+import { attendanceFiltersFromLocalStorage } from "../../../helpers/attendanceFilters";
 
 function AddDate() {
   const [loading, setLoading] = useState(false);
   const {
+    attendance_dates,
     loadItems,
     filterset,
     queryParams,
@@ -19,9 +18,8 @@ function AddDate() {
     setLoader,
     toggleDateModal,
   } = useAttendaceStore();
-
   const formik = useFormik({
-    initialValues: initialValues,
+    initialValues: attendanceFiltersFromLocalStorage,
     enableReinitialize: false,
     validationSchema: Yup.object({
       date: Yup.string().required("required"),
@@ -34,7 +32,7 @@ function AddDate() {
       setLoader(true);
       await loadItems(
         new URLSearchParams({
-          ...queryParams,
+          ...attendanceFiltersFromLocalStorage || queryParams,
         }).toString()
       );
       setLoader(false);
@@ -57,6 +55,10 @@ function AddDate() {
     const day = date.getDay();
     return day === 0 || day === 6;
   };
+
+  const excludedDates = attendance_dates?.map((attendanceDate) =>
+    parseISO(attendanceDate.full_date)
+  );
 
   return (
     <div
@@ -111,12 +113,13 @@ function AddDate() {
             <form onSubmit={formik.handleSubmit}>
               <div className="mb-6 flex items-center justify-center w-full flex-col">
                 <DatePicker
+                  selectsStart={new Date(filterset?.date_range?.start_date || new Date())}
                   name="date"
                   type={"date"}
                   filterDate={date => !isWeekend(date)}
-                  value={formik.values.date}
+                  value={filterset?.date_range?.start_date}
+                  excludeDates={excludedDates}
                   onChange={onChange}
-                  selected={new Date(filterset?.date_range?.start_date || new Date())}
                   minDate={
                     new Date(filterset?.date_range?.start_date || new Date())
                   }
@@ -127,15 +130,6 @@ function AddDate() {
                   inline
                   showDisabledMonthNavigation
                 />
-                {/* <input
-                  name="date"
-                  type={"date"}
-                  value={formik.values.date}
-                  onChange={formik.handleChange}
-                  className={`${
-                    formik.errors.date && "border-red-500"
-                  } border outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500`}
-                /> */}
               </div>
 
               <div className="flex items-center w-full justify-center gap-4">
