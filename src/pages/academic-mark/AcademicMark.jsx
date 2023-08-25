@@ -5,8 +5,8 @@ import Loader from "../../components/loaders/Loader";
 import Layout from "../../Layout";
 import { useAcademicMarkStore } from "../../store/AcademicMarkStore";
 import { useLoaderStore } from "../../store/LoaderStore";
-import PopUp from "../attendance/components/PopUp";
 import Heading from "./components/Heading";
+import PopUp from "./components/PopUp";
 import Table from "./components/Table";
 
 function AcademicMark() {
