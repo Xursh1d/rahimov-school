@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { toastError, toastSuccess } from "../helpers/toasts";
 import { AttendaceService } from "../services/AttendanceService";
-import { createQueryString } from "../helpers/createQueryString"
 
 export const useAttendaceStore = create((set) => ({
   loading: false,
@@ -13,47 +12,6 @@ export const useAttendaceStore = create((set) => ({
   deletedDate: null,
   filterset: null,
   queryParams: {},
-
-  attendanceFilters: JSON.parse(localStorage.getItem("attendanceFilters")) || {
-    teacher_id: null,
-    subject_id: null,
-    class_id: null,
-    month_id: null,
-  },
-
-  setAttendanceFilters: (filters) => {
-    set((state) => {
-      const newFilters = { ...state.attendanceFilters, ...filters };
-      localStorage.setItem("attendanceFilters", JSON.stringify(newFilters));
-      return { attendanceFilters: newFilters };
-    });
-  },
-
-  resetAttendanceFilters: (param = null) => {
-    const resetFilters = {
-      teacher_id: null,
-      subject_id: null,
-      class_id: null,
-      month_id: null,
-    };
-
-    if (param === "teacher_id") {
-      resetFilters.teacher_id = this.attendanceFilters.teacher_id;
-    } else if (param === "subject_id") {
-      resetFilters.teacher_id = this.attendanceFilters.teacher_id;
-      resetFilters.subject_id = this.attendanceFilters.subject_id;
-    } else if (param === "class_id") {
-      resetFilters.teacher_id = this.attendanceFilters.teacher_id;
-      resetFilters.subject_id = this.attendanceFilters.subject_id;
-      resetFilters.class_id = this.attendanceFilters.class_id;
-    }
-
-    set({
-      attendanceFilters: resetFilters,
-    });
-
-    localStorage.setItem("attendanceFilters", JSON.stringify(resetFilters));
-  },
 
   setLoader: (status) => {
     set({
@@ -71,9 +29,8 @@ export const useAttendaceStore = create((set) => ({
     }));
   },
   onReload: async () => {
-    const querySet = createQueryString(JSON.parse(localStorage.getItem("attendanceFilters")))
     const { data, status, nonFieldError } =
-      await AttendaceService.getAttendance(querySet);
+      await AttendaceService.getAttendance();
     if (status) {
       set({
         students: data.students,

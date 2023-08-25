@@ -38,7 +38,7 @@ const mobileStyles = {
   }),
 };
 
-function Selector({ param, property }) {
+function Selector({ value, param, property }) {
   const { queryParams, updateParams, setLoading, loadItems } =
     useBehaviorMarkStore();
 
@@ -57,6 +57,13 @@ function Selector({ param, property }) {
             month_id: e?.value == undefined ? "" : e?.value,
           }).toString()
         );
+        localStorage.setItem(
+          "behavioralFilters",
+          JSON.stringify({
+            ...queryParams,
+            month_id: e?.value == undefined ? "" : e?.value,
+          })
+        );
       }
       if (property === "Sinf") {
         updateParams({
@@ -67,6 +74,13 @@ function Selector({ param, property }) {
             ...queryParams,
             class_id: e?.value == undefined ? "" : e?.value,
           }).toString()
+        );
+        localStorage.setItem(
+          "behavioralFilters",
+          JSON.stringify({
+            ...queryParams,
+            class_id: e?.value == undefined ? "" : e?.value,
+          })
         );
       }
       setLoading(false);
@@ -79,6 +93,7 @@ function Selector({ param, property }) {
       placeholder={property}
       styles={isMobile ? mobileStyles : customStyles}
       options={param}
+      value={value}
       isClearable
       onChange={handleSelectChange}
       theme={(theme) => ({
@@ -94,6 +109,7 @@ function Selector({ param, property }) {
   );
 }
 Selector.propTypes = {
+  value: PropTypes.any.isRequired,
   param: PropTypes.array.isRequired,
   property: PropTypes.string.isRequired,
 };

@@ -4,12 +4,19 @@ import { AcademicMarkService } from "../services/AcademicMarkService";
 
 export const useAcademicMarkStore = create((set) => ({
   loading: false,
+  openPopup: false,
   students: null,
   filterset: null,
+  academic_changed: false,
   queryParams: {},
   setLoading: (status) => {
     set({
       loading: status,
+    });
+  },
+  setChanged: (status) => {
+    set({
+      academic_changed: status,
     });
   },
   updateParams: (paramItem) => {

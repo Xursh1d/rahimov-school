@@ -9,12 +9,19 @@ import CommentModal from "./components/CommentModal";
 import EmptyContent from "../../components/EmptyContent";
 
 function BehaviorMark() {
-  const { onReload, students, loading, studentId } = useBehaviorMarkStore();
+  const { onReload, students, loading, studentId, updateParams, loadItems } =
+    useBehaviorMarkStore();
   const { setLoading, isLoading } = useLoaderStore();
 
   const pageLoad = useCallback(async () => {
+    const behavioralFilters = JSON.parse(
+      localStorage.getItem("behavioralFilters")
+    );
     setLoading(true);
-    await onReload();
+    if (behavioralFilters) {
+      updateParams(behavioralFilters);
+      await loadItems(new URLSearchParams({ ...behavioralFilters }).toString());
+    } else await onReload();
     setLoading(false);
   }, []);
 

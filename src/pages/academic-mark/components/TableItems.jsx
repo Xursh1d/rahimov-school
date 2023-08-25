@@ -1,15 +1,29 @@
 import PropTypes from "prop-types";
+import { useCallback } from "react";
+import { useAcademicMarkStore } from "../../../store/AcademicMarkStore";
 
 function TableItems({ formik, item, index }) {
-  const handleChange = (e, property) => {
-    if (e.target.value === "") {
-      formik.setFieldValue(`students.${index}.${[property]}`, 0);
-    } else if (e.target.value > 100) {
-      formik.setFieldValue(`students.${index}.${[property]}`, 100);
-    } else
-      formik.setFieldValue(`students.${index}.${[property]}`, e.target.value);
-  };
+  const { setChanged } = useAcademicMarkStore();
 
+  const handleChange = useCallback(
+    (e, property) => {
+      setChanged(true);
+      if (e.target.value === "") {
+        formik.setFieldValue(`students.${index}.${[property]}`, 0);
+      } else if (e.target.value > 100) {
+        formik.setFieldValue(`students.${index}.${[property]}`, 100);
+      } else if (e.target.value == 0) {
+        formik.setFieldValue(`students.${index}.${[property]}`, 0);
+      } else {
+        formik.setFieldValue(
+          `students.${index}.${[property]}`,
+          e.target.value.replace(/^0+/, "")
+        );
+      }
+    },
+    [formik]
+  );
+  console.log(formik.values);
   return (
     <tr className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700">
       <td className="border px-3 py-3 xs:text-[10px] sm:text-sm  ">
