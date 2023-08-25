@@ -11,8 +11,15 @@ const initialValues = {
 };
 
 function Table() {
-  const { loadItems, queryParams, students, onSubmit, setLoading } =
-    useAcademicMarkStore();
+  const {
+    loadItems,
+    academic_changed,
+    setChanged,
+    queryParams,
+    students,
+    onSubmit,
+    setLoading,
+  } = useAcademicMarkStore();
   const [isLoading, setLoader] = useState(false);
 
   useEffect(() => {
@@ -34,6 +41,7 @@ function Table() {
         false
       );
     });
+    setChanged(false);
   }, [students]);
 
   const formik = useFormik({
@@ -91,8 +99,11 @@ function Table() {
       </table>
       <div className="mt-1 relative w-[100%] h-[50px] flex items-center justify-end">
         <button
+          disabled={!academic_changed}
           type="submit"
-          className="sticky right-0  text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg sm:px-5 sm:py-2.5 text-center xs:px-3 xs:py-2 xs:text-xs"
+          className={`${
+            !academic_changed && "opacity-60 pointer-events-none"
+          } sticky right-0  text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg sm:px-5 sm:py-2.5 text-center xs:px-3 xs:py-2 xs:text-xs`}
         >
           {isLoading ? (
             <>

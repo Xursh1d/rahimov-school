@@ -36,6 +36,7 @@ export const useBehaviorMarkStore = create((set) => ({
     if (status) {
       set({
         students: data.behavior_marks,
+        filterset: data.filterset,
       });
     } else toastError(nonFieldError);
   },

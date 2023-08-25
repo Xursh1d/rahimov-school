@@ -10,7 +10,6 @@ import AddDate from "./components/AddDate";
 import Heading from "./components/Heading";
 import PopUp from "./components/PopUp";
 import Table from "./components/Table";
-import { attendanceFiltersFromLocalStorage } from "../../helpers/attendanceFilters";
 
 function Attendance() {
   const {
@@ -24,12 +23,19 @@ function Attendance() {
     setLoader,
     openPopup,
     changed,
+    updateParams,
   } = useAttendaceStore();
   const { isLoading, setLoading } = useLoaderStore();
 
   const pageLoad = useCallback(async () => {
+    const attendanceFilters = JSON.parse(
+      localStorage.getItem("attendanceFilters")
+    );
     setLoading(true);
-    await onReload();
+    if (attendanceFilters) {
+      updateParams(attendanceFilters);
+      await loadItems(new URLSearchParams({ ...attendanceFilters }).toString());
+    } else await onReload();
     setLoading(false);
   }, []);
 
@@ -39,12 +45,11 @@ function Attendance() {
 
   const deleteCallback = async () => {
     await deleteDateAction({
-      ...attendanceFiltersFromLocalStorage,
       date: deletedDate,
       academic_year_id: 1,
     });
     setLoader(true);
-    await loadItems(new URLSearchParams({ ...attendanceFiltersFromLocalStorage || queryParams }).toString());
+    await loadItems(new URLSearchParams({ ...queryParams }).toString());
     setLoader(false);
   };
 
@@ -82,7 +87,7 @@ function Attendance() {
         }
       };
     }
-    return () => { };
+    return () => {};
   }, [changed]);
 
   return (

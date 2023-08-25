@@ -49,20 +49,15 @@ function Selector({ value, disabled, param, property }) {
       setLoading(true);
       if (property === "Ustoz") {
         if (e?.value == undefined) {
-          updateParams({
+          const param = {
             teacher_id: "",
             subject_id: "",
             month_id: "",
             class_id: "",
-          });
-          await loadItems(
-            new URLSearchParams({
-              teacher_id: "",
-              subject_id: "",
-              month_id: "",
-              class_id: "",
-            }).toString()
-          );
+          };
+          updateParams(param);
+          await loadItems(new URLSearchParams(param).toString());
+          localStorage.setItem("academicFilters", JSON.stringify(param));
         } else {
           updateParams({
             teacher_id: e?.value,
@@ -73,16 +68,24 @@ function Selector({ value, disabled, param, property }) {
               teacher_id: e?.value,
             }).toString()
           );
+          localStorage.setItem(
+            "academicFilters",
+            JSON.stringify({
+              ...queryParams,
+              teacher_id: e?.value,
+            })
+          );
         }
       }
 
       if (property === "Fan") {
         if (e?.value == undefined) {
-          updateParams({
+          const pram = {
             subject_id: "",
             month_id: "",
             class_id: "",
-          });
+          };
+          updateParams(pram);
           await loadItems(
             new URLSearchParams({
               ...queryParams,
@@ -90,6 +93,15 @@ function Selector({ value, disabled, param, property }) {
               month_id: "",
               class_id: "",
             }).toString()
+          );
+          localStorage.setItem(
+            "academicFilters",
+            JSON.stringify({
+              ...queryParams,
+              subject_id: "",
+              month_id: "",
+              class_id: "",
+            })
           );
         } else {
           updateParams({
@@ -100,6 +112,13 @@ function Selector({ value, disabled, param, property }) {
               ...queryParams,
               subject_id: e?.value,
             }).toString()
+          );
+          localStorage.setItem(
+            "academicFilters",
+            JSON.stringify({
+              ...queryParams,
+              subject_id: e?.value,
+            })
           );
         }
       }
@@ -115,6 +134,13 @@ function Selector({ value, disabled, param, property }) {
               month_id: "",
             }).toString()
           );
+          localStorage.setItem(
+            "academicFilters",
+            JSON.stringify({
+              ...queryParams,
+              month_id: "",
+            })
+          );
         } else {
           updateParams({
             month_id: e?.value,
@@ -124,6 +150,13 @@ function Selector({ value, disabled, param, property }) {
               ...queryParams,
               month_id: e?.value,
             }).toString()
+          );
+          localStorage.setItem(
+            "academicFilters",
+            JSON.stringify({
+              ...queryParams,
+              month_id: e?.value,
+            })
           );
         }
       }
@@ -141,6 +174,14 @@ function Selector({ value, disabled, param, property }) {
               class_id: "",
             }).toString()
           );
+          localStorage.setItem(
+            "academicFilters",
+            JSON.stringify({
+              ...queryParams,
+              month_id: "",
+              class_id: "",
+            })
+          );
         } else {
           updateParams({
             class_id: e?.value,
@@ -150,6 +191,13 @@ function Selector({ value, disabled, param, property }) {
               ...queryParams,
               class_id: e?.value,
             }).toString()
+          );
+          localStorage.setItem(
+            "academicFilters",
+            JSON.stringify({
+              ...queryParams,
+              class_id: e?.value,
+            })
           );
         }
       }
