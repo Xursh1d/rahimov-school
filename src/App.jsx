@@ -43,8 +43,6 @@ function App() {
     }
   };
 
-  console.log(queryParams);
-
   useEffect(() => {
     pageLoad();
     configureUser();

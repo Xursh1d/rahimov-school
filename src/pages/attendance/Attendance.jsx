@@ -10,6 +10,7 @@ import AddDate from "./components/AddDate";
 import Heading from "./components/Heading";
 import PopUp from "./components/PopUp";
 import Table from "./components/Table";
+import { attendanceFiltersFromLocalStorage } from "../../helpers/attendanceFilters";
 
 function Attendance() {
   const {
@@ -38,12 +39,12 @@ function Attendance() {
 
   const deleteCallback = async () => {
     await deleteDateAction({
-      ...queryParams,
+      ...attendanceFiltersFromLocalStorage,
       date: deletedDate,
       academic_year_id: 1,
     });
     setLoader(true);
-    await loadItems(new URLSearchParams({ ...queryParams }).toString());
+    await loadItems(new URLSearchParams({ ...attendanceFiltersFromLocalStorage || queryParams }).toString());
     setLoader(false);
   };
 
@@ -81,7 +82,7 @@ function Attendance() {
         }
       };
     }
-    return () => {};
+    return () => { };
   }, [changed]);
 
   return (

@@ -18,9 +18,8 @@ function DeleteConfirmation({ deleteId, deleteCallback, cancelCallback }) {
       onClick={() => closeModal()}
       id="defaultModal"
       aria-hidden="true"
-      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${
-        !deleteId ? "hidden" : "bg-[#66656547] dark:#3a3839ad"
-      }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
+      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${!deleteId ? "hidden" : "bg-[#66656547] dark:#3a3839ad"
+        }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -67,7 +66,7 @@ function DeleteConfirmation({ deleteId, deleteCallback, cancelCallback }) {
               />
             </svg>
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-              Mahsulotni o`chirishga rozimisiz?
+              Davomatni o`chirishga rozimisiz?
             </h3>
             <div className="flex items-center w-full justify-center">
               <button
