@@ -11,6 +11,7 @@ import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserStore } from "./store/UserDetailsStore";
 import Statistics from "./pages/statistics/Statistics";
+import BehaviorMarkCategories from "./pages/behavior-mark-categories/BehaviorMarkCategories";
 
 function App() {
   const navigate = useNavigate();
@@ -56,7 +57,8 @@ function App() {
           <Route path="/" element={<Statistics />} />
           <Route path="/attendance" element={<Attendance />} />
           <Route path="/marking/academic" element={<AcademicMark />} />
-          <Route path="/marking/behavioral" element={<BehavioralMark />} />
+          <Route path="/marking/behaviour" element={<BehavioralMark />} />
+          <Route path="/marking/behaviour/categories" element={<BehaviorMarkCategories />} />
         </Route>
       </Routes>
       <ToastContainer />

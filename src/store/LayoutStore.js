@@ -5,6 +5,7 @@ export const useLayoutStore = create((set) => ({
   isOpenSideBar: false,
   toggleAttendanceDrop: false,
   toggleMarkDrop: false,
+  toggleSettingDrop: false,
   queryParams: {
     page: 1,
   },
