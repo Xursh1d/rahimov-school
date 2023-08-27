@@ -57,8 +57,11 @@ function App() {
           <Route path="/" element={<Statistics />} />
           <Route path="/attendance" element={<Attendance />} />
           <Route path="/marking/academic" element={<AcademicMark />} />
-          <Route path="/marking/behaviour" element={<BehavioralMark />} />
-          <Route path="/marking/behaviour/categories" element={<BehaviorMarkCategories />} />
+          <Route path="/marking/behavioural" element={<BehavioralMark />} />
+          <Route
+            path="/marking/behavioural-categories"
+            element={<BehaviorMarkCategories />}
+          />
         </Route>
       </Routes>
       <ToastContainer />

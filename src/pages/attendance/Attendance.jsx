@@ -47,7 +47,7 @@ function Attendance() {
     await deleteDateAction({
       date: deletedDate,
       academic_year_id: 1,
-      ...queryParams``
+      ...queryParams,
     });
     setLoader(true);
     await loadItems(new URLSearchParams({ ...queryParams }).toString());
@@ -88,7 +88,7 @@ function Attendance() {
         }
       };
     }
-    return () => { };
+    return () => {};
   }, [changed]);
 
   return (
