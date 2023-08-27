@@ -15,7 +15,7 @@ import BehaviorMarkCategories from "./pages/behavior-mark-categories/BehaviorMar
 
 function App() {
   const navigate = useNavigate();
-  const { onReload, queryParams, updateParams } = useUserStore();
+  const { onReload, updateParams } = useUserStore();
 
   const configureUser = useCallback(() => {
     const userData = localStorage.getItem("user")
