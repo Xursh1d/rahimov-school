@@ -23,7 +23,7 @@ function TableItems({ formik, item, index }) {
     },
     [formik]
   );
-  console.log(formik.values);
+
   return (
     <tr className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700">
       <td className="border px-3 py-3 xs:text-[10px] sm:text-sm  ">
