@@ -27,6 +27,11 @@ function TableComment({ studentId, studentComment }) {
         false
       );
       formik.setFieldValue(
+        `studentComment.${index}.marked_time`,
+        element["marked_time"],
+        false
+      );
+      formik.setFieldValue(
         `studentComment.${index}.category_id`,
         String(element["comment_category_id"]),
         false
@@ -42,6 +47,7 @@ function TableComment({ studentId, studentComment }) {
         Yup.object().shape({
           content: Yup.string(),
           marked_teacher: Yup.string(),
+          marked_time: Yup.string(),
           category_id: Yup.string(),
           id: Yup.number().min(1, "Required").required("Required"),
         })
@@ -67,7 +73,7 @@ function TableComment({ studentId, studentComment }) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-4xl max-h-full"
+        className="relative w-full max-w-5xl max-h-full"
       >
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
           <button
