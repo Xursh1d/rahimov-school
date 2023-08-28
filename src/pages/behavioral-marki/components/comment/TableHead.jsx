@@ -17,6 +17,9 @@ function TableHead() {
         <th scope="col" className="border text-center px-3 py-2 min-w-[150px]">
           Izoh kiritgan xodim
         </th>
+        <th scope="col" className="border text-center px-3 py-2 min-w-[150px]">
+          Izoh kiritilgan vaqt
+        </th>
         <th scope="col" className="border text-center px-3 py-2"></th>
         <th scope="col" className="border text-center px-3 py-2"></th>
       </tr>
