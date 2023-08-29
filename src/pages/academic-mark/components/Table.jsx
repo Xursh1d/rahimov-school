@@ -101,9 +101,8 @@ function Table() {
         <button
           disabled={!academic_changed}
           type="submit"
-          className={`${
-            !academic_changed && "opacity-60 pointer-events-none"
-          } sticky right-0  text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg sm:px-5 sm:py-2.5 text-center xs:px-3 xs:py-2 xs:text-xs`}
+          className={`${!academic_changed && "opacity-60 pointer-events-none"
+            } sticky right-0  text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg sm:px-5 sm:py-2.5 text-center xs:px-3 xs:py-2 xs:text-xs`}
         >
           {isLoading ? (
             <>

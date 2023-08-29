@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useCallback } from "react";
+import { pointToMark } from "../../../helpers/pointsToMark";
 import { useAcademicMarkStore } from "../../../store/AcademicMarkStore";
 
 function TableItems({ formik, item, index }) {
@@ -42,11 +43,10 @@ function TableItems({ formik, item, index }) {
           onBlur={formik.handleBlur}
           value={formik.values.students?.[index]?.first_term_points}
           type="number"
-          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${
-            formik.touched.students?.[index]?.first_term_points &&
+          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${formik.touched.students?.[index]?.first_term_points &&
             formik.errors.students?.[index]?.first_term_points &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
         />
       </td>
       <td className="border">
@@ -56,17 +56,16 @@ function TableItems({ formik, item, index }) {
           onChange={(e) => handleChange(e, "second_term_points")}
           onBlur={formik.handleBlur}
           value={formik.values.students?.[index]?.second_term_points}
-          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${
-            formik.touched.students?.[index]?.second_term_points &&
+          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${formik.touched.students?.[index]?.second_term_points &&
             formik.errors.students?.[index]?.second_term_points &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
         />
       </td>
 
       <td className="border">
         <input
-          value={item.average_term_points}
+          value={((Number(formik.values.students?.[index]?.first_term_points) + Number(formik.values.students?.[index]?.second_term_points)) / 2).toFixed(0)}
           type="number"
           disabled
           className="px-3 py-3 bg-lime-50 h-full xs:text-[10px] sm:text-sm outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -76,7 +75,7 @@ function TableItems({ formik, item, index }) {
       <td className="border">
         <input
           type="number"
-          defaultValue={item.average_term_mark}
+          defaultValue={pointToMark(((Number(formik.values.students?.[index]?.first_term_points) + Number(formik.values.students?.[index]?.second_term_points)) / 2).toFixed(0))}
           disabled
           className="px-3 py-3 bg-lime-50 h-full xs:text-[10px] sm:text-sm    outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
@@ -90,17 +89,16 @@ function TableItems({ formik, item, index }) {
           onChange={(e) => handleChange(e, "final_term_points")}
           onBlur={formik.handleBlur}
           value={formik.values.students?.[index]?.final_term_points}
-          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${
-            formik.touched.students?.[index]?.final_term_points &&
+          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${formik.touched.students?.[index]?.final_term_points &&
             formik.errors.students?.[index]?.final_term_points &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
         />
       </td>
       <td className="border">
         <input
           type="number"
-          defaultValue={item.final_mark}
+          defaultValue={pointToMark(formik.values.students?.[index]?.final_term_points)}
           disabled
           className="px-3 py-3 bg-lime-50 h-full xs:text-[10px] sm:text-sm    outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
