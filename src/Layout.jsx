@@ -47,7 +47,7 @@ function Layout({ children }) {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="overflow-x-hidden min-h-full ">
       <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div className="px-3 py-1 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-between">
@@ -101,8 +101,8 @@ function Layout({ children }) {
           })
         }
         className={`w-full absolute sm:bg-inherit ${
-          isOpenSideBar ? "xs:bg-[#5d5d5da3] sm:bg-white z-10" : "z-0"
-        } top-16 sm:right-0 left-0 bottom-0 transition-all h-full`}
+          isOpenSideBar ? "xs:bg-[#5d5d5da3] sm:bg-white z-40" : "z-0"
+        } top-16 sm:right-0 left-0 bottom-0 transition-all `}
       >
         <aside
           onClick={(e) => e.stopPropagation()}
@@ -112,7 +112,7 @@ function Layout({ children }) {
           }  bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700 pointer-events-auto`}
           aria-label="Sidebar"
         >
-          <div className="h-full  px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+          <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
             <ul className="space-y-2 font-medium">
               <li>
                 <button
@@ -414,7 +414,7 @@ function Layout({ children }) {
         </aside>
       </div>
 
-      <div className="p-4 sm:ml-64 min-h-[400px]  relative overflow-x-auto sm:rounded-lg">
+      <div className="p-4 sm:ml-64 min-h-[400px] relative sm:rounded-lg">
         <div className="mt-14">{children}</div>
       </div>
     </div>

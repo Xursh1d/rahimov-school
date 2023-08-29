@@ -5,6 +5,10 @@ import PropTypes from "prop-types";
 import { useAttendaceStore } from "../../../store/AttendanceStore";
 
 const customStyles = {
+  menu: (provided) => ({
+    ...provided,
+    zIndex: "40",
+  }),
   control: (provided) => ({
     ...provided,
     height: "37px",
@@ -15,6 +19,10 @@ const customStyles = {
   }),
 };
 const mobileStyles = {
+  menu: (provided) => ({
+    ...provided,
+    zIndex: "400",
+  }),
   dropdownIndicator: (provided) => ({
     ...provided,
     padding: "2px",
