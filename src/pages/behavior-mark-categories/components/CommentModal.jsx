@@ -89,9 +89,8 @@ function CommentModal({ categoryId, cancelCallback }) {
       onClick={() => closeModal()}
       id="defaultModal"
       aria-hidden="true"
-      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${
-        !categoryId ? "hidden" : "bg-[#66656547] dark:#3a3839ad"
-      }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
+      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${!categoryId ? "hidden" : "bg-[#66656547] dark:#3a3839ad"
+        }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -139,9 +138,8 @@ function CommentModal({ categoryId, cancelCallback }) {
                   type={"text"}
                   value={formik.values.title}
                   onChange={formik.handleChange}
-                  className={`${
-                    formik.errors.title && "border-red-500"
-                  } bg-white outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500`}
+                  className={`${formik.errors.title && "border-red-500"
+                    } bg-white outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500`}
                 />
                 {formik.errors.title && (
                   <span className="absolute top-[70px] transition-all duration-300  text-red-500  text-sm">
@@ -162,9 +160,8 @@ function CommentModal({ categoryId, cancelCallback }) {
                   onBlur={formik.handleBlur}
                   value={formik.values.status}
                   id="countries"
-                  className={`${
-                    formik.errors.status && "border-red-500"
-                  } bg-white outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500`}
+                  className={`${formik.errors.status && "border-red-500"
+                    } bg-white outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500`}
                 >
                   <option selected></option>
                   {status_options?.map((categoriya) => {
@@ -197,9 +194,9 @@ function CommentModal({ categoryId, cancelCallback }) {
                   type={"number"}
                   value={formik.values.mark}
                   onChange={formik.handleChange}
-                  className={`${
-                    formik.errors.mark && "border-red-500"
-                  } bg-white outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500`}
+                  min={0}
+                  className={`${formik.errors.mark && "border-red-500"
+                    } bg-white outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500`}
                 />
                 {formik.errors.mark && (
                   <span className="absolute top-[70px] transition-all duration-300  text-red-500  text-sm">

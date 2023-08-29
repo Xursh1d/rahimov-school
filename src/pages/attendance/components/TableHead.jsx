@@ -18,18 +18,20 @@ function TableHead() {
   return (
     <thead className=" border border-[#d9f99d] xs:text-[10px] sm:text-xs text-gray-700 bg-[#ecfccb] dark:bg-gray-700 dark:text-gray-400">
       <tr className="py-3">
-        <th rowSpan={2} scope="col" className="border px-3 w-[20px]">
-          #
-        </th>
-        <th scope="col" rowSpan={2} className="border text-center px-3">
-          Talaba
+        <th rowSpan={2} className="px-3 w-[20px] sticky left-0 bg-[#ecfccb] z-10">
+          <th scope="col" className="border px-3 w-[20px] sticky left-0 bg-[#ecfccb] z-10">
+            #
+          </th>
+          <th scope="col" className="border text-center px-3 sticky left-[33px] bg-[#ecfccb] z-10">
+            Talaba
+          </th>
         </th>
         {attendance_dates?.map((item) => {
           return (
             <th
               key={item.date}
               scope="col"
-              className="border relative text-center  max-w-[50px] p-1 cursor-pointer group"
+              className="border relative text-center max-w-[50px] p-1 cursor-pointer group"
             >
               <span
                 onClick={() => handleDelete(item.full_date)}
