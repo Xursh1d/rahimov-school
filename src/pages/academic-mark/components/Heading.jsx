@@ -42,7 +42,7 @@ function Heading() {
   }, [filterset]);
 
   return (
-    <div className="w-full flex justify-start gap-5">
+    <div className="w-[100%] flex sm:justify-start xs:justify-center sm:gap-5 xs:gap-2 flex-wrap">
       <Selector
         value={
           teachersOptions.find(
