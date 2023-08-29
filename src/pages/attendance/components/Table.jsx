@@ -78,7 +78,7 @@ function Table() {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="my-4 overflow-x-auto relative"
+      className="my-4 overflow-x-auto relative "
     >
       <table className="xs:text-xs sm:text-sm text-left text-gray-500 dark:text-gray-400 table-fixed">
         <TableHead />
