@@ -24,7 +24,7 @@ function TableItems({ formik, index }) {
       </td>
       <td
         scope="row"
-        className="h-auto px-1 py-3 text-center xs:text-[10px] sm:text-sm font-medium text-gray-900  dark:text-white"
+        className="h-auto px-1 py-3 xs:text-[10px] sm:text-sm font-medium text-gray-900  dark:text-white"
       >
         <input
           disabled

@@ -40,7 +40,7 @@ function BehaviorMark() {
       {isLoading ? (
         <Loader />
       ) : (
-        <>
+        <div className="overflow-x-auto">
           <Heading />
           {loading ? (
             <Loader />
@@ -49,7 +49,7 @@ function BehaviorMark() {
           ) : (
             <EmptyContent />
           )}
-        </>
+        </div>
       )}
       <CommentModal cancelCallback={cancelCallback} studentId={studentId} />
     </Layout>

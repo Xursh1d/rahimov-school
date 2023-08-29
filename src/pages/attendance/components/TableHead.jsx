@@ -16,22 +16,36 @@ function TableHead() {
   };
 
   return (
-    <thead className=" border border-[#d9f99d] xs:text-[10px] sm:text-xs text-gray-700 bg-[#ecfccb] dark:bg-gray-700 dark:text-gray-400">
-      <tr className="py-3">
-        <th rowSpan={2} className="px-3 w-[20px] sticky left-0 bg-[#ecfccb] z-10">
-          <th scope="col" className="border px-3 w-[20px] sticky left-0 bg-[#ecfccb] z-10">
-            #
-          </th>
-          <th scope="col" className="border text-center px-3 sticky left-[33px] bg-[#ecfccb] z-10">
-            Talaba
-          </th>
+    <thead className="xs:text-[10px] sm:text-xs text-gray-700  dark:bg-gray-700 dark:text-gray-400">
+      <tr className="py-3 ">
+        <th
+          rowSpan={2}
+          scope="col"
+          className="bg-[#ecfccb] px-3 w-[20px] sticky left-0 z-10"
+        >
+          <span className="absolute -left-[1px] top-0 bottom-0 w-[1.5px] h-full bg-gray-200"></span>
+          <span className="absolute -left-[1px] -top-[1px] right-0 w-full h-[1px] bg-gray-200"></span>
+          <span className="absolute -right-[1px] -top-[1px] bottom-0 w-[1px] h-full bg-gray-200"></span>
+          <span className="absolute right-0 bottom-0 -left-[1px] w-full h-[1px] bg-gray-200"></span>
+          #
+        </th>
+        <th
+          scope="col"
+          rowSpan={2}
+          className="text-center px-3 sticky xs:left-[30px] sm:left-[33px] xs:min-w-[150px] sm:min-w-[200px] bg-[#ecfccb] z-10"
+        >
+          <span className="absolute -left-[1px] top-0 bottom-0 w-[1px] h-full bg-gray-200"></span>
+          <span className="absolute -left-[1px] -top-[1px] right-0 w-full h-[1px] bg-gray-200"></span>
+          <span className="absolute -right-[1px] -top-[1px] bottom-0 w-[1px] h-full bg-gray-200"></span>
+          <span className="absolute right-0 bottom-0 -left-[1px] w-full h-[1px] bg-gray-200"></span>
+          Talaba
         </th>
         {attendance_dates?.map((item) => {
           return (
             <th
               key={item.date}
               scope="col"
-              className="border relative text-center max-w-[50px] p-1 cursor-pointer group"
+              className="border bg-[#ecfccb] border-gray-200 relative text-center max-w-[50px] p-1 cursor-pointer group"
             >
               <span
                 onClick={() => handleDelete(item.full_date)}
@@ -54,7 +68,7 @@ function TableHead() {
         <th
           scope="col"
           rowSpan={2}
-          className="border p-2 text-center bg-white cursor-pointer"
+          className="border  border-gray-200 p-2 text-center bg-white cursor-pointer"
         >
           <button
             onClick={openDateModal}
@@ -81,7 +95,7 @@ function TableHead() {
             <th
               key={item.date}
               scope="col"
-              className="border text-center  max-w-[50px] p-1 "
+              className="border bg-[#ecfccb] border-gray-200 text-center max-w-[50px] p-1 "
             >
               {item.weekday}
             </th>

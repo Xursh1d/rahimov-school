@@ -54,7 +54,7 @@ function TableComment() {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="my-4 py-5 xs:rounded-lg xs:w-max sm:w-full"
+      className="py-2 xs:rounded-lg xs:w-max sm:w-full"
     >
       <table className="w-full xs:text-xs sm:text-sm text-left text-gray-500 dark:text-gray-400">
         <TableHead />

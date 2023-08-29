@@ -29,7 +29,7 @@ function TableItems({ item, index }) {
         </td>
         <th
           scope="row"
-          className="px-1 py-0 text-center xs:text-[10px] sm:text-sm font-medium text-gray-900  dark:text-white"
+          className="px-2 py-0 xs:text-[10px] sm:text-sm font-medium text-gray-900  dark:text-white"
         >
           {item?.student.full_name}
         </th>

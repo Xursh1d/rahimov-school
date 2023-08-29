@@ -64,7 +64,7 @@ function BehaviorMarkCategories() {
       {isLoading ? (
         <Loader />
       ) : (
-        <>
+        <div className="overflow-x-auto">
           {loading ? (
             <Loader />
           ) : categories?.length > 0 ? (
@@ -81,7 +81,7 @@ function BehaviorMarkCategories() {
             cancelCallback={cancelCallback}
             deleteId={deleteId}
           />
-        </>
+        </div>
       )}
     </Layout>
   );

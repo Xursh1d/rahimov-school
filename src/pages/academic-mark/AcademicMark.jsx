@@ -71,7 +71,7 @@ function AcademicMark() {
       {isLoading ? (
         <Loader />
       ) : (
-        <>
+        <div className="overflow-x-auto">
           <Heading />
           {loading ? (
             <Loader />
@@ -80,7 +80,7 @@ function AcademicMark() {
           ) : (
             <EmptyContent />
           )}
-        </>
+        </div>
       )}
       <PopUp
         redirectHandler={redirectHandler}
