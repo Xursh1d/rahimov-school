@@ -78,7 +78,7 @@ function Table() {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="my-4 overflow-x-auto relative "
+      className="my-4 overflow-x-auto relative"
     >
       <table className="xs:text-xs sm:text-sm text-left text-gray-500 dark:text-gray-400 table-fixed">
         <TableHead />
@@ -99,9 +99,8 @@ function Table() {
         <button
           disabled={!changed}
           type="submit"
-          className={`${
-            !changed && "opacity-60 pointer-events-none"
-          } sticky right-0 text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm sm:px-5 sm:py-2.5 text-center xs:px-3 xs:py-2 xs:text-xs`}
+          className={`${!changed && "opacity-60 pointer-events-none"
+            } sticky right-0 text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm sm:px-5 sm:py-2.5 text-center xs:px-3 xs:py-2 xs:text-xs`}
         >
           {isLoading ? (
             <>

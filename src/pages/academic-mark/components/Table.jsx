@@ -81,8 +81,8 @@ function Table() {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} className="my-4 xs:rounded-lg w-fit">
-      <table className="w-full xs:text-xs sm:text-sm text-left text-gray-500 dark:text-gray-400">
+    <form onSubmit={formik.handleSubmit} className="my-4 overflow-x-auto relative">
+      <table className="xs:text-xs sm:text-sm text-left text-gray-500 dark:text-gray-400 table-fixed">
         <TableHead />
         <tbody>
           {students?.map((item, index) => {
@@ -97,7 +97,7 @@ function Table() {
           })}
         </tbody>
       </table>
-      <div className="mt-1 relative w-[100%] h-[50px] flex items-center justify-end">
+      <div className="fixed right-4 my-2 h-[50px] flex items-center justify-end">
         <button
           disabled={!academic_changed}
           type="submit"
