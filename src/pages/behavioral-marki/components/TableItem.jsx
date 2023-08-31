@@ -24,15 +24,20 @@ function TableItems({ item, index }) {
   return (
     <>
       <tr className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700">
-        <td className="border text-center xs:text-[10px] sm:text-sm  ">
+        <td className="w-[20px] px-3 sticky left-0 bg-white xs:text-[10px] sm:text-sm ">
+          <span className="absolute -left-[1px] top-0 bottom-0 w-[1.5px] h-full bg-gray-200"></span>
+          <span className="absolute -left-[1px] -top-[1px] right-0 w-full h-[1.5px] bg-gray-200"></span>
+          <span className="absolute -right-[1px] top-[0px] bottom-0 w-[1px] h-full bg-gray-200"></span>
+          <span className="absolute right-0 bottom-0 -left-[1px] w-full h-[1px] bg-gray-200"></span>
           {index + 1}
         </td>
-        <th
-          scope="row"
-          className="px-2 py-0 xs:text-[10px] sm:text-sm font-medium text-gray-900  dark:text-white"
-        >
+        <td className="sticky sm:left-[33px] xs:left-[30px] bg-white sm:px-2  xs:min-w-[150px] sm:min-w-[200px] xs:px-1 xs:text-[10px] sm:text-sm font-medium text-gray-900 dark:text-white">
+          <span className="absolute -left-[1px] top-0 bottom-0 w-[1px] h-full bg-gray-200"></span>
+          <span className="absolute -left-[1px] -top-[1px] right-0 w-full h-[1px] bg-gray-200"></span>
+          <span className="absolute -right-[1px] -top-[1px] bottom-0 w-[1px] h-full bg-gray-200"></span>
+          <span className="absolute right-0 bottom-0 -left-[1px] w-full h-[1px] bg-gray-200"></span>
           {item?.student.full_name}
-        </th>
+        </td>
         <td className="border w-[19%] text-center px-3 py-0 h-full xs:text-[10px] sm:text-sm ">
           {item?.status}
         </td>

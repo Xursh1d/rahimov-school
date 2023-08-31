@@ -12,7 +12,7 @@ function TableItems({ formik, index }) {
 
   const deleteAction = async () => {
     setLoader(true);
-    const { status, nonFieldError } = await BehaviorMarkService.deleteCommit(
+    const { status, nonFieldError } = await BehaviorMarkService.deleteComment(
       formik.values.studentComment?.[index]?.id
     );
     if (status) {
@@ -30,7 +30,7 @@ function TableItems({ formik, index }) {
 
   const updateAction = async () => {
     setUpdateLoader(true);
-    const { status, nonFieldError } = await BehaviorMarkService.updateCommit(
+    const { status, nonFieldError } = await BehaviorMarkService.updateComment(
       formik.values.studentComment?.[index]?.id,
       formik.values.studentComment[index]
     );
@@ -61,11 +61,10 @@ function TableItems({ formik, index }) {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.studentComment?.[index]?.content || ""}
-          className={`px-3 py-0 h-full xs:text-[10px] sm:text-sm  font-normal ${
-            formik.touched.studentComment?.[index]?.content &&
+          className={`px-3 py-0 h-full xs:text-[10px] sm:text-sm  font-normal ${formik.touched.studentComment?.[index]?.content &&
             formik.errors.studentComment?.[index]?.content &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
         />
       </th>
       <td className={`border`}>
@@ -74,11 +73,10 @@ function TableItems({ formik, index }) {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.studentComment?.[index]?.category_id || ""}
-          className={`px-3 py-0 h-full bg-inherit xs:text-[10px] sm:text-sm  ${
-            formik.touched.studentComment?.[index]?.category_id &&
+          className={`px-3 py-0 h-full bg-inherit xs:text-[10px] sm:text-sm  ${formik.touched.studentComment?.[index]?.category_id &&
             formik.errors.studentComment?.[index]?.category_id &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
         >
           <option selected></option>
           {filterset?.comment_categories.map((categoriya) => {
@@ -102,11 +100,10 @@ function TableItems({ formik, index }) {
           onBlur={formik.handleBlur}
           value={formik.values.studentComment?.[index]?.marked_teacher || ""}
           disabled
-          className={`bg-inherit px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${
-            formik.touched.studentComment?.[index]?.marked_teacher &&
+          className={`bg-inherit px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${formik.touched.studentComment?.[index]?.marked_teacher &&
             formik.errors.studentComment?.[index]?.marked_teacher &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
         />
       </td>
       <td className="border">
@@ -117,11 +114,10 @@ function TableItems({ formik, index }) {
           onBlur={formik.handleBlur}
           value={formik.values.studentComment?.[index]?.marked_time || ""}
           disabled
-          className={`bg-inherit px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${
-            formik.touched.studentComment?.[index]?.marked_time &&
+          className={`bg-inherit px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${formik.touched.studentComment?.[index]?.marked_time &&
             formik.errors.studentComment?.[index]?.marked_time &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
         />
       </td>
       <td

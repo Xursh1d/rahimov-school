@@ -61,7 +61,7 @@ function CommentModal({ categoryId, cancelCallback }) {
 
   const update = async (values) => {
     const { status, nonFieldError } =
-      await BehaviorMarkCategoriesService.updateCommit(
+      await BehaviorMarkCategoriesService.updateComment(
         category_details.id,
         values
       );
@@ -187,7 +187,7 @@ function CommentModal({ categoryId, cancelCallback }) {
                   htmlFor="password"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Kategoriya balli
+                  Kategoriya bali
                 </label>
                 <input
                   name="mark"
@@ -195,6 +195,7 @@ function CommentModal({ categoryId, cancelCallback }) {
                   value={formik.values.mark}
                   onChange={formik.handleChange}
                   min={0}
+                  max={100}
                   className={`${formik.errors.mark && "border-red-500"
                     } bg-white outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500`}
                 />

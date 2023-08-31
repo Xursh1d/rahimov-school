@@ -19,40 +19,23 @@ function TableItems({ formik, index }) {
 
   return (
     <tr className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700">
-      <td className="border text-center px-3 py-0 xs:text-[10px] sm:text-sm  ">
+      <td className="w-[20px] px-3 sticky left-0 bg-white xs:text-[10px] sm:text-sm ">
+        <span className="absolute -left-[1px] top-0 bottom-0 w-[1.5px] h-full bg-gray-200"></span>
+        <span className="absolute -left-[1px] -top-[1px] right-0 w-full h-[1.5px] bg-gray-200"></span>
+        <span className="absolute -right-[1px] top-[0px] bottom-0 w-[1px] h-full bg-gray-200"></span>
+        <span className="absolute right-0 bottom-0 -left-[1px] w-full h-[1px] bg-gray-200"></span>
         {index + 1}
       </td>
-      <td
-        scope="row"
-        className="h-auto px-1 py-3 xs:text-[10px] sm:text-sm font-medium text-gray-900  dark:text-white"
-      >
-        <input
-          disabled
-          type="text"
-          name={`categories.${index}.title`}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.categories?.[index]?.title || ""}
-          className={`px-3 py-0 h-full xs:text-[10px] sm:text-sm  font-normal ${
-            formik.touched.categories?.[index]?.title &&
-            formik.errors.categories?.[index]?.title &&
-            "border border-red-600"
-          }  outline-none text-center bg-white text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-        />
+      <td className="sticky sm:left-[33px] xs:left-[30px] bg-white sm:px-2  xs:min-w-[150px] sm:min-w-[200px] xs:px-1 xs:text-[10px] sm:text-sm font-medium text-gray-900 dark:text-white">
+        <span className="absolute -left-[1px] top-0 bottom-0 w-[1px] h-full bg-gray-200"></span>
+        <span className="absolute -left-[1px] -top-[1px] right-0 w-full h-[1px] bg-gray-200"></span>
+        <span className="absolute -right-[1px] -top-[1px] bottom-0 w-[1px] h-full bg-gray-200"></span>
+        <span className="absolute right-0 bottom-0 -left-[1px] w-full h-[1px] bg-gray-200"></span>
+        {formik.values.categories?.[index]?.title || ""}
       </td>
-      <td className={`border`}>
-        <input
-          disabled
-          name={`categories.${index}.status`}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.categories?.[index]?.status || ""}
-          className={`px-3 py-0 h-full bg-inherit xs:text-[10px] sm:text-sm  ${
-            formik.touched.categories?.[index]?.status &&
-            formik.errors.categories?.[index]?.status &&
-            "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-        />
+
+      <td className="border text-center">
+        <span class={`${(formik.values.categories?.[index]?.status == "Salbiy") ? "bg-red-100 dark:text-red-400 border-red-400 text-red-800" : "bg-blue-100 text-blue-800 dark:text-blue-400 border-blue-400"} text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 border`}>{formik.values.categories?.[index]?.status}</span>
       </td>
       <td className="border">
         <input
@@ -62,11 +45,10 @@ function TableItems({ formik, index }) {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.categories?.[index]?.mark || ""}
-          className={`bg-inherit px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${
-            formik.touched.categories?.[index]?.mark &&
+          className={`bg-inherit px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${formik.touched.categories?.[index]?.mark &&
             formik.errors.categories?.[index]?.mark &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
         />
       </td>
       <td
