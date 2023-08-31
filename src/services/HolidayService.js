@@ -1,8 +1,9 @@
 import axios from "axios";
 import { axiosAuthInstance } from "./axiosAuthInstance";
 
-export class BehaviorMarkService {
-  static async getBehaviorMark(queryString = "") {
+
+export class HolidayService {
+  static async getHolidays(queryString = "") {
     let result = {
       status: false,
       data: null,
@@ -10,7 +11,7 @@ export class BehaviorMarkService {
     };
     try {
       const response = await axiosAuthInstance.get(
-        "/marking/behavior/?" + queryString
+        "/holidays/?" + queryString
       );
       if (response.status === 200) {
         result = {
@@ -33,7 +34,38 @@ export class BehaviorMarkService {
     }
     return result;
   }
-  static async applyComment(data) {
+  static async getDetails(id) {
+    let result = {
+      status: false,
+      data: null,
+      nonFieldError: null,
+    };
+    try {
+      const response = await axiosAuthInstance.get(
+        `/holidays/${id}/`
+      );
+      if (response.status === 200) {
+        result = {
+          ...result,
+          status: true,
+          data: response.data,
+        };
+      }
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        const errorResponse = e.response;
+        if (errorResponse) {
+          const errorMessage = errorResponse.data;
+          const [firstKey, firstValue] = Object.entries(errorMessage)[0];
+          if (firstKey && firstValue) {
+            result = { ...result, nonFieldError: firstValue };
+          } else result.nonFieldError = "Ma'lumot olib bo'lmadi!";
+        }
+      }
+    }
+    return result;
+  }
+  static async addHoliday(data) {
     var result = {
       status: false,
       data: null,
@@ -41,7 +73,7 @@ export class BehaviorMarkService {
     };
     try {
       const response = await axiosAuthInstance.post(
-        `/marking/behavior/comment/`,
+        `/holidays/`,
         data
       );
 
@@ -50,8 +82,7 @@ export class BehaviorMarkService {
           ...result,
           status: true,
           data: response.data,
-
-          nonFieldError: response.data.detail,
+          nonFieldError: "Saqlandi",
         };
       }
     } catch (e) {
@@ -69,23 +100,23 @@ export class BehaviorMarkService {
     return result;
   }
 
-  static async deleteComment(id) {
+  static async deleteHoliday(id) {
     var result = {
       status: false,
       data: null,
       nonFieldError: null,
     };
     try {
-      const response = await axiosAuthInstance.post(
-        `/marking/behavior/comment/${id}/delete/`
+      const response = await axiosAuthInstance.delete(
+        `/holidays/${id}/`
       );
 
-      if (response.status === 200) {
+      if (response.status === 204) {
         result = {
           ...result,
           status: true,
           data: response.data,
-          nonFieldError: response.data.detail,
+          nonFieldError: "O'chirildi",
         };
       }
     } catch (e) {
@@ -103,15 +134,15 @@ export class BehaviorMarkService {
     return result;
   }
 
-  static async updateComment(id, data) {
+  static async updateHoliday(id, data) {
     var result = {
       status: false,
       data: null,
       nonFieldError: null,
     };
     try {
-      const response = await axiosAuthInstance.post(
-        `/marking/behavior/comment/${id}/update/`,
+      const response = await axiosAuthInstance.patch(
+        `/holidays/${id}/`,
         data
       );
 

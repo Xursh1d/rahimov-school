@@ -40,7 +40,7 @@ function BehaviorMarkCategories() {
   };
   const deleteCallback = async () => {
     const { status, nonFieldError } =
-      await BehaviorMarkCategoriesService.deleteCommit(deleteId);
+      await BehaviorMarkCategoriesService.deleteComment(deleteId);
     if (status) {
       toastSuccess(nonFieldError);
       cancelCallback();

@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import Select from "react-select";
 import { useMediaQuery } from "react-responsive";
 import PropTypes from "prop-types";
-import { useAcademicMarkStore } from "../../../store/AcademicMarkStore";
+import { useAttendaceStore } from "../../../store/AttendanceStore";
 
 const customStyles = {
   menu: (provided) => ({
@@ -47,14 +47,14 @@ const mobileStyles = {
 };
 
 function Selector({ value, disabled, param, property }) {
-  const { queryParams, updateParams, setLoading, loadItems } =
-    useAcademicMarkStore();
+  const { queryParams, updateParams, setLoader, loadItems } =
+    useAttendaceStore();
 
   const isMobile = useMediaQuery({ maxWidth: 640 });
 
   const handleSelectChange = useCallback(
     async (e) => {
-      setLoading(true);
+      setLoader(true);
       if (property === "Ustoz") {
         if (e?.value == undefined) {
           const param = {
@@ -65,7 +65,7 @@ function Selector({ value, disabled, param, property }) {
           };
           updateParams(param);
           await loadItems(new URLSearchParams(param).toString());
-          localStorage.setItem("academicFilters", JSON.stringify(param));
+          localStorage.setItem("attendanceFilters", JSON.stringify(param));
         } else {
           updateParams({
             teacher_id: e?.value,
@@ -77,7 +77,7 @@ function Selector({ value, disabled, param, property }) {
             }).toString()
           );
           localStorage.setItem(
-            "academicFilters",
+            "attendanceFilters",
             JSON.stringify({
               ...queryParams,
               teacher_id: e?.value,
@@ -103,7 +103,7 @@ function Selector({ value, disabled, param, property }) {
             }).toString()
           );
           localStorage.setItem(
-            "academicFilters",
+            "attendanceFilters",
             JSON.stringify({
               ...queryParams,
               subject_id: "",
@@ -122,7 +122,7 @@ function Selector({ value, disabled, param, property }) {
             }).toString()
           );
           localStorage.setItem(
-            "academicFilters",
+            "attendanceFilters",
             JSON.stringify({
               ...queryParams,
               subject_id: e?.value,
@@ -143,7 +143,7 @@ function Selector({ value, disabled, param, property }) {
             }).toString()
           );
           localStorage.setItem(
-            "academicFilters",
+            "attendanceFilters",
             JSON.stringify({
               ...queryParams,
               month_id: "",
@@ -160,7 +160,7 @@ function Selector({ value, disabled, param, property }) {
             }).toString()
           );
           localStorage.setItem(
-            "academicFilters",
+            "attendanceFilters",
             JSON.stringify({
               ...queryParams,
               month_id: e?.value,
@@ -183,7 +183,7 @@ function Selector({ value, disabled, param, property }) {
             }).toString()
           );
           localStorage.setItem(
-            "academicFilters",
+            "attendanceFilters",
             JSON.stringify({
               ...queryParams,
               month_id: "",
@@ -201,7 +201,7 @@ function Selector({ value, disabled, param, property }) {
             }).toString()
           );
           localStorage.setItem(
-            "academicFilters",
+            "attendanceFilters",
             JSON.stringify({
               ...queryParams,
               class_id: e?.value,
@@ -209,22 +209,24 @@ function Selector({ value, disabled, param, property }) {
           );
         }
       }
-      setLoading(false);
+      setLoader(false);
     },
     [queryParams]
   );
 
   return (
     <Select
+      className="react-select-container"
+      classNamePrefix="react-select"
       placeholder={property}
+      isDisabled={disabled}
+      value={value}
       styles={isMobile ? mobileStyles : customStyles}
       options={param}
       isClearable
-      value={value}
-      isDisabled={disabled}
-      onChange={handleSelectChange}
       theme={(theme) => ({
         ...theme,
+
         colors: {
           ...theme.colors,
           primary25: "#ecfccb",
@@ -232,12 +234,13 @@ function Selector({ value, disabled, param, property }) {
           primary: "#16a34a",
         },
       })}
+      onChange={handleSelectChange}
     />
   );
 }
 Selector.propTypes = {
-  disabled: PropTypes.any,
-  value: PropTypes.any,
+  value: PropTypes.any.isRequired,
+  disabled: PropTypes.any.isRequired,
   param: PropTypes.array.isRequired,
   property: PropTypes.string.isRequired,
 };

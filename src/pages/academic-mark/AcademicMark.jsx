@@ -51,7 +51,7 @@ function AcademicMark() {
         }
       };
     }
-    return () => {};
+    return () => { };
   }, [academic_changed]);
 
   const redirectHandler = () => {
@@ -71,7 +71,7 @@ function AcademicMark() {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="overflow-x-auto">
+        <div>
           <Heading />
           {loading ? (
             <Loader />

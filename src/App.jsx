@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { useUserStore } from "./store/UserDetailsStore";
 import Statistics from "./pages/statistics/Statistics";
 import BehaviorMarkCategories from "./pages/behavior-mark-categories/BehaviorMarkCategories";
+import Holidays from "./pages/holidays/Holidays";
 
 function App() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ function App() {
       : true;
 
     if (userData === null || checkToken) {
-      localStorage.removeItem("user");
+      localStorage.clear();
       navigate("/login", { replace: true });
     }
   }, []);
@@ -59,9 +60,12 @@ function App() {
           <Route path="/marking/academic" element={<AcademicMark />} />
           <Route path="/marking/behavioural" element={<BehavioralMark />} />
           <Route
-            path="/marking/behavioural-categories"
+            path="/settings/behavioural-categories"
             element={<BehaviorMarkCategories />}
           />
+          <Route
+            path="/settings/holidays"
+            element={<Holidays />} />
         </Route>
       </Routes>
       <ToastContainer />

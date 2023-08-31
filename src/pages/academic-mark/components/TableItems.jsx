@@ -27,15 +27,20 @@ function TableItems({ formik, item, index }) {
 
   return (
     <tr className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700">
-      <td className="border px-3 py-3 xs:text-[10px] sm:text-sm  ">
+      <td className="w-[20px] px-3 sticky left-0 bg-white xs:text-[10px] sm:text-sm ">
+        <span className="absolute -left-[1px] top-0 bottom-0 w-[1.5px] h-full bg-gray-200"></span>
+        <span className="absolute -left-[1px] -top-[1px] right-0 w-full h-[1.5px] bg-gray-200"></span>
+        <span className="absolute -right-[1px] top-[0px] bottom-0 w-[1px] h-full bg-gray-200"></span>
+        <span className="absolute right-0 bottom-0 -left-[1px] w-full h-[1px] bg-gray-200"></span>
         {index + 1}
       </td>
-      <th
-        scope="row"
-        className="px-2 py-0 xs:text-[10px] sm:text-sm font-medium text-gray-900  dark:text-white"
-      >
+      <td className="sticky sm:left-[33px] xs:left-[30px] bg-white sm:px-2  xs:min-w-[150px] sm:min-w-[200px] xs:px-1 xs:text-[10px] sm:text-sm font-medium text-gray-900 dark:text-white">
+        <span className="absolute -left-[1px] top-0 bottom-0 w-[1px] h-full bg-gray-200"></span>
+        <span className="absolute -left-[1px] -top-[1px] right-0 w-full h-[1px] bg-gray-200"></span>
+        <span className="absolute -right-[1px] -top-[1px] bottom-0 w-[1px] h-full bg-gray-200"></span>
+        <span className="absolute right-0 bottom-0 -left-[1px] w-full h-[1px] bg-gray-200"></span>
         {item.student}
-      </th>
+      </td>
       <td className={`border`}>
         <input
           name={`students.${index}.first_term_points`}
@@ -43,11 +48,10 @@ function TableItems({ formik, item, index }) {
           onBlur={formik.handleBlur}
           value={formik.values.students?.[index]?.first_term_points}
           type="number"
-          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${
-            formik.touched.students?.[index]?.first_term_points &&
+          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${formik.touched.students?.[index]?.first_term_points &&
             formik.errors.students?.[index]?.first_term_points &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
         />
       </td>
       <td className="border">
@@ -57,11 +61,10 @@ function TableItems({ formik, item, index }) {
           onChange={(e) => handleChange(e, "second_term_points")}
           onBlur={formik.handleBlur}
           value={formik.values.students?.[index]?.second_term_points}
-          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${
-            formik.touched.students?.[index]?.second_term_points &&
+          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${formik.touched.students?.[index]?.second_term_points &&
             formik.errors.students?.[index]?.second_term_points &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
         />
       </td>
 
@@ -101,11 +104,10 @@ function TableItems({ formik, item, index }) {
           onChange={(e) => handleChange(e, "final_term_points")}
           onBlur={formik.handleBlur}
           value={formik.values.students?.[index]?.final_term_points}
-          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${
-            formik.touched.students?.[index]?.final_term_points &&
+          className={`px-3 py-3 h-full xs:text-[10px] sm:text-sm  ${formik.touched.students?.[index]?.final_term_points &&
             formik.errors.students?.[index]?.final_term_points &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
         />
       </td>
       <td className="border">

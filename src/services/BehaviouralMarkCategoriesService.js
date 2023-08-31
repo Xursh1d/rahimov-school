@@ -99,7 +99,7 @@ export class BehaviorMarkCategoriesService {
     return result;
   }
 
-  static async deleteCommit(id) {
+  static async deleteComment(id) {
     var result = {
       status: false,
       data: null,
@@ -133,7 +133,7 @@ export class BehaviorMarkCategoriesService {
     return result;
   }
 
-  static async updateCommit(id, data) {
+  static async updateComment(id, data) {
     var result = {
       status: false,
       data: null,

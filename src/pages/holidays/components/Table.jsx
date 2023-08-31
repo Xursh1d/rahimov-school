@@ -1,17 +1,18 @@
 import { useBehaviorMarkStore } from "../../../store/BehaviorMarkStore";
+import { useHolidayStore } from "../../../store/HolidayStore";
 import TableHead from "./TableHead";
-import TableItem from "./TableItem";
+import TableItems from "./TableItems";
 
 function Table() {
-  const { students } = useBehaviorMarkStore();
+  const { holidays } = useHolidayStore();
 
   return (
     <div className="my-4 overflow-x-auto relative">
       <table className="w-full xs:text-xs sm:text-sm text-left text-gray-500 dark:text-gray-400">
         <TableHead />
         <tbody>
-          {students?.map((item, index) => {
-            return <TableItem item={item} key={index} index={index} />;
+          {holidays?.map((item, index) => {
+            return <TableItems item={item} key={index} index={index} />;
           })}
         </tbody>
       </table>

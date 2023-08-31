@@ -55,11 +55,10 @@ function Login() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               type="text"
-              className={`bg-gray-50 outline-none h-[45px] border focus:border-none transition-all duration-300 text-gray-900 text-sm rounded-xl focus:ring-2 ring-offset-2 ${
-                formik.errors.username
-                  ? "ring-2 ring-red-200 dark:ring-orange-700 focus:bg-red-100 border-none"
-                  : "focus:bg-blue-50 ring-blue-300 dark:ring-blue-700"
-              } block w-full px-4 dark:bg-gray-700 dark:ring-offset-gray-800 dark:placeholder-gray-400 dark:text-white`}
+              className={`bg-gray-50 outline-none h-[45px] border focus:border-none transition-all duration-300 text-gray-900 text-sm rounded-xl focus:ring-2 ring-offset-2 ${formik.errors.username
+                ? "ring-2 ring-red-200 dark:ring-orange-700 focus:bg-red-100 border-none"
+                : "focus:bg-blue-50 ring-blue-300 dark:ring-blue-700"
+                } block w-full px-4 dark:bg-gray-700 dark:ring-offset-gray-800 dark:placeholder-gray-400 dark:text-white`}
             />
             {formik.errors.username && (
               <span className="absolute top-[80px] transition-all duration-300  text-red-500  text-sm">
@@ -80,12 +79,11 @@ function Login() {
               value={formik.values?.password}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              type="text"
-              className={`bg-gray-50 outline-none h-[45px] border focus:border-none transition-all duration-300 text-gray-900 text-sm rounded-xl focus:ring-2 ring-offset-2 ${
-                formik.errors.password
-                  ? "ring-2 ring-red-200 dark:ring-orange-700 focus:bg-red-100 border-none"
-                  : "focus:bg-blue-50 ring-blue-300 dark:ring-blue-700"
-              } block w-full px-4 dark:bg-gray-700 dark:ring-offset-gray-800 dark:placeholder-gray-400 dark:text-white`}
+              type="password"
+              className={`bg-gray-50 outline-none h-[45px] border focus:border-none transition-all duration-300 text-gray-900 text-sm rounded-xl focus:ring-2 ring-offset-2 ${formik.errors.password
+                ? "ring-2 ring-red-200 dark:ring-orange-700 focus:bg-red-100 border-none"
+                : "focus:bg-blue-50 ring-blue-300 dark:ring-blue-700"
+                } block w-full px-4 dark:bg-gray-700 dark:ring-offset-gray-800 dark:placeholder-gray-400 dark:text-white`}
             />
             {formik.errors.password && (
               <span className="absolute top-[80px] transition-all duration-300  text-red-500  text-sm">
@@ -120,7 +118,7 @@ function Login() {
                   Loading...
                 </>
               ) : (
-                "Submit"
+                "Tizimga Kirish"
               )}
             </button>
           </div>
