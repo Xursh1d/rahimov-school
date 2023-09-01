@@ -5,10 +5,17 @@ import { BehaviorMarkService } from "../services/BehaviorMarkService";
 export const useBehaviorMarkStore = create((set) => ({
   loading: false,
   students: null,
+  change: false,
+  openPopup: false,
   behaviorId: null,
   cancelCallbackComment: null,
   filterset: null,
   queryParams: {},
+  setChanged: (status) => {
+    set({
+      change: status,
+    });
+  },
   setLoading: (status) => {
     set({
       loading: status,

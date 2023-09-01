@@ -73,6 +73,7 @@ function Attendance() {
       changed: false,
     });
   };
+
   useEffect(() => {
     const handler = (e) => {
       if (changed) {
@@ -88,7 +89,6 @@ function Attendance() {
         }
       };
     }
-    return () => {};
   }, [changed]);
 
   return (

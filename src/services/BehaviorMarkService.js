@@ -103,7 +103,7 @@ export class BehaviorMarkService {
     return result;
   }
 
-  static async updateComment(id, data) {
+  static async updateComment(data) {
     var result = {
       status: false,
       data: null,
@@ -111,7 +111,7 @@ export class BehaviorMarkService {
     };
     try {
       const response = await axiosAuthInstance.post(
-        `/marking/behavior/comment/${id}/update/`,
+        `/marking/behavior/comment/update/`,
         data
       );
 
