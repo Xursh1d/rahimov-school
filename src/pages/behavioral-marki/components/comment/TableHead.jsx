@@ -21,7 +21,6 @@ function TableHead() {
           Izoh kiritilgan vaqt
         </th>
         <th scope="col" className="border text-center px-3 py-2"></th>
-        <th scope="col" className="border text-center px-3 py-2"></th>
       </tr>
     </thead>
   );

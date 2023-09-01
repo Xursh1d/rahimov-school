@@ -7,10 +7,19 @@ import Table from "./components/Table";
 import { useBehaviorMarkStore } from "../../store/BehaviorMarkStore";
 import CommentModal from "./components/CommentModal";
 import EmptyContent from "../../components/EmptyContent";
+import PopUp from "../attendance/components/PopUp";
 
 function BehaviorMark() {
-  const { onReload, students, loading, studentId, updateParams, loadItems } =
-    useBehaviorMarkStore();
+  const {
+    onReload,
+    students,
+    loading,
+    change,
+    studentId,
+    updateParams,
+    loadItems,
+    openPopup,
+  } = useBehaviorMarkStore();
   const { setLoading, isLoading } = useLoaderStore();
 
   const pageLoad = useCallback(async () => {
@@ -29,9 +38,45 @@ function BehaviorMark() {
     pageLoad();
   }, []);
 
+  useEffect(() => {
+    const handler = (e) => {
+      if (change) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    };
+    if (change) {
+      window.addEventListener("beforeunload", handler);
+      return () => {
+        if (change) {
+          window.removeEventListener("beforeunload", handler);
+        }
+      };
+    }
+  }, [change]);
+
   const cancelCallback = () => {
+    if (change) {
+      useBehaviorMarkStore.setState({
+        openPopup: true,
+      });
+    } else
+      useBehaviorMarkStore.setState({
+        studentId: null,
+      });
+  };
+
+  const redirectHandler = () => {
     useBehaviorMarkStore.setState({
       studentId: null,
+      change: false,
+    });
+    cancelRedirect();
+  };
+
+  const cancelRedirect = () => {
+    useBehaviorMarkStore.setState({
+      openPopup: null,
     });
   };
 
@@ -52,6 +97,11 @@ function BehaviorMark() {
         </div>
       )}
       <CommentModal cancelCallback={cancelCallback} studentId={studentId} />
+      <PopUp
+        redirectHandler={redirectHandler}
+        cancelCallback={cancelRedirect}
+        open={openPopup}
+      />
     </Layout>
   );
 }
