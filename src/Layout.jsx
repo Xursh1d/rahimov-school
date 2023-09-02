@@ -34,7 +34,7 @@ function Layout({ children }) {
   };
   const location = useLocation();
   const currentURL = location.pathname;
-
+  const userRole = JSON.parse(localStorage.getItem("user_details"))?.role
   const alertChange = (url) => {
     if (currentURL == "/marking/academic") {
       useAcademicMarkStore.setState({
@@ -318,7 +318,7 @@ function Layout({ children }) {
                   </li>
                 </ul>
               </li>
-              <li>
+              {userRole == "admin" && <li>
                 <button
                   onClick={() => toggleSettingDropHandler()}
                   type="button"
@@ -425,7 +425,7 @@ function Layout({ children }) {
                     </UserPermissionWidget>
                   </li>
                 </ul>
-              </li>
+              </li>}
             </ul>
           </div>
         </aside>
