@@ -7,7 +7,7 @@ import Table from "./components/Table";
 import { useBehaviorMarkStore } from "../../store/BehaviorMarkStore";
 import CommentModal from "./components/CommentModal";
 import EmptyContent from "../../components/EmptyContent";
-import PopUp from "../attendance/components/PopUp";
+import PopUp from "./components/PopUp";
 
 function BehaviorMark() {
   const {
@@ -56,14 +56,9 @@ function BehaviorMark() {
   }, [change]);
 
   const cancelCallback = () => {
-    if (change) {
-      useBehaviorMarkStore.setState({
-        openPopup: true,
-      });
-    } else
-      useBehaviorMarkStore.setState({
-        studentId: null,
-      });
+    useBehaviorMarkStore.setState({
+      studentId: null,
+    });
   };
 
   const redirectHandler = () => {
@@ -76,7 +71,7 @@ function BehaviorMark() {
 
   const cancelRedirect = () => {
     useBehaviorMarkStore.setState({
-      openPopup: null,
+      openPopup: false,
     });
   };
 
