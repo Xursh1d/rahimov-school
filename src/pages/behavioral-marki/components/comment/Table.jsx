@@ -14,8 +14,8 @@ const initialValues = {
 
 function TableComment({ studentId, studentComment }) {
   const { behaviorId, loadItems, queryParams, change } = useBehaviorMarkStore();
-  const [isLoading, setLoading] = useState(false);
 
+  const [isLoading, setLoading] = useState(false);
   useEffect(() => {
     studentComment?.forEach((element, index) => {
       formik.setFieldValue(`studentComment.${index}.id`, element["id"], false);
@@ -70,6 +70,7 @@ function TableComment({ studentId, studentComment }) {
           }).toString()
         );
         setLoading(false);
+        useBehaviorMarkStore.setState({ change: false });
       } else toastError(nonFieldError);
       setLoading(false);
     },

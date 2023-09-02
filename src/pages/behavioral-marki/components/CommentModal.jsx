@@ -11,7 +11,7 @@ const initialValues = {
 
 function CommentModal({ studentId, cancelCallback }) {
   const [loading, setLoader] = useState(false);
-  const { loadItems, filterset, queryParams, onSubmit, setLoading } =
+  const { loadItems, filterset, change, queryParams, onSubmit, setLoading } =
     useBehaviorMarkStore();
 
   const formik = useFormik({
@@ -38,7 +38,13 @@ function CommentModal({ studentId, cancelCallback }) {
   });
 
   const closeModal = () => {
-    cancelCallback();
+    if (change) {
+      console.log("ishla");
+      useBehaviorMarkStore.setState({
+        openPopup: true,
+      });
+    } else cancelCallback();
+
     setLoader(false);
     formik.resetForm();
   };
