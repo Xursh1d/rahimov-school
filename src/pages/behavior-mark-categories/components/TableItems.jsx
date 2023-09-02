@@ -34,8 +34,16 @@ function TableItems({ formik, index }) {
         {formik.values.categories?.[index]?.title || ""}
       </td>
 
-      <td className="border text-center">
-        <span class={`${(formik.values.categories?.[index]?.status == "Salbiy") ? "bg-red-100 dark:text-red-400 border-red-400 text-red-800" : "bg-blue-100 text-blue-800 dark:text-blue-400 border-blue-400"} text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 border`}>{formik.values.categories?.[index]?.status}</span>
+      <td className="border text-center py-2">
+        <span
+          className={`${
+            formik.values.categories?.[index]?.status == "Salbiy"
+              ? "bg-red-100 dark:text-red-400 border-red-400 text-red-800 "
+              : "bg-blue-100 text-blue-800 dark:text-blue-400 border-blue-400"
+          } text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 border`}
+        >
+          {formik.values.categories?.[index]?.status}
+        </span>
       </td>
       <td className="border">
         <input
@@ -45,10 +53,11 @@ function TableItems({ formik, index }) {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.categories?.[index]?.mark || ""}
-          className={`bg-inherit px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${formik.touched.categories?.[index]?.mark &&
+          className={`bg-inherit px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${
+            formik.touched.categories?.[index]?.mark &&
             formik.errors.categories?.[index]?.mark &&
             "border border-red-600"
-            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
         />
       </td>
       <td

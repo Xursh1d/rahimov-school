@@ -63,7 +63,7 @@ function BehaviorMark() {
 
   const redirectHandler = () => {
     useBehaviorMarkStore.setState({
-      studentId: null,
+      behaviorId: null,
       change: false,
     });
     cancelRedirect();

@@ -15,12 +15,6 @@ function TableItems({ item, index }) {
     });
   };
 
-  const cancelCallbackComment = () => {
-    useBehaviorMarkStore.setState({
-      behaviorId: null,
-    });
-  };
-
   return (
     <>
       <tr className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700">
@@ -74,11 +68,7 @@ function TableItems({ item, index }) {
           </button>
         </td>
       </tr>
-      <TableComment
-        cancelCallback={cancelCallbackComment}
-        studentId={item.id}
-        studentComment={item?.comments}
-      />
+      <TableComment studentId={item.id} studentComment={item?.comments} />
     </>
   );
 }

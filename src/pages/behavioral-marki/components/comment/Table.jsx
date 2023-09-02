@@ -79,13 +79,11 @@ function TableComment({ studentId, studentComment }) {
   const closeModal = () => {
     if (change) {
       useBehaviorMarkStore.setState({
-        openPopup: true
+        openPopup: true,
       });
-    }
-    else {
+    } else {
       useBehaviorMarkStore.setState({
         behaviorId: null,
-
         change: false,
       });
       formik.resetForm();
@@ -97,8 +95,9 @@ function TableComment({ studentId, studentComment }) {
       onClick={() => closeModal()}
       id="defaultModal"
       aria-hidden="true"
-      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${!behaviorId == studentId ? "hidden" : "bg-[#66656547] dark:#3a3839ad"
-        }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
+      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${
+        !behaviorId == studentId ? "hidden" : "bg-[#66656547] dark:#3a3839ad"
+      }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -172,8 +171,9 @@ function TableComment({ studentId, studentComment }) {
                 <button
                   disabled={!change}
                   type="submit"
-                  className={`${!change && "opacity-60 pointer-events-none"
-                    } sticky  right-0 text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm sm:px-5 sm:py-2.5 text-center xs:px-3 xs:py-2 xs:text-xs`}
+                  className={`${
+                    !change && "opacity-60 pointer-events-none"
+                  } sticky  right-0 text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm sm:px-5 sm:py-2.5 text-center xs:px-3 xs:py-2 xs:text-xs`}
                 >
                   {isLoading ? (
                     <>
