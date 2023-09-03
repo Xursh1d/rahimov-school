@@ -11,6 +11,7 @@ export const useBehaviorMarkStore = create((set) => ({
   cancelCallbackComment: null,
   filterset: null,
   queryParams: {},
+  deleteId: null,
   setChanged: (status) => {
     set({
       change: status,

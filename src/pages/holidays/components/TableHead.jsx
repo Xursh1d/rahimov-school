@@ -1,10 +1,8 @@
-import { useAttendaceStore } from "../../../store/AttendanceStore";
+import { useHolidayStore } from "../../../store/HolidayStore";
 
 function TableHead() {
-  const { attendance_dates } = useAttendaceStore();
-
   const openDateModal = () => {
-    useAttendaceStore.setState({
+    useHolidayStore.setState({
       toggleDateModal: true,
     });
   };
@@ -30,12 +28,13 @@ function TableHead() {
           <span className="absolute -left-[1px] -top-[1px] right-0 w-full h-[1px] bg-gray-200"></span>
           <span className="absolute -right-[1px] -top-[1px] bottom-0 w-[1px] h-full bg-gray-200"></span>
           <span className="absolute right-0 bottom-0 -left-[1px] w-full h-[1px] bg-gray-200"></span>
-          Dam olish sababi
+          Dam olish sanalari
         </th>
         <th
           scope="col"
-          className="border border-gray-200 p-2 text-center bg-white">
-          Dam olish sanalari
+          className="border border-gray-200 p-2 text-center bg-white"
+        >
+          Dam olish sababi
         </th>
         <th
           scope="col"

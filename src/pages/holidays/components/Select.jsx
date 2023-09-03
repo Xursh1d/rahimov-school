@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import Select from "react-select";
 import { useMediaQuery } from "react-responsive";
 import PropTypes from "prop-types";
-import { useAttendaceStore } from "../../../store/AttendanceStore";
+import { useHolidayStore } from "../../../store/HolidayStore";
 
 const customStyles = {
   menu: (provided) => ({
@@ -47,169 +47,30 @@ const mobileStyles = {
 };
 
 function Selector({ value, disabled, param, property }) {
-  const { queryParams, updateParams, setLoader, loadItems } =
-    useAttendaceStore();
+  const { queryParams, updateParams, setLoader, loadItems } = useHolidayStore();
 
   const isMobile = useMediaQuery({ maxWidth: 640 });
 
   const handleSelectChange = useCallback(
     async (e) => {
       setLoader(true);
-      if (property === "Ustoz") {
-        if (e?.value == undefined) {
-          const param = {
-            teacher_id: "",
-            subject_id: "",
-            month_id: "",
-            class_id: "",
-          };
-          updateParams(param);
-          await loadItems(new URLSearchParams(param).toString());
-          localStorage.setItem("attendanceFilters", JSON.stringify(param));
-        } else {
-          updateParams({
-            teacher_id: e?.value,
-          });
-          await loadItems(
-            new URLSearchParams({
-              ...queryParams,
-              teacher_id: e?.value,
-            }).toString()
-          );
-          localStorage.setItem(
-            "attendanceFilters",
-            JSON.stringify({
-              ...queryParams,
-              teacher_id: e?.value,
-            })
-          );
-        }
-      }
-
-      if (property === "Fan") {
-        if (e?.value == undefined) {
-          const pram = {
-            subject_id: "",
-            month_id: "",
-            class_id: "",
-          };
-          updateParams(pram);
-          await loadItems(
-            new URLSearchParams({
-              ...queryParams,
-              subject_id: "",
-              month_id: "",
-              class_id: "",
-            }).toString()
-          );
-          localStorage.setItem(
-            "attendanceFilters",
-            JSON.stringify({
-              ...queryParams,
-              subject_id: "",
-              month_id: "",
-              class_id: "",
-            })
-          );
-        } else {
-          updateParams({
-            subject_id: e?.value,
-          });
-          await loadItems(
-            new URLSearchParams({
-              ...queryParams,
-              subject_id: e?.value,
-            }).toString()
-          );
-          localStorage.setItem(
-            "attendanceFilters",
-            JSON.stringify({
-              ...queryParams,
-              subject_id: e?.value,
-            })
-          );
-        }
-      }
-
-      if (property === "Oy") {
-        if (e?.value == undefined) {
-          updateParams({
-            month_id: "",
-          });
-          await loadItems(
-            new URLSearchParams({
-              ...queryParams,
-              month_id: "",
-            }).toString()
-          );
-          localStorage.setItem(
-            "attendanceFilters",
-            JSON.stringify({
-              ...queryParams,
-              month_id: "",
-            })
-          );
-        } else {
-          updateParams({
-            month_id: e?.value,
-          });
-          await loadItems(
-            new URLSearchParams({
-              ...queryParams,
-              month_id: e?.value,
-            }).toString()
-          );
-          localStorage.setItem(
-            "attendanceFilters",
-            JSON.stringify({
-              ...queryParams,
-              month_id: e?.value,
-            })
-          );
-        }
-      }
-
-      if (property === "Sinf") {
-        if (e?.value == undefined) {
-          updateParams({
-            class_id: "",
-            month_id: "",
-          });
-          await loadItems(
-            new URLSearchParams({
-              ...queryParams,
-              month_id: "",
-              class_id: "",
-            }).toString()
-          );
-          localStorage.setItem(
-            "attendanceFilters",
-            JSON.stringify({
-              ...queryParams,
-              month_id: "",
-              class_id: "",
-            })
-          );
-        } else {
-          updateParams({
-            class_id: e?.value,
-          });
-          await loadItems(
-            new URLSearchParams({
-              ...queryParams,
-              class_id: e?.value,
-            }).toString()
-          );
-          localStorage.setItem(
-            "attendanceFilters",
-            JSON.stringify({
-              ...queryParams,
-              class_id: e?.value,
-            })
-          );
-        }
-      }
+      updateParams({
+        month_id: e?.value == undefined ? "" : e?.value,
+      });
+      await loadItems(
+        new URLSearchParams({
+          ...queryParams,
+          month_id: e?.value == undefined ? "" : e?.value,
+        }).toString()
+      );
       setLoader(false);
+      localStorage.setItem(
+        "holidayFilters",
+        JSON.stringify({
+          ...queryParams,
+          month_id: e?.value == undefined ? "" : e?.value,
+        })
+      );
     },
     [queryParams]
   );

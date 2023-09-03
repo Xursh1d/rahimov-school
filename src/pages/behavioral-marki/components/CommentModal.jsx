@@ -11,7 +11,7 @@ const initialValues = {
 
 function CommentModal({ studentId, cancelCallback }) {
   const [loading, setLoader] = useState(false);
-  const { loadItems, filterset, change, queryParams, onSubmit, setLoading } =
+  const { loadItems, filterset, queryParams, onSubmit, setLoading } =
     useBehaviorMarkStore();
 
   const formik = useFormik({
@@ -38,13 +38,7 @@ function CommentModal({ studentId, cancelCallback }) {
   });
 
   const closeModal = () => {
-    console.log("ishla");
-    if (change) {
-      useBehaviorMarkStore.setState({
-        openPopup: true,
-      });
-    } else cancelCallback();
-
+    cancelCallback();
     setLoader(false);
     formik.resetForm();
   };
@@ -54,8 +48,9 @@ function CommentModal({ studentId, cancelCallback }) {
       onClick={() => closeModal()}
       id="defaultModal"
       aria-hidden="true"
-      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${!studentId ? "hidden" : "bg-[#66656547] dark:#3a3839ad"
-        }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
+      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${
+        !studentId ? "hidden" : "bg-[#66656547] dark:#3a3839ad"
+      }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -120,8 +115,9 @@ function CommentModal({ studentId, cancelCallback }) {
                   onBlur={formik.handleBlur}
                   value={formik.values.category_id}
                   id="countries"
-                  className={`${formik.errors.category_id && "border-red-500"
-                    } bg-white outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500`}
+                  className={`${
+                    formik.errors.category_id && "border-red-500"
+                  } bg-white outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500`}
                 >
                   <option selected></option>
                   {filterset?.comment_categories.map((categoriya) => {

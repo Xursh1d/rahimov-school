@@ -1,32 +1,32 @@
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useAttendaceStore } from "../../../store/AttendanceStore";
 import DatePicker from "react-datepicker";
 import { dateRangeFormat } from "../../../helpers/dateFormat";
-import { parseISO } from "date-fns";
+import { useHolidayStore } from "../../../store/HolidayStore";
 
 function AddDate() {
   const [loading, setLoading] = useState(false);
   const {
-    attendance_dates,
     loadItems,
-    filterset,
     queryParams,
     onSubmit,
+    endDate,
+    startDate,
     setLoader,
     toggleDateModal,
-  } = useAttendaceStore();
+  } = useHolidayStore();
   const formik = useFormik({
-    initialValues: { date: "" },
+    initialValues: { start_date: "", end_date: "" },
     enableReinitialize: false,
     validationSchema: Yup.object({
-      date: Yup.string().required("required"),
+      start_date: Yup.string().required("required"),
+      end_date: Yup.string().required("required"),
     }),
 
     onSubmit: async (values) => {
       setLoading(true);
-      await onSubmit({ ...values, ...queryParams, academic_year_id: 1 });
+      await onSubmit({ ...values, ...queryParams });
       closeModal();
       setLoader(true);
       await loadItems(
@@ -39,7 +39,7 @@ function AddDate() {
   });
 
   const closeModal = () => {
-    useAttendaceStore.setState({
+    useHolidayStore.setState({
       toggleDateModal: false,
     });
     setLoading(false);
@@ -47,17 +47,13 @@ function AddDate() {
   };
 
   const onChange = (date) => {
-    formik.setFieldValue("date", dateRangeFormat(date));
+    useHolidayStore.setState({
+      startDate: date[0],
+      endDate: date[1],
+    });
+    formik.setFieldValue("start_date", dateRangeFormat(date[0]));
+    formik.setFieldValue("end_date", dateRangeFormat(date[1]));
   };
-
-  const isWeekend = (date) => {
-    const day = date.getDay();
-    return day === 0 || day === 6;
-  };
-
-  const excludedDates = attendance_dates?.map((attendanceDate) =>
-    parseISO(attendanceDate.full_date)
-  );
 
   return (
     <div
@@ -70,7 +66,7 @@ function AddDate() {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-md max-h-full"
+        className="relative w-full xs:max-w-sm sm:max-w-xl max-h-full"
       >
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
           <button
@@ -107,31 +103,35 @@ function AddDate() {
               <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
             </svg>
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-              Davomat qo`shish
+              Dam olish kunlarini qo`shish
             </h3>
-
             <form onSubmit={formik.handleSubmit}>
-              <div className="mb-6 flex items-center justify-center w-full flex-col">
+              <div className="my-6 flex xs:items-center sm:items-start justify-center xs:flex-col sm:flex-row w-full gap-3">
                 <DatePicker
-                  selectsStart={
-                    new Date(filterset?.date_range?.start_date || new Date())
-                  }
                   name="date"
                   type={"date"}
-                  filterDate={(date) => !isWeekend(date)}
-                  value={filterset?.date_range?.start_date}
-                  excludeDates={excludedDates}
-                  onChange={onChange}
-                  minDate={
-                    new Date(filterset?.date_range?.start_date || new Date())
-                  }
-                  maxDate={
-                    new Date(filterset?.date_range?.end_date || new Date())
-                  }
-                  selectsRange
+                  onChange={(date) => onChange(date)}
+                  startDate={startDate}
+                  endDate={endDate}
                   inline
+                  selectsRange={true}
                   showDisabledMonthNavigation
+                  className="red-border"
                 />
+                <div className="mb-6 xs:w-[70%] sm:w-[50%] flex items-start flex-col">
+                  <label
+                    htmlFor="password"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Izoh
+                  </label>
+                  <textarea
+                    name="title"
+                    value={formik.values.title}
+                    onChange={formik.handleChange}
+                    className=" border outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                  />
+                </div>
               </div>
 
               <div className="flex items-center w-full justify-center gap-4">
