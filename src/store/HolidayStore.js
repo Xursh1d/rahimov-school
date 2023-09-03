@@ -8,7 +8,10 @@ export const useHolidayStore = create((set) => ({
   monthId: null,
   cancelCallbackComment: null,
   filterset: null,
+  startDate: null,
+  endDate: null,
   deletedId: null,
+  toggleDateModal: false,
   queryParams: {},
   setLoader: (status) => {
     set({

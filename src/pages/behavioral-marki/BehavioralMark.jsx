@@ -8,6 +8,9 @@ import { useBehaviorMarkStore } from "../../store/BehaviorMarkStore";
 import CommentModal from "./components/CommentModal";
 import EmptyContent from "../../components/EmptyContent";
 import PopUp from "./components/PopUp";
+import DeleteConfirmation from "../../components/DeleteConfirmation";
+import { BehaviorMarkService } from "../../services/BehaviorMarkService";
+import { toastError, toastSuccess } from "../../helpers/toasts";
 
 function BehaviorMark() {
   const {
@@ -19,8 +22,12 @@ function BehaviorMark() {
     updateParams,
     loadItems,
     openPopup,
+    deleteId,
+    queryParams,
   } = useBehaviorMarkStore();
   const { setLoading, isLoading } = useLoaderStore();
+
+  console.log(deleteId);
 
   const pageLoad = useCallback(async () => {
     const behavioralFilters = JSON.parse(
@@ -69,6 +76,29 @@ function BehaviorMark() {
     cancelRedirect();
   };
 
+  const deleteCallback = async () => {
+    const { status, nonFieldError } = await BehaviorMarkService.deleteComment(
+      deleteId
+    );
+    if (status) {
+      toastSuccess(nonFieldError);
+      cancelCallbackDelete();
+      setLoading(true);
+      await loadItems(
+        new URLSearchParams({
+          ...queryParams,
+        }).toString()
+      );
+      setLoading(false);
+    } else toastError(nonFieldError);
+  };
+
+  const cancelCallbackDelete = () => {
+    useBehaviorMarkStore.setState({
+      deleteId: null,
+    });
+  };
+
   const cancelRedirect = () => {
     useBehaviorMarkStore.setState({
       openPopup: false,
@@ -96,6 +126,11 @@ function BehaviorMark() {
         redirectHandler={redirectHandler}
         cancelCallback={cancelRedirect}
         open={openPopup}
+      />
+      <DeleteConfirmation
+        deleteCallback={deleteCallback}
+        cancelCallback={cancelCallbackDelete}
+        deleteId={deleteId}
       />
     </Layout>
   );

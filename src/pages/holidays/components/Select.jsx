@@ -64,6 +64,13 @@ function Selector({ value, disabled, param, property }) {
         }).toString()
       );
       setLoader(false);
+      localStorage.setItem(
+        "holidayFilters",
+        JSON.stringify({
+          ...queryParams,
+          month_id: e?.value == undefined ? "" : e?.value,
+        })
+      );
     },
     [queryParams]
   );

@@ -1,9 +1,8 @@
-import { useAttendaceStore } from "../../../store/AttendanceStore";
+import { useHolidayStore } from "../../../store/HolidayStore";
 
 function TableHead() {
-
   const openDateModal = () => {
-    useAttendaceStore.setState({
+    useHolidayStore.setState({
       toggleDateModal: true,
     });
   };
@@ -33,7 +32,8 @@ function TableHead() {
         </th>
         <th
           scope="col"
-          className="border border-gray-200 p-2 text-center bg-white">
+          className="border border-gray-200 p-2 text-center bg-white"
+        >
           Dam olish sababi
         </th>
         <th

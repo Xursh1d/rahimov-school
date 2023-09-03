@@ -6,9 +6,9 @@ import Loader from "../../components/loaders/Loader";
 import Layout from "../../Layout";
 import { useHolidayStore } from "../../store/HolidayStore";
 import { useLoaderStore } from "../../store/LoaderStore";
-import AddDate from "../attendance/components/AddDate";
-import PopUp from "../attendance/components/PopUp";
+import AddDate from "./components/AddDate";
 import Heading from "./components/Heading";
+import PopUp from "./components/PopUp";
 import Table from "./components/Table";
 
 function Holidays() {
@@ -21,13 +21,18 @@ function Holidays() {
     setLoader,
     loadItems,
     queryParams,
+    updateParams,
     deletedId,
   } = useHolidayStore();
   const { isLoading, setLoading } = useLoaderStore();
 
   const pageLoad = useCallback(async () => {
+    const holidayFilters = JSON.parse(localStorage.getItem("holidayFilters"));
     setLoading(true);
-    await onReload();
+    if (holidayFilters) {
+      updateParams(holidayFilters);
+      await loadItems(new URLSearchParams({ ...holidayFilters }).toString());
+    } else await onReload();
     setLoading(false);
   }, []);
 

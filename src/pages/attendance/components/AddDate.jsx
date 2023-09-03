@@ -58,14 +58,15 @@ function AddDate() {
   const excludedDates = attendance_dates?.map((attendanceDate) =>
     parseISO(attendanceDate.full_date)
   );
-  console.log(filterset?.date_range?.start_date);
+
   return (
     <div
       onClick={() => closeModal()}
       id="defaultModal"
       aria-hidden="true"
-      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${!toggleDateModal ? "hidden" : "bg-[#66656547] dark:#3a3839ad"
-        }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
+      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${
+        !toggleDateModal ? "hidden" : "bg-[#66656547] dark:#3a3839ad"
+      }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -112,9 +113,7 @@ function AddDate() {
             <form onSubmit={formik.handleSubmit}>
               <div className="mb-6 flex items-center justify-center w-full flex-col">
                 <DatePicker
-                  selectsStart={
-                    new Date(filterset?.date_range?.start_date)
-                  }
+                  selectsStart={new Date(filterset?.date_range?.start_date)}
                   name="date"
                   type={"date"}
                   filterDate={(date) => !isWeekend(date)}
