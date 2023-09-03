@@ -4,9 +4,23 @@ import HeaderSelects from "./components/HeaderSelects";
 import { useAcademicMarkStore } from "./store/AcademicMarkStore";
 import { useAttendaceStore } from "./store/AttendanceStore";
 import { useLayoutStore } from "./store/LayoutStore";
+import { useUserStore } from "./store/UserDetailsStore";
 import UserPermissionWidget from "./UserPermissionWidget";
 
 function Layout({ children }) {
+  const { onReload } = useUserStore();
+  const LoadUserDetails = async () => {
+    const user_details = JSON.parse(localStorage.getItem("user_details"));
+    if (!user_details) {
+      await onReload();
+    } else {
+      updateParams({
+        academic_year_id: user_details?.current_academic_year,
+        branch_id: user_details?.current_branch,
+      });
+    }
+  };
+  LoadUserDetails();
   const {
     toggleAttendanceDrop,
     toggleMarkDrop,
