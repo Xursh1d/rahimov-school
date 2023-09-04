@@ -26,16 +26,40 @@ function Attendance() {
     updateParams,
   } = useAttendaceStore();
   const { isLoading, setLoading } = useLoaderStore();
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userRole = JSON.parse(localStorage.getItem("user_details"))?.role;
 
   const pageLoad = useCallback(async () => {
     const attendanceFilters = JSON.parse(
       localStorage.getItem("attendanceFilters")
     );
     setLoading(true);
-    if (attendanceFilters) {
-      updateParams(attendanceFilters);
-      await loadItems(new URLSearchParams({ ...attendanceFilters }).toString());
-    } else await onReload();
+    if (userRole === "teacher") {
+      localStorage.setItem(
+        "attendanceFilters",
+        JSON.stringify({
+          ...attendanceFilters,
+          teacher_id: user?.pk,
+        })
+      );
+      updateParams({
+        ...attendanceFilters,
+        teacher_id: user?.pk,
+      });
+      await loadItems(
+        new URLSearchParams({
+          ...attendanceFilters,
+          teacher_id: user?.pk,
+        }).toString()
+      );
+    } else {
+      if (attendanceFilters) {
+        updateParams(attendanceFilters);
+        await loadItems(
+          new URLSearchParams({ ...attendanceFilters }).toString()
+        );
+      } else await onReload();
+    }
     setLoading(false);
   }, []);
 
@@ -46,7 +70,6 @@ function Attendance() {
   const deleteCallback = async () => {
     await deleteDateAction({
       date: deletedDate,
-      academic_year_id: 1,
       ...queryParams,
     });
     setLoader(true);
