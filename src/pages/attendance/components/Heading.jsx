@@ -3,6 +3,9 @@ import { useAttendaceStore } from "../../../store/AttendanceStore";
 import Selector from "./Select";
 
 function Heading() {
+  const user = JSON.parse(localStorage.getItem("user"))
+  const userRole = JSON.parse(localStorage.getItem("user_details"))?.role
+
   const { filterset, queryParams } = useAttendaceStore();
 
   const teachersOptions = useMemo(() => {
@@ -43,7 +46,7 @@ function Heading() {
 
   return (
     <div className="w-[100%] flex sm:justify-start xs:justify-center sm:gap-5 xs:gap-2 flex-wrap">
-      <Selector
+      {userRole === "admin" && <Selector
         value={
           teachersOptions.find(
             (item) => item.value === queryParams.teacher_id
@@ -52,7 +55,7 @@ function Heading() {
         disabled={false}
         param={teachersOptions}
         property="Ustoz"
-      />
+      />}
       <Selector
         value={
           subjectOptions.find(
