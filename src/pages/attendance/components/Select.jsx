@@ -47,6 +47,9 @@ const mobileStyles = {
 };
 
 function Selector({ value, disabled, param, property }) {
+  const user = JSON.parse(localStorage.getItem("user"))
+  const userRole = JSON.parse(localStorage.getItem("user_details"))?.role
+  console.log(user, userRole === "teacher");
   const { queryParams, updateParams, setLoader, loadItems } =
     useAttendaceStore();
 

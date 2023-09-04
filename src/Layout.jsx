@@ -13,11 +13,6 @@ function Layout({ children }) {
     const user_details = JSON.parse(localStorage.getItem("user_details"));
     if (!user_details) {
       await onReload();
-    } else {
-      updateParams({
-        academic_year_id: user_details?.current_academic_year,
-        branch_id: user_details?.current_branch,
-      });
     }
   };
   LoadUserDetails();
