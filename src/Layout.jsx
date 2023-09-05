@@ -57,7 +57,7 @@ function Layout({ children }) {
 
   return (
     <div className="overflow-x-hidden min-h-full ">
-      <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+      <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200">
         <div className="px-3 py-1 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start">
@@ -71,7 +71,7 @@ function Layout({ children }) {
                 data-drawer-toggle="logo-sidebar"
                 aria-controls="logo-sidebar"
                 type="button"
-                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
               >
                 <span className="sr-only">Open sidebar</span>
                 <svg
@@ -116,21 +116,21 @@ function Layout({ children }) {
           onClick={(e) => e.stopPropagation()}
           id="logo-sidebar"
           className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${isOpenSideBar ? "translate-x" : "-translate-x-full"
-            }  bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700 pointer-events-auto`}
+            }  bg-white border-r border-gray-200 sm:translate-x-0 pointer-events-auto`}
           aria-label="Sidebar"
         >
-          <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+          <div className="h-full px-3 pb-4 overflow-y-auto bg-white">
             <ul className="space-y-2 font-medium">
               <li>
                 <button
                   onClick={() => toggleAttendanceDropHandler()}
                   type="button"
-                  className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100"
                   aria-controls="dropdown-example"
                   data-collapse-toggle="dropdown-example"
                 >
                   <svg
-                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -173,9 +173,9 @@ function Layout({ children }) {
                         <div
                           onClick={() => alertChange("/")}
                           className={`${currentURL == "/"
-                            ? "bg-gray-100 dark:text-white dark:bg-gray-700 "
+                            ? "bg-gray-100"
                             : ""
-                            } flex cursor-pointer items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                            } flex cursor-pointer items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                         >
                           Statistikalar
                         </div>
@@ -184,9 +184,9 @@ function Layout({ children }) {
                       <Link
                         to={"/"}
                         className={`${currentURL == "/"
-                          ? "bg-gray-100 dark:text-white dark:bg-gray-700"
+                          ? "bg-gray-100"
                           : ""
-                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                       >
                         Statistikalar
                       </Link>
@@ -203,9 +203,9 @@ function Layout({ children }) {
                         <div
                           onClick={() => alertChange("/attendance")}
                           className={`${currentURL == "/attendance"
-                            ? "bg-gray-100 dark:text-white dark:bg-gray-700 "
+                            ? "bg-gray-100"
                             : ""
-                            } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                            } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                         >
                           Davomat
                         </div>
@@ -214,9 +214,9 @@ function Layout({ children }) {
                       <Link
                         to={"/attendance"}
                         className={`${currentURL == "/attendance"
-                          ? "bg-gray-100 dark:text-white dark:bg-gray-700"
+                          ? "bg-gray-100"
                           : ""
-                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                       >
                         Davomat
                       </Link>
@@ -228,12 +228,12 @@ function Layout({ children }) {
                 <button
                   onClick={() => toggleMarkDropHandler()}
                   type="button"
-                  className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100"
                   aria-controls="dropdown-example"
                   data-collapse-toggle="dropdown-example"
                 >
                   <svg
-                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -276,9 +276,9 @@ function Layout({ children }) {
                         <div
                           onClick={() => alertChange("/marking/academic")}
                           className={`${currentURL == "/marking/academic"
-                            ? "bg-gray-100 dark:text-white dark:bg-gray-700 "
+                            ? "bg-gray-100 "
                             : ""
-                            } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                            } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                         >
                           Akademik baholash
                         </div>
@@ -287,9 +287,9 @@ function Layout({ children }) {
                       <Link
                         to={"/marking/academic"}
                         className={`${currentURL == "/marking/academic"
-                          ? "bg-gray-100 dark:text-white dark:bg-gray-700"
+                          ? "bg-gray-100"
                           : ""
-                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                       >
                         Akademik baholash
                       </Link>
@@ -306,9 +306,9 @@ function Layout({ children }) {
                         <div
                           onClick={() => alertChange("/marking/behavioural")}
                           className={`${currentURL == "/marking/behavioural"
-                            ? "bg-gray-100 dark:text-white dark:bg-gray-700 "
+                            ? "bg-gray-100 "
                             : ""
-                            } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                            } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                         >
                           Axloqiy baholash
                         </div>
@@ -317,9 +317,9 @@ function Layout({ children }) {
                       <Link
                         to={"/marking/behavioural"}
                         className={`${currentURL == "/marking/behavioural"
-                          ? "bg-gray-100 dark:text-white dark:bg-gray-700"
+                          ? "bg-gray-100"
                           : ""
-                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                       >
                         Axloqiy baholash
                       </Link>
@@ -331,12 +331,12 @@ function Layout({ children }) {
                 <button
                   onClick={() => toggleSettingDropHandler()}
                   type="button"
-                  className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100"
                   aria-controls="dropdown-example"
                   data-collapse-toggle="dropdown-example"
                 >
                   <svg
-                    className="w-6 h-6 text-gray-500 dark:text-white"
+                    className="w-6 h-6 text-gray-500"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -382,9 +382,9 @@ function Layout({ children }) {
                             alertChange("/settings/behavioural-categories")
                           }
                           className={`${currentURL == "/settings/behavioural-categories"
-                            ? "bg-gray-100 dark:text-white dark:bg-gray-700 "
+                            ? "bg-gray-100 "
                             : ""
-                            } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                            } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                         >
                           Axloqiy baholash kategoriyalari
                         </div>
@@ -393,9 +393,9 @@ function Layout({ children }) {
                       <Link
                         to={"/settings/behavioural-categories"}
                         className={`${currentURL == "/settings/behavioural-categories"
-                          ? "bg-gray-100 dark:text-white dark:bg-gray-700"
+                          ? "bg-gray-100"
                           : ""
-                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                       >
                         Axloqiy baholash kategoriyalari
                       </Link>
@@ -414,9 +414,9 @@ function Layout({ children }) {
                             alertChange("/settings/holidays")
                           }
                           className={`${currentURL == "/settings/holidays"
-                            ? "bg-gray-100 dark:text-white dark:bg-gray-700 "
+                            ? "bg-gray-100"
                             : ""
-                            } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                            } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                         >
                           Dam olish kunlari
                         </div>
@@ -425,9 +425,9 @@ function Layout({ children }) {
                       <Link
                         to={"/settings/holidays"}
                         className={`${currentURL == "/settings/holidays"
-                          ? "bg-gray-100 dark:text-white dark:bg-gray-700"
+                          ? "bg-gray-100"
                           : ""
-                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
+                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                       >
                         Dam olish kunlari
                       </Link>

@@ -7,7 +7,7 @@ function Table() {
 
   return (
     <div className="my-4 overflow-x-auto relative">
-      <table className="w-full xs:text-xs sm:text-sm text-left text-gray-500 dark:text-gray-400">
+      <table className="w-full xs:text-xs sm:text-sm text-left text-gray-500">
         <TableHead />
         <tbody>
           {students?.map((item, index) => {

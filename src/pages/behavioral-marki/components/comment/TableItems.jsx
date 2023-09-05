@@ -21,24 +21,23 @@ function TableItems({ formik, index }) {
   };
 
   return (
-    <tr className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700">
+    <tr className="bg-white border-b border">
       <td className="border px-3 py-0 xs:text-[10px] sm:text-sm  ">
         {index + 1}
       </td>
       <th
         scope="row"
-        className="h-auto px-1 py-0 text-center xs:text-[10px] sm:text-sm font-medium text-gray-900  dark:text-white"
+        className="h-auto px-1 py-0 text-center xs:text-[10px] sm:text-sm font-medium text-gray-900"
       >
         <textarea
           name={`studentComment.${index}.content`}
           onChange={(e) => handleChange(e, "content")}
           onBlur={formik.handleBlur}
           value={formik.values.studentComment?.[index]?.content || ""}
-          className={`px-3 py-0 h-full xs:text-[10px] sm:text-sm  font-normal ${
-            formik.touched.studentComment?.[index]?.content &&
+          className={`px-3 py-0 h-full xs:text-[10px] sm:text-sm  font-normal ${formik.touched.studentComment?.[index]?.content &&
             formik.errors.studentComment?.[index]?.content &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5`}
         />
       </th>
       <td className={`border`}>
@@ -47,11 +46,10 @@ function TableItems({ formik, index }) {
           onChange={(e) => handleChange(e, "category_id")}
           onBlur={formik.handleBlur}
           value={formik.values.studentComment?.[index]?.category_id || ""}
-          className={`px-3 py-0 h-full bg-inherit xs:text-[10px] sm:text-sm  ${
-            formik.touched.studentComment?.[index]?.category_id &&
+          className={`px-3 py-0 h-full bg-inherit xs:text-[10px] sm:text-sm  ${formik.touched.studentComment?.[index]?.category_id &&
             formik.errors.studentComment?.[index]?.category_id &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5`}
         >
           <option selected></option>
           {filterset?.comment_categories.map((categoriya) => {
@@ -75,11 +73,10 @@ function TableItems({ formik, index }) {
           onBlur={formik.handleBlur}
           value={formik.values.studentComment?.[index]?.marked_teacher || ""}
           disabled
-          className={`bg-inherit px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${
-            formik.touched.studentComment?.[index]?.marked_teacher &&
+          className={`bg-inherit px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${formik.touched.studentComment?.[index]?.marked_teacher &&
             formik.errors.studentComment?.[index]?.marked_teacher &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5`}
         />
       </td>
       <td className="border">
@@ -90,11 +87,10 @@ function TableItems({ formik, index }) {
           onBlur={formik.handleBlur}
           value={formik.values.studentComment?.[index]?.marked_time || ""}
           disabled
-          className={`bg-inherit px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${
-            formik.touched.studentComment?.[index]?.marked_time &&
+          className={`bg-inherit px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${formik.touched.studentComment?.[index]?.marked_time &&
             formik.errors.studentComment?.[index]?.marked_time &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5`}
         />
       </td>
       <td

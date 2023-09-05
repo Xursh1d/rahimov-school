@@ -2,7 +2,7 @@ function EmptyContent() {
   return (
     <div className="flex items-center flex-col my-10 gap-5">
       <svg
-        className="w-[100px] h-[100px] text-gray-400 dark:text-white"
+        className="w-[100px] h-[100px] text-gray-400"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"

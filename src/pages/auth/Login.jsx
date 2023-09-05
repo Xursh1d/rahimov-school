@@ -44,7 +44,7 @@ function Login() {
           <div className="relative w-full">
             <label
               htmlFor="login"
-              className="block mb-2 xs:text-sm sm:text-md font-medium text-gray-900 dark:text-white"
+              className="block mb-2 xs:text-sm sm:text-md font-medium text-gray-900"
             >
               Login
             </label>
@@ -56,9 +56,9 @@ function Login() {
               onBlur={formik.handleBlur}
               type="text"
               className={`bg-gray-50 outline-none h-[45px] border focus:border-none transition-all duration-300 text-gray-900 text-sm rounded-xl focus:ring-2 ring-offset-2 ${formik.errors.username
-                ? "ring-2 ring-red-200 dark:ring-orange-700 focus:bg-red-100 border-none"
-                : "focus:bg-blue-50 ring-blue-300 dark:ring-blue-700"
-                } block w-full px-4 dark:bg-gray-700 dark:ring-offset-gray-800 dark:placeholder-gray-400 dark:text-white`}
+                ? "ring-2 ring-red-200 focus:bg-red-100 border-none"
+                : "focus:bg-blue-50 ring-blue-300"
+                } block w-full px-4`}
             />
             {formik.errors.username && (
               <span className="absolute top-[80px] transition-all duration-300  text-red-500  text-sm">
@@ -69,7 +69,7 @@ function Login() {
           <div className="relative w-full">
             <label
               htmlFor="login"
-              className="block mb-2 text-md font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-md font-medium text-gray-900"
             >
               Parol
             </label>
@@ -81,9 +81,9 @@ function Login() {
               onBlur={formik.handleBlur}
               type="password"
               className={`bg-gray-50 outline-none h-[45px] border focus:border-none transition-all duration-300 text-gray-900 text-sm rounded-xl focus:ring-2 ring-offset-2 ${formik.errors.password
-                ? "ring-2 ring-red-200 dark:ring-orange-700 focus:bg-red-100 border-none"
-                : "focus:bg-blue-50 ring-blue-300 dark:ring-blue-700"
-                } block w-full px-4 dark:bg-gray-700 dark:ring-offset-gray-800 dark:placeholder-gray-400 dark:text-white`}
+                ? "ring-2 ring-red-200 focus:bg-red-100 border-none"
+                : "focus:bg-blue-50 ring-blue-300"
+                } block w-full px-4`}
             />
             {formik.errors.password && (
               <span className="absolute top-[80px] transition-all duration-300  text-red-500  text-sm">
@@ -94,7 +94,7 @@ function Login() {
           <div className="w-full flex justify-end mt-2">
             <button
               type="submit"
-              className="text-white bg-blue-700 hover:bg-blue-800 xs:w-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white bg-blue-700 hover:bg-blue-800 xs:w-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center"
             >
               {loading ? (
                 <>

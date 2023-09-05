@@ -95,19 +95,18 @@ function TableComment({ studentId, studentComment }) {
       onClick={() => closeModal()}
       id="defaultModal"
       aria-hidden="true"
-      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${
-        !behaviorId == studentId ? "hidden" : "bg-[#66656547] dark:#3a3839ad"
-      }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
+      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${!behaviorId == studentId ? "hidden" : "bg-[#66656547]"
+        }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
         className="relative w-full max-w-4xl max-h-full"
       >
-        <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <div className="relative bg-white rounded-lg shadow">
           <button
             onClick={() => closeModal()}
             type="button"
-            className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+            className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
             data-modal-hide="popup-modal"
           >
             <svg
@@ -129,7 +128,7 @@ function TableComment({ studentId, studentComment }) {
           </button>
           <div className="p-6 text-center ">
             <svg
-              className="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200"
+              className="mx-auto mb-4 text-gray-400 w-12 h-12"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 18"
@@ -144,7 +143,7 @@ function TableComment({ studentId, studentComment }) {
                 fill="currentColor"
               />
             </svg>
-            <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+            <h3 className="mb-5 text-lg font-normal text-gray-500">
               Izohlar
             </h3>
             <form
@@ -152,7 +151,7 @@ function TableComment({ studentId, studentComment }) {
               className="my-4 overflow-x-auto "
             >
               {studentComment?.length > 0 ? (
-                <table className=" xs:text-xs sm:text-sm text-left text-gray-500 dark:text-gray-400">
+                <table className=" xs:text-xs sm:text-sm text-left text-gray-500">
                   <TableHead />
                   <tbody>
                     {studentComment?.map((item, index) => {
@@ -171,9 +170,8 @@ function TableComment({ studentId, studentComment }) {
                 <button
                   disabled={!change}
                   type="submit"
-                  className={`${
-                    !change && "opacity-60 pointer-events-none"
-                  } sticky  right-0 text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm sm:px-5 sm:py-2.5 text-center xs:px-3 xs:py-2 xs:text-xs`}
+                  className={`${!change && "opacity-60 pointer-events-none"
+                    } sticky  right-0 text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm sm:px-5 sm:py-2.5 text-center xs:px-3 xs:py-2 xs:text-xs`}
                 >
                   {isLoading ? (
                     <>

@@ -16,7 +16,7 @@ function TableHead() {
   };
 
   return (
-    <thead className="xs:text-[10px] sm:text-xs text-gray-700  dark:bg-gray-700 dark:text-gray-400">
+    <thead className="xs:text-[10px] sm:text-xs text-gray-700">
       <tr className="py-3 ">
         <th
           rowSpan={2}
@@ -52,7 +52,7 @@ function TableHead() {
                 className="absolute top-0 left-0 right-0 bottom-0 hidden bg-none hover:bg-[#ed918e] group-hover:flex items-center justify-center"
               >
                 <svg
-                  className="w-4 h-4 text-white dark:text-white"
+                  className="w-4 h-4 text-white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -73,7 +73,7 @@ function TableHead() {
           <button
             onClick={openDateModal}
             type="button"
-            className="cursor-pointer text-white bg-gradient-to-r from-lime-400 via-lime-500 to-lime-600 hover:bg-gradient-to-br bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-sm sm:p-2 xs:p-1.5 text-center inline-flex items-center  dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-800"
+            className="cursor-pointer text-white bg-gradient-to-r from-lime-400 via-lime-500 to-lime-600 hover:bg-gradient-to-br bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-sm sm:p-2 xs:p-1.5 text-center inline-flex items-center"
           >
             <svg
               className="sm:w-6 sm:h-6 xs:w-4 xs:h-4"

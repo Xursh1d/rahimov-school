@@ -56,7 +56,7 @@ function TableComment() {
       onSubmit={formik.handleSubmit}
       className="py-2 xs:rounded-lg xs:w-max sm:w-full"
     >
-      <table className="w-full xs:text-xs sm:text-sm text-left text-gray-500 dark:text-gray-400">
+      <table className="w-full xs:text-xs sm:text-sm text-left text-gray-500">
         <TableHead />
         <tbody>
           {categories?.map((item, index) => {

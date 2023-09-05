@@ -18,7 +18,7 @@ function TableItems({ formik, index }) {
   };
 
   return (
-    <tr className="bg-white border-b border dark:bg-gray-800 dark:border-gray-700">
+    <tr className="bg-white border-b border">
       <td className="w-[20px] px-3 sticky left-0 bg-white xs:text-[10px] sm:text-sm ">
         <span className="absolute -left-[1px] top-0 bottom-0 w-[1.5px] h-full bg-gray-200"></span>
         <span className="absolute -left-[1px] -top-[1px] right-0 w-full h-[1.5px] bg-gray-200"></span>
@@ -26,7 +26,7 @@ function TableItems({ formik, index }) {
         <span className="absolute right-0 bottom-0 -left-[1px] w-full h-[1px] bg-gray-200"></span>
         {index + 1}
       </td>
-      <td className="sticky sm:left-[33px] xs:left-[30px] bg-white sm:px-2  xs:min-w-[150px] sm:min-w-[200px] xs:px-1 xs:text-[10px] sm:text-sm font-medium text-gray-900 dark:text-white">
+      <td className="sticky sm:left-[33px] xs:left-[30px] bg-white sm:px-2  xs:min-w-[150px] sm:min-w-[200px] xs:px-1 xs:text-[10px] sm:text-sm font-medium text-gray-900">
         <span className="absolute -left-[1px] top-0 bottom-0 w-[1px] h-full bg-gray-200"></span>
         <span className="absolute -left-[1px] -top-[1px] right-0 w-full h-[1px] bg-gray-200"></span>
         <span className="absolute -right-[1px] -top-[1px] bottom-0 w-[1px] h-full bg-gray-200"></span>
@@ -36,11 +36,10 @@ function TableItems({ formik, index }) {
 
       <td className="border text-center py-2">
         <span
-          className={`${
-            formik.values.categories?.[index]?.status == "Salbiy"
-              ? "bg-red-100 dark:text-red-400 border-red-400 text-red-800 "
-              : "bg-blue-100 text-blue-800 dark:text-blue-400 border-blue-400"
-          } text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 border`}
+          className={`${formik.values.categories?.[index]?.status == "Salbiy"
+            ? "bg-red-100 border-red-400 text-red-800 "
+            : "bg-blue-100 text-blue-800 border-blue-400"
+            } text-xs font-medium mr-2 px-2.5 py-0.5 rounded border`}
         >
           {formik.values.categories?.[index]?.status}
         </span>
@@ -53,11 +52,10 @@ function TableItems({ formik, index }) {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.categories?.[index]?.mark || ""}
-          className={`bg-inherit px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${
-            formik.touched.categories?.[index]?.mark &&
+          className={`bg-inherit px-3 py-0 h-full xs:text-[10px] sm:text-sm  ${formik.touched.categories?.[index]?.mark &&
             formik.errors.categories?.[index]?.mark &&
             "border border-red-600"
-          }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            }  outline-none text-center  text-gray-900 text-sm rounded-sm  block w-full p-2.5`}
         />
       </td>
       <td
@@ -66,7 +64,7 @@ function TableItems({ formik, index }) {
       >
         <div className="w-full flex items-center justify-center border-red-500">
           <svg
-            className="sm:w-6 sm:h-6 xs:w-4 xs:h-4 m-0 text-blue-700 dark:text-white"
+            className="sm:w-6 sm:h-6 xs:w-4 xs:h-4 m-0 text-blue-700"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
@@ -83,7 +81,7 @@ function TableItems({ formik, index }) {
       >
         <div className="w-full flex items-center justify-center border-red-500">
           <svg
-            className="sm:w-6 sm:h-6 xs:w-4 xs:h-4 text-red-700 dark:text-white"
+            className="sm:w-6 sm:h-6 xs:w-4 xs:h-4 text-red-700"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 function TableItems({ item, index }) {
   return (
-    <tr className="bg-white dark:bg-gray-800 dark:border-gray-700">
+    <tr className="bg-white">
       <td className="w-[20px] px-3 sticky left-0 bg-white xs:text-[10px] sm:text-sm py-2">
         <span className="absolute -left-[1px] top-0 bottom-0 w-[1.5px] h-full bg-gray-200"></span>
         <span className="absolute -left-[1px] -top-[1px] right-0 w-full h-[1.5px] bg-gray-200"></span>
@@ -10,7 +10,7 @@ function TableItems({ item, index }) {
         <span className="absolute right-0 bottom-0 -left-[1px] w-full h-[1px] bg-gray-200"></span>
         {index + 1}
       </td>
-      <td className="sticky sm:left-[33px] xs:left-[30px] bg-white sm:px-2  xs:min-w-[150px] sm:min-w-[200px] xs:px-1 xs:text-[10px] sm:text-sm font-medium text-gray-900 dark:text-white text-center">
+      <td className="sticky sm:left-[33px] xs:left-[30px] bg-white sm:px-2  xs:min-w-[150px] sm:min-w-[200px] xs:px-1 xs:text-[10px] sm:text-sm font-medium text-gray-900">
         <span className="absolute -left-[1px] top-0 bottom-0 w-[1px] h-full bg-gray-200"></span>
         <span className="absolute -left-[1px] -top-[1px] right-0 w-full h-[1px] bg-gray-200"></span>
         <span className="absolute -right-[1px] -top-[1px] bottom-0 w-[1px] h-full bg-gray-200"></span>
@@ -18,7 +18,7 @@ function TableItems({ item, index }) {
         {item.start_date} - {item.end_date}
       </td>
 
-      <td className="border xs:min-w-[150px] sm:min-w-[200px] xs:px-1 xs:text-[10px] sm:text-sm font-medium text-gray-900 dark:text-white text-center">
+      <td className="border xs:min-w-[150px] sm:min-w-[200px] xs:px-1 xs:text-[10px] sm:text-sm font-medium text-gray-900">
         {item.title}
       </td>
       <td
@@ -26,7 +26,7 @@ function TableItems({ item, index }) {
       >
         <div className="w-full flex items-center justify-center border-red-500">
           <svg
-            className="sm:w-6 sm:h-6 xs:w-4 xs:h-4 text-red-700 dark:text-white"
+            className="sm:w-6 sm:h-6 xs:w-4 xs:h-4 text-red-700"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"

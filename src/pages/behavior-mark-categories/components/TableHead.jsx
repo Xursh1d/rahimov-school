@@ -2,7 +2,7 @@ import { useBehaviorMarkCategoriesStore } from "../../../store/BehaviorMarkCateg
 
 function TableHead() {
   return (
-    <thead className="xs:text-[10px] sm:text-[11px] text-gray-700  bg-lime-50 dark:bg-gray-700 dark:text-gray-400">
+    <thead className="xs:text-[10px] sm:text-[11px] text-gray-700  bg-lime-50">
       <tr>
         <th
           scope="col"
@@ -38,11 +38,11 @@ function TableHead() {
               })
             }
             type="button"
-            className="text-white bg-gradient-to-r from-lime-500 via-lime-600 to-lime-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm sm:px-3 xs:px-2 xs:mx-2 sm:mx-0 sm:py-2 xs:py-1 text-center"
+            className="text-white bg-gradient-to-r from-lime-500 via-lime-600 to-lime-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-sm sm:px-3 xs:px-2 xs:mx-2 sm:mx-0 sm:py-2 xs:py-1 text-center"
           >
             <div className="flex items-center gap-2">
               <svg
-                className="sm:w-5 sm:h-5 xs:w-4 xs:h-4 text-gray-50 dark:text-white"
+                className="sm:w-5 sm:h-5 xs:w-4 xs:h-4 text-gray-50"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"

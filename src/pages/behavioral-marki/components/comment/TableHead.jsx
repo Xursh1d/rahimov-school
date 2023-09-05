@@ -1,6 +1,6 @@
 function TableHead() {
   return (
-    <thead className=" border xs:text-[10px] sm:text-[11px] text-gray-700  bg-lime-50 dark:bg-gray-700 dark:text-gray-400">
+    <thead className=" border xs:text-[10px] sm:text-[11px] text-gray-700 bg-lime-50">
       <tr>
         <th scope="col" className="border px-3">
           #
