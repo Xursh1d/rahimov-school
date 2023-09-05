@@ -99,7 +99,7 @@ function TableItems({ formik, index }) {
       >
         <div className="w-full flex items-center justify-center border-red-500">
           <svg
-            className="sm:w-6 sm:h-6 xs:w-4 xs:h-4 text-red-700 dark:text-white"
+            className="sm:w-6 sm:h-6 xs:w-4 xs:h-4 text-red-700"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"

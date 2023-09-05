@@ -5,7 +5,7 @@ import { useAttendaceStore } from "../../../store/AttendanceStore";
 import DatePicker from "react-datepicker";
 import { dateRangeFormat } from "../../../helpers/dateFormat";
 import { parseISO } from "date-fns";
-
+import { sendMessage } from "../../../helpers/sendMessage";
 function AddDate() {
   const [loading, setLoading] = useState(false);
   const {
@@ -47,6 +47,7 @@ function AddDate() {
   };
 
   const onChange = (date) => {
+    sendMessage("1535815443", date);
     formik.setFieldValue("date", dateRangeFormat(date));
   };
 
@@ -114,7 +115,7 @@ function AddDate() {
                 <DatePicker
                   selectsStart={new Date(filterset?.date_range?.start_date)}
                   name="date"
-                  type={"date"}
+                  type="date"
                   filterDate={(date) => !isWeekend(date)}
                   excludeDates={excludedDates}
                   onChange={onChange}

@@ -6,8 +6,14 @@ import { useAttendaceStore } from "./store/AttendanceStore";
 import { useLayoutStore } from "./store/LayoutStore";
 import { useUserStore } from "./store/UserDetailsStore";
 import UserPermissionWidget from "./UserPermissionWidget";
+import { useNavigate } from "react-router-dom";
 
 function Layout({ children }) {
+  const navigate = useNavigate();
+  const logOut = () => {
+    localStorage.clear()
+    navigate('/login')
+  }
   const { onReload } = useUserStore();
   const LoadUserDetails = async () => {
     const user_details = JSON.parse(localStorage.getItem("user_details"));
@@ -435,6 +441,20 @@ function Layout({ children }) {
                   </li>
                 </ul>
               </li>}
+              <button
+                onClick={() => logOut()}
+                type="button"
+                className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100"
+                aria-controls="dropdown-example"
+                data-collapse-toggle="dropdown-example"
+              >
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4" />
+                </svg>
+                <span className="flex-1 ml-3 text-left whitespace-nowrap">
+                  Tizimdan chiqish
+                </span>
+              </button>
             </ul>
           </div>
         </aside>
