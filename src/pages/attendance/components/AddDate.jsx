@@ -5,7 +5,7 @@ import { useAttendaceStore } from "../../../store/AttendanceStore";
 import DatePicker from "react-datepicker";
 import { dateRangeFormat } from "../../../helpers/dateFormat";
 import { parseISO } from "date-fns";
-import { sendMessage } from "../../../helpers/sendMessage";
+
 function AddDate() {
   const [loading, setLoading] = useState(false);
   const {
@@ -17,6 +17,7 @@ function AddDate() {
     setLoader,
     toggleDateModal,
   } = useAttendaceStore();
+
   const formik = useFormik({
     initialValues: { date: "" },
     enableReinitialize: false,
@@ -47,8 +48,7 @@ function AddDate() {
   };
 
   const onChange = (date) => {
-    sendMessage("1535815443", date);
-    formik.setFieldValue("date", dateRangeFormat(date));
+    formik.setFieldValue("date", dateRangeFormat(date[0]));
   };
 
   const isWeekend = (date) => {
@@ -65,8 +65,9 @@ function AddDate() {
       onClick={() => closeModal()}
       id="defaultModal"
       aria-hidden="true"
-      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${!toggleDateModal ? "hidden" : "bg-[#66656547]"
-        }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
+      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${
+        !toggleDateModal ? "hidden" : "bg-[#66656547]"
+      }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
     >
       <div
         onClick={(e) => e.stopPropagation()}

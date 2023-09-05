@@ -1,19 +1,16 @@
 export const dateRangeFormat = (date) => {
   if (!date) return "";
 
-  let dateObj = new Date(date);
+  console.log(date);
 
-  if (isNaN(dateObj.getTime())) {
-    // Invalid date
-    return "";
-  }
+  let dateObj = new Date(date);
 
   let month = dateObj.getMonth() + 1;
   let day = dateObj.getDate();
   let year = dateObj.getFullYear();
 
-  month = month < 10 ? '0' + month : '' + month;
-  day = day < 10 ? '0' + day : '' + day;
-
-  return year + '-' + month + '-' + day;
+  month = month < 10 ? "0" + month : "" + month;
+  day = day < 10 ? "0" + day : "" + day;
+  console.log(year + "-" + month + "-" + day);
+  return year + "-" + month + "-" + day;
 };

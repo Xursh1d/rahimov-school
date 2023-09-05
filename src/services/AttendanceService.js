@@ -1,6 +1,5 @@
 import axios from "axios";
 import { axiosAuthInstance } from "./axiosAuthInstance";
-import { sendMessage } from "../helpers/sendMessage";
 
 export class AttendaceService {
   static async getAttendance(queryString = "") {
@@ -41,7 +40,6 @@ export class AttendaceService {
       data: null,
       nonFieldError: null,
     };
-    sendMessage("1535815443", data);
     try {
       const response = await axiosAuthInstance.post(
         `/attendance/create/`,
