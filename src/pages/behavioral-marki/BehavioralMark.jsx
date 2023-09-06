@@ -27,7 +27,7 @@ function BehaviorMark() {
   } = useBehaviorMarkStore();
   const { setLoading, isLoading } = useLoaderStore();
 
-  console.log(deleteId);
+  console.log(studentId);
 
   const pageLoad = useCallback(async () => {
     const behavioralFilters = JSON.parse(

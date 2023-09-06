@@ -1,6 +1,7 @@
 import { useBehaviorMarkStore } from "../../../store/BehaviorMarkStore";
 import PropTypes from "prop-types";
 import TableComment from "./comment/Table";
+import { useCallback } from "react";
 
 function TableItems({ item, index }) {
   const openCommentModal = () => {
@@ -9,11 +10,11 @@ function TableItems({ item, index }) {
     });
   };
 
-  const studentCommentModal = () => {
+  const studentCommentModal = useCallback(() => {
     useBehaviorMarkStore.setState({
       behaviorId: item?.id,
     });
-  };
+  }, [item]);
 
   return (
     <>

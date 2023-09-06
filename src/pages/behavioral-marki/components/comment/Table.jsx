@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import TableHead from "./TableHead";
 import TableItems from "./TableItems";
 import { useBehaviorMarkStore } from "../../../../store/BehaviorMarkStore";
@@ -14,6 +14,9 @@ const initialValues = {
 
 function TableComment({ studentId, studentComment }) {
   const { behaviorId, loadItems, queryParams, change } = useBehaviorMarkStore();
+
+  console.log(behaviorId);
+  console.log(studentId);
 
   const [isLoading, setLoading] = useState(false);
   useEffect(() => {
@@ -76,7 +79,7 @@ function TableComment({ studentId, studentComment }) {
     },
   });
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     if (change) {
       useBehaviorMarkStore.setState({
         openPopup: true,
@@ -88,15 +91,16 @@ function TableComment({ studentId, studentComment }) {
       });
       formik.resetForm();
     }
-  };
+  }, [formik, change]);
 
   return (
     <div
       onClick={() => closeModal()}
       id="defaultModal"
       aria-hidden="true"
-      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${!behaviorId == studentId ? "hidden" : "bg-[#66656547]"
-        }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
+      className={`fixed flex items-center justify-center transition-all top-0 left-0 bottom-0 right-0 z-50 ${
+        behaviorId == studentId ? "bg-[#66656547]" : "hidden"
+      }  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%)] max-h-full`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -143,9 +147,7 @@ function TableComment({ studentId, studentComment }) {
                 fill="currentColor"
               />
             </svg>
-            <h3 className="mb-5 text-lg font-normal text-gray-500">
-              Izohlar
-            </h3>
+            <h3 className="mb-5 text-lg font-normal text-gray-500">Izohlar</h3>
             <form
               onSubmit={formik.handleSubmit}
               className="my-4 overflow-x-auto "
@@ -170,8 +172,9 @@ function TableComment({ studentId, studentComment }) {
                 <button
                   disabled={!change}
                   type="submit"
-                  className={`${!change && "opacity-60 pointer-events-none"
-                    } sticky  right-0 text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm sm:px-5 sm:py-2.5 text-center xs:px-3 xs:py-2 xs:text-xs`}
+                  className={`${
+                    !change && "opacity-60 pointer-events-none"
+                  } sticky  right-0 text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm sm:px-5 sm:py-2.5 text-center xs:px-3 xs:py-2 xs:text-xs`}
                 >
                   {isLoading ? (
                     <>

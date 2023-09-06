@@ -4,7 +4,7 @@ import Selector from "./Select";
 
 function Heading() {
   const { filterset, queryParams } = useBehaviorMarkStore();
-  console.log(queryParams);
+
   const classOptions = useMemo(() => {
     return (
       filterset?.class_options?.map((element) => ({

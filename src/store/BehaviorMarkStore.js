@@ -8,6 +8,7 @@ export const useBehaviorMarkStore = create((set) => ({
   change: false,
   openPopup: false,
   behaviorId: null,
+  studentId: null,
   cancelCallbackComment: null,
   filterset: null,
   queryParams: {},
@@ -35,6 +36,7 @@ export const useBehaviorMarkStore = create((set) => ({
         students: data.behavior_marks,
         filterset: data.filterset,
         queryParams: {},
+        studentId: null,
       });
     } else toastError(nonFieldError);
   },

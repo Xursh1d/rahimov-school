@@ -9,7 +9,7 @@ const initialValues = {
   categories: [],
 };
 
-function TableComment() {
+function Table() {
   const { categories, onSubmit } = useBehaviorMarkCategoriesStore();
 
   useEffect(() => {
@@ -67,4 +67,4 @@ function TableComment() {
     </form>
   );
 }
-export default TableComment;
+export default Table;
