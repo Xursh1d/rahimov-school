@@ -55,8 +55,8 @@ function Table() {
         Yup.object().shape({
           attendance_data: Yup.array().of(
             Yup.object().shape({
-              attendance_id: Yup.number().nullable().required(),
-              status: Yup.string().nullable().required(),
+              attendance_id: Yup.number().nullable(),
+              status: Yup.string().nullable(),
             })
           ),
         })

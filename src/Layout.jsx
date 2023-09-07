@@ -11,9 +11,9 @@ import { useNavigate } from "react-router-dom";
 function Layout({ children }) {
   const navigate = useNavigate();
   const logOut = () => {
-    localStorage.clear()
-    navigate('/login')
-  }
+    localStorage.clear();
+    navigate("/login");
+  };
   const { onReload } = useUserStore();
   const LoadUserDetails = async () => {
     const user_details = JSON.parse(localStorage.getItem("user_details"));
@@ -49,7 +49,7 @@ function Layout({ children }) {
   };
   const location = useLocation();
   const currentURL = location.pathname;
-  const userRole = JSON.parse(localStorage.getItem("user_details"))?.role
+  const userRole = JSON.parse(localStorage.getItem("user_details"))?.role;
   const alertChange = (url) => {
     if (currentURL == "/marking/academic") {
       useAcademicMarkStore.setState({
@@ -115,14 +115,16 @@ function Layout({ children }) {
             isOpenSideBar: false,
           })
         }
-        className={`w-full absolute sm:bg-inherit ${isOpenSideBar ? "xs:bg-[#5d5d5da3] sm:bg-white z-40" : "z-0"
-          } top-16 sm:right-0 left-0 bottom-0 transition-all `}
+        className={`w-full absolute sm:bg-inherit ${
+          isOpenSideBar ? "xs:bg-[#5d5d5da3] sm:bg-white z-40" : "z-0"
+        } top-16 sm:right-0 left-0 bottom-0 transition-all `}
       >
         <aside
           onClick={(e) => e.stopPropagation()}
           id="logo-sidebar"
-          className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${isOpenSideBar ? "translate-x" : "-translate-x-full"
-            }  bg-white border-r border-gray-200 sm:translate-x-0 pointer-events-auto`}
+          className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${
+            isOpenSideBar ? "translate-x" : "-translate-x-full"
+          }  bg-white border-r border-gray-200 sm:translate-x-0 pointer-events-auto`}
           aria-label="Sidebar"
         >
           <div className="h-full px-3 pb-4 overflow-y-auto bg-white">
@@ -165,8 +167,9 @@ function Layout({ children }) {
                 </button>
                 <ul
                   id="dropdown-example"
-                  className={`${toggleAttendanceDrop ? "block" : "hidden"
-                    } py-2 space-y-2`}
+                  className={`${
+                    toggleAttendanceDrop ? "block" : "hidden"
+                  } py-2 space-y-2`}
                 >
                   <li>
                     <UserPermissionWidget
@@ -178,10 +181,9 @@ function Layout({ children }) {
                       emptyContent={
                         <div
                           onClick={() => alertChange("/")}
-                          className={`${currentURL == "/"
-                            ? "bg-gray-100"
-                            : ""
-                            } flex cursor-pointer items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
+                          className={`${
+                            currentURL == "/" ? "bg-gray-100" : ""
+                          } flex cursor-pointer items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                         >
                           Statistikalar
                         </div>
@@ -189,10 +191,9 @@ function Layout({ children }) {
                     >
                       <Link
                         to={"/"}
-                        className={`${currentURL == "/"
-                          ? "bg-gray-100"
-                          : ""
-                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
+                        className={`${
+                          currentURL == "/" ? "bg-gray-100" : ""
+                        } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                       >
                         Statistikalar
                       </Link>
@@ -208,10 +209,9 @@ function Layout({ children }) {
                       emptyContent={
                         <div
                           onClick={() => alertChange("/attendance")}
-                          className={`${currentURL == "/attendance"
-                            ? "bg-gray-100"
-                            : ""
-                            } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
+                          className={`${
+                            currentURL == "/attendance" ? "bg-gray-100" : ""
+                          } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                         >
                           Davomat
                         </div>
@@ -219,10 +219,9 @@ function Layout({ children }) {
                     >
                       <Link
                         to={"/attendance"}
-                        className={`${currentURL == "/attendance"
-                          ? "bg-gray-100"
-                          : ""
-                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
+                        className={`${
+                          currentURL == "/attendance" ? "bg-gray-100" : ""
+                        } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                       >
                         Davomat
                       </Link>
@@ -268,8 +267,9 @@ function Layout({ children }) {
                 </button>
                 <ul
                   id="dropdown-example"
-                  className={`${toggleMarkDrop ? "block" : "hidden"
-                    } py-2 space-y-2`}
+                  className={`${
+                    toggleMarkDrop ? "block" : "hidden"
+                  } py-2 space-y-2`}
                 >
                   <li>
                     <UserPermissionWidget
@@ -281,10 +281,11 @@ function Layout({ children }) {
                       emptyContent={
                         <div
                           onClick={() => alertChange("/marking/academic")}
-                          className={`${currentURL == "/marking/academic"
-                            ? "bg-gray-100 "
-                            : ""
-                            } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
+                          className={`${
+                            currentURL == "/marking/academic"
+                              ? "bg-gray-100 "
+                              : ""
+                          } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                         >
                           Akademik baholash
                         </div>
@@ -292,10 +293,9 @@ function Layout({ children }) {
                     >
                       <Link
                         to={"/marking/academic"}
-                        className={`${currentURL == "/marking/academic"
-                          ? "bg-gray-100"
-                          : ""
-                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
+                        className={`${
+                          currentURL == "/marking/academic" ? "bg-gray-100" : ""
+                        } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                       >
                         Akademik baholash
                       </Link>
@@ -311,10 +311,11 @@ function Layout({ children }) {
                       emptyContent={
                         <div
                           onClick={() => alertChange("/marking/behavioural")}
-                          className={`${currentURL == "/marking/behavioural"
-                            ? "bg-gray-100 "
-                            : ""
-                            } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
+                          className={`${
+                            currentURL == "/marking/behavioural"
+                              ? "bg-gray-100 "
+                              : ""
+                          } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                         >
                           Axloqiy baholash
                         </div>
@@ -322,10 +323,11 @@ function Layout({ children }) {
                     >
                       <Link
                         to={"/marking/behavioural"}
-                        className={`${currentURL == "/marking/behavioural"
-                          ? "bg-gray-100"
-                          : ""
-                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
+                        className={`${
+                          currentURL == "/marking/behavioural"
+                            ? "bg-gray-100"
+                            : ""
+                        } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                       >
                         Axloqiy baholash
                       </Link>
@@ -333,114 +335,119 @@ function Layout({ children }) {
                   </li>
                 </ul>
               </li>
-              {userRole == "admin" && <li>
-                <button
-                  onClick={() => toggleSettingDropHandler()}
-                  type="button"
-                  className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100"
-                  aria-controls="dropdown-example"
-                  data-collapse-toggle="dropdown-example"
-                >
-                  <svg
-                    className="w-6 h-6 text-gray-500"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+              {userRole == "admin" && (
+                <li>
+                  <button
+                    onClick={() => toggleSettingDropHandler()}
+                    type="button"
+                    className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100"
+                    aria-controls="dropdown-example"
+                    data-collapse-toggle="dropdown-example"
                   >
-                    <path d="M18 7.5h-.423l-.452-1.09.3-.3a1.5 1.5 0 0 0 0-2.121L16.01 2.575a1.5 1.5 0 0 0-2.121 0l-.3.3-1.089-.452V2A1.5 1.5 0 0 0 11 .5H9A1.5 1.5 0 0 0 7.5 2v.423l-1.09.452-.3-.3a1.5 1.5 0 0 0-2.121 0L2.576 3.99a1.5 1.5 0 0 0 0 2.121l.3.3L2.423 7.5H2A1.5 1.5 0 0 0 .5 9v2A1.5 1.5 0 0 0 2 12.5h.423l.452 1.09-.3.3a1.5 1.5 0 0 0 0 2.121l1.415 1.413a1.5 1.5 0 0 0 2.121 0l.3-.3 1.09.452V18A1.5 1.5 0 0 0 9 19.5h2a1.5 1.5 0 0 0 1.5-1.5v-.423l1.09-.452.3.3a1.5 1.5 0 0 0 2.121 0l1.415-1.414a1.5 1.5 0 0 0 0-2.121l-.3-.3.452-1.09H18a1.5 1.5 0 0 0 1.5-1.5V9A1.5 1.5 0 0 0 18 7.5Zm-8 6a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z" />
-                  </svg>
+                    <svg
+                      className="w-6 h-6 text-gray-500"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M18 7.5h-.423l-.452-1.09.3-.3a1.5 1.5 0 0 0 0-2.121L16.01 2.575a1.5 1.5 0 0 0-2.121 0l-.3.3-1.089-.452V2A1.5 1.5 0 0 0 11 .5H9A1.5 1.5 0 0 0 7.5 2v.423l-1.09.452-.3-.3a1.5 1.5 0 0 0-2.121 0L2.576 3.99a1.5 1.5 0 0 0 0 2.121l.3.3L2.423 7.5H2A1.5 1.5 0 0 0 .5 9v2A1.5 1.5 0 0 0 2 12.5h.423l.452 1.09-.3.3a1.5 1.5 0 0 0 0 2.121l1.415 1.413a1.5 1.5 0 0 0 2.121 0l.3-.3 1.09.452V18A1.5 1.5 0 0 0 9 19.5h2a1.5 1.5 0 0 0 1.5-1.5v-.423l1.09-.452.3.3a1.5 1.5 0 0 0 2.121 0l1.415-1.414a1.5 1.5 0 0 0 0-2.121l-.3-.3.452-1.09H18a1.5 1.5 0 0 0 1.5-1.5V9A1.5 1.5 0 0 0 18 7.5Zm-8 6a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z" />
+                    </svg>
 
-                  <span className="flex-1 ml-3 text-left whitespace-nowrap">
-                    Sozlamalar
-                  </span>
-                  <svg
-                    className="w-3 h-3"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 10 6"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="m1 1 4 4 4-4"
-                    />
-                  </svg>
-                </button>
-                <ul
-                  id="dropdown-example"
-                  className={`${toggleSettingDrop ? "block" : "hidden"
+                    <span className="flex-1 ml-3 text-left whitespace-nowrap">
+                      Sozlamalar
+                    </span>
+                    <svg
+                      className="w-3 h-3"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 10 6"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="m1 1 4 4 4-4"
+                      />
+                    </svg>
+                  </button>
+                  <ul
+                    id="dropdown-example"
+                    className={`${
+                      toggleSettingDrop ? "block" : "hidden"
                     } py-2 space-y-2`}
-                >
-                  <li>
-                    <UserPermissionWidget
-                      hasPermission={
-                        currentURL == "/settings/behavioural-categories"
-                          ? academic_changed
-                          : changed
-                      }
-                      emptyContent={
-                        <div
-                          onClick={() =>
-                            alertChange("/settings/behavioural-categories")
-                          }
-                          className={`${currentURL == "/settings/behavioural-categories"
-                            ? "bg-gray-100 "
-                            : ""
+                  >
+                    <li>
+                      <UserPermissionWidget
+                        hasPermission={
+                          currentURL == "/settings/behavioural-categories"
+                            ? academic_changed
+                            : changed
+                        }
+                        emptyContent={
+                          <div
+                            onClick={() =>
+                              alertChange("/settings/behavioural-categories")
+                            }
+                            className={`${
+                              currentURL == "/settings/behavioural-categories"
+                                ? "bg-gray-100 "
+                                : ""
                             } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
+                          >
+                            Axloqiy baholash kategoriyalari
+                          </div>
+                        }
+                      >
+                        <Link
+                          to={"/settings/behavioural-categories"}
+                          className={`${
+                            currentURL == "/settings/behavioural-categories"
+                              ? "bg-gray-100"
+                              : ""
+                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                         >
                           Axloqiy baholash kategoriyalari
-                        </div>
-                      }
-                    >
-                      <Link
-                        to={"/settings/behavioural-categories"}
-                        className={`${currentURL == "/settings/behavioural-categories"
-                          ? "bg-gray-100"
-                          : ""
-                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
-                      >
-                        Axloqiy baholash kategoriyalari
-                      </Link>
-                    </UserPermissionWidget>
-                  </li>
-                  <li>
-                    <UserPermissionWidget
-                      hasPermission={
-                        currentURL == "/settings/holidays"
-                          ? academic_changed
-                          : changed
-                      }
-                      emptyContent={
-                        <div
-                          onClick={() =>
-                            alertChange("/settings/holidays")
-                          }
-                          className={`${currentURL == "/settings/holidays"
-                            ? "bg-gray-100"
-                            : ""
+                        </Link>
+                      </UserPermissionWidget>
+                    </li>
+                    <li>
+                      <UserPermissionWidget
+                        hasPermission={
+                          currentURL == "/settings/holidays"
+                            ? academic_changed
+                            : changed
+                        }
+                        emptyContent={
+                          <div
+                            onClick={() => alertChange("/settings/holidays")}
+                            className={`${
+                              currentURL == "/settings/holidays"
+                                ? "bg-gray-100"
+                                : ""
                             } flex cursor-pointer  items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
+                          >
+                            Dam olish kunlari
+                          </div>
+                        }
+                      >
+                        <Link
+                          to={"/settings/holidays"}
+                          className={`${
+                            currentURL == "/settings/holidays"
+                              ? "bg-gray-100"
+                              : ""
+                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
                         >
                           Dam olish kunlari
-                        </div>
-                      }
-                    >
-                      <Link
-                        to={"/settings/holidays"}
-                        className={`${currentURL == "/settings/holidays"
-                          ? "bg-gray-100"
-                          : ""
-                          } flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100`}
-                      >
-                        Dam olish kunlari
-                      </Link>
-                    </UserPermissionWidget>
-                  </li>
-                </ul>
-              </li>}
+                        </Link>
+                      </UserPermissionWidget>
+                    </li>
+                  </ul>
+                </li>
+              )}
               <button
                 onClick={() => logOut()}
                 type="button"
@@ -448,8 +455,20 @@ function Layout({ children }) {
                 aria-controls="dropdown-example"
                 data-collapse-toggle="dropdown-example"
               >
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4" />
+                <svg
+                  className="w-6 h-6 text-gray-800 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 10"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 5H1m0 0 4 4M1 5l4-4"
+                  />
                 </svg>
                 <span className="flex-1 ml-3 text-left whitespace-nowrap">
                   Tizimdan chiqish

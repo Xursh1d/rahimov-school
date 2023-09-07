@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import AcademicMark from "./pages/academic-mark/AcademicMark";
 import Attendance from "./pages/attendance/Attendance";
 import Login from "./pages/auth/Login";
@@ -17,6 +17,8 @@ import Holidays from "./pages/holidays/Holidays";
 function App() {
   const navigate = useNavigate();
   const { onReload, updateParams } = useUserStore();
+  const location = useLocation();
+  const currentURL = location.pathname;
 
   const configureUser = useCallback(() => {
     const userData = localStorage.getItem("user")
@@ -32,10 +34,10 @@ function App() {
       navigate("/login", { replace: true });
     }
   }, []);
-
+  console.log(currentURL);
   const pageLoad = async () => {
     const user_details = JSON.parse(localStorage.getItem("user_details"));
-    if (!user_details) {
+    if (!user_details && !currentURL == "/login") {
       await onReload();
     } else {
       updateParams({
@@ -63,9 +65,7 @@ function App() {
             path="/settings/behavioural-categories"
             element={<BehaviorMarkCategories />}
           />
-          <Route
-            path="/settings/holidays"
-            element={<Holidays />} />
+          <Route path="/settings/holidays" element={<Holidays />} />
         </Route>
       </Routes>
       <ToastContainer />
